@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="Leonardo Barraco: corsa, progetti personali e automazioni domestiche.">
+  <title>LEOBARRA — Corro. Costruisco cose.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090b0e'/%3E%3Cpath d='M15 13h10v29h18v9H15z' fill='%23d7ff3f'/%3E%3Cpath d='M39 13h10v29H39z' fill='%23ff2e8c'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="LEOBARRA, torna all'inizio">LEOBARRA <i></i><i></i></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav id="nav" aria-label="Navigazione principale">
+      <a href="#running">Running</a><a href="#projects">Progetti</a><a href="#uscite">Corri con me</a><a href="#contatti">Contatti</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="kicker">LEONARDO BARRACO · BORGOLAVEZZARO</p>
+        <h1>Corro.<br>Costruisco cose.<br><em>Ogni tanto funzionano.</em></h1>
+        <p class="intro">Sport, tecnologia e una quantità non necessaria di grafici. Questo è il posto in cui tengo insieme tutto.</p>
+        <div class="hero-actions"><a class="button primary" href="#running">Partiamo</a><a class="button ghost" href="#projects">Vedi i progetti</a></div>
+      </div>
+      <div class="hero-visual reveal">
+        <img src="assets/nebbia-run.jpg" alt="Leonardo corre in un viale nella nebbia">
+        <div class="photo-shade"></div>
+        <div class="run-card">
+          <span>IN QUESTO MOMENTO</span><strong>Un passo alla volta.</strong><small>Il resto lo misuriamo dopo.</small>
+        </div>
+        <div class="route-card" aria-label="Grafico decorativo dell'andamento di una corsa">
+          <div class="route-head"><span>RUN LOG</span><b>↗</b></div>
+          <svg viewBox="0 0 420 112" role="img" aria-label="Andamento di corsa stilizzato"><defs><linearGradient id="route" x1="0" x2="1"><stop stop-color="#d7ff3f"/><stop offset=".48" stop-color="#00ddec"/><stop offset="1" stop-color="#ff2e8c"/></linearGradient></defs><path d="M5 76 C46 75 55 31 92 45 S151 100 189 64 240 32 270 55 314 95 346 55 385 31 415 19" fill="none" stroke="url(#route)" stroke-width="5" stroke-linecap="round"/><g fill="#090b0e" stroke-width="4" stroke="url(#route)"><circle cx="5" cy="76" r="7"/><circle cx="189" cy="64" r="7"/><circle cx="346" cy="55" r="7"/><circle cx="415" cy="19" r="7"/></g></svg>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#running"><span>SCORRI</span><i></i></a>
+    </section>
+
+    <section id="running" class="section running-section">
+      <div class="section-heading reveal"><p class="kicker">01 · RUNNING</p><h2>Le gambe prima.<br><em>I numeri subito dopo.</em></h2><p>Allenamenti, gare e chilometri. Corro perché mi piace; i grafici sono solo una conseguenza inevitabile.</p></div>
+      <div class="running-grid">
+        <article class="feature-photo reveal"><img src="assets/firenze-finish.jpg" alt="Leonardo taglia il traguardo della gara di Firenze"><div class="feature-caption"><span>FIRENZE</span><strong>Le giornate che vale la pena ricordare.</strong></div></article>
+        <div class="metrics reveal">
+          <article><span>SPORT</span><strong>RUN</strong><small>Quello principale</small></article>
+          <article><span>ANCHE</span><strong>BIKE</strong><small>Quando serve cambiare aria</small></article>
+          <article class="metric-wide"><span>DATI LIVE</span><strong>Presto qui.</strong><small>La Running Dashboard fornirà statistiche selezionate, senza pubblicare tutta la mia vita.</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects-section">
+      <div class="section-heading compact reveal"><p class="kicker">02 · COSTRUISCO COSE</p><h2>Casa, codice<br>e idee discutibili.</h2></div>
+      <article class="homehub-card reveal">
+        <div class="homehub-copy"><span class="project-status"><i></i> PROGETTO ATTIVO</span><h3>HOMEHUB</h3><p>Un ecosistema domestico fatto in casa: allenamenti, calendario, finanze, manutenzioni, automazioni e parecchi container.</p><a class="button cyan" href="#contatti">Ne riparliamo presto</a></div>
+        <div class="dashboard-preview" aria-hidden="true"><div class="dash-top"><b>H</b><span>HOME HUB</span><i></i></div><div class="dash-content"><div class="dash-side"></div><div class="dash-main"><span></span><span></span><span></span><span></span></div></div></div>
+      </article>
+    </section>
+
+    <section id="uscite" class="section invite-section">
+      <div class="invite-photo reveal"><img src="assets/milano-run.jpg" alt="Leonardo corre a Milano davanti al Duomo"></div>
+      <div class="invite-copy reveal"><p class="kicker">03 · USCITE APERTE</p><h2>Io mi alleno.<br><em>Se vuoi, vieni.</em></h2><p>Niente squadra, iscrizioni o passi imposti. Dico quando e dove esco; se qualcuno vuole aggregarsi, bene. Altrimenti amen.</p><div class="scribble">stessa strada,<br>ognuno col suo passo ↗</div><a class="button pink" href="#contatti">Trova la prossima uscita</a></div>
+    </section>
+
+    <section id="contatti" class="contact-section">
+      <p class="kicker">FINE DEL GIRO</p><h2>Ci sentiamo<br><em>fuori da qui.</em></h2>
+      <div class="contact-links"><a href="mailto:leo@leobarra.it">leo@leobarra.it ↗</a><span>Instagram · link in arrivo</span></div>
+    </section>
+  </main>
+
+  <footer><strong>LEOBARRA</strong><span>Sport / Tecnologia / Caos controllato</span><small>© <span id="year"></span> Leonardo Barraco</small></footer>
+</body>
+</html>
