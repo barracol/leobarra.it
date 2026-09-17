@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="Wi‑Fi Heatmap: rilievo della copertura mesh, test iperf3 e rendering 2D/3D della rete di casa.">
+  <title>Wi‑Fi Heatmap — LEOBARRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="heatmap-page">
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html">LEOBARRA <i></i><i></i></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav id="nav"><a href="elettronica.html">Maker Lab</a><a href="#sistema">Sistema</a><a href="#metodo">Metodo</a><a href="#hardware">Hardware</a></nav>
+  </header>
+  <main>
+    <section class="heat-hero">
+      <div class="heat-title reveal">
+        <a class="back-link" href="elettronica.html">← MAKER LAB</a>
+        <p class="kicker">PROGETTO 001 · RETI / MISURE</p>
+        <h1>Wi‑Fi<br><em>Heatmap.</em></h1>
+        <p>Misurare davvero la rete mesh di casa: non soltanto le tacche del Wi‑Fi, ma segnale, TCP e UDP nello stesso punto.</p>
+        <div class="tag-row"><span>WORK IN PROGRESS</span><span>IPERF3</span><span>2 PIANI</span><span>MESH</span></div>
+      </div>
+      <div class="coverage-preview reveal" aria-label="Anteprima concettuale di una heatmap Wi-Fi, non basata sui dati completi">
+        <div class="coverage-grid"></div>
+        <span class="node node-a">NODE A</span><span class="node node-b">NODE B</span>
+        <div class="coverage-legend"><b>ANTEPRIMA CONCETTUALE</b><span>debole</span><i></i><span>forte</span></div>
+      </div>
+    </section>
+
+    <section class="project-facts">
+      <article><span>SERVER</span><strong>HOMEHUB</strong><small>192.168.68.76 · Ethernet</small></article>
+      <article><span>STRUMENTO</span><strong>IPERF3</strong><small>TCP + UDP · porta 5201</small></article>
+      <article><span>BASELINE</span><strong>WIRELESS</strong><small>Backhaul mesh attuale</small></article>
+      <article><span>OUTPUT</span><strong>2D / 3D</strong><small>Copertura e throughput</small></article>
+    </section>
+
+    <section id="sistema" class="section">
+      <div class="section-heading reveal">
+        <div><p class="kicker">01 · IL SISTEMA</p><h2>Dal click<br><em>al dato.</em></h2></div>
+        <p>Il Mac misura nel punto esatto della planimetria. HomeHub risponde via iperf3 senza confondere la qualità della LAN con la velocità di Internet.</p>
+      </div>
+      <div class="data-flow reveal" aria-label="Flusso del sistema di misura">
+        <article><b>01</b><span>CLIENT</span><strong>Mac + WiFi Heatmapper</strong><small>Posizione, RSSI, canale, TCP e UDP</small></article>
+        <i>→</i>
+        <article><b>02</b><span>RETE</span><strong>TP‑Link Deco Mesh</strong><small>Baseline con backhaul wireless</small></article>
+        <i>→</i>
+        <article><b>03</b><span>SERVER</span><strong>HomeHub + iperf3</strong><small>Endpoint cablato e sempre disponibile</small></article>
+        <i>→</i>
+        <article><b>04</b><span>OUTPUT</span><strong>JSON / CSV</strong><small>Rendering, confronto e archivio</small></article>
+      </div>
+    </section>
+
+    <section class="section field-notes">
+      <div class="section-heading reveal">
+        <div><p class="kicker">02 · PRIME MISURE</p><h2>Due punti.<br><em>Una domanda.</em></h2></div>
+        <p>Sono osservazioni preliminari, non una conclusione: servono molti più punti e lo stesso protocollo sui due piani.</p>
+      </div>
+      <div class="measurement-grid">
+        <article class="measurement-card reveal"><div><span>PUNTO 27 · VICINO AL NODO</span><strong>−40 <small>dBm</small></strong></div><dl><div><dt>TCP ↓</dt><dd>92.2 Mbps</dd></div><div><dt>TCP ↑</dt><dd>68.4 Mbps</dd></div><div><dt>UDP ↓ / ↑</dt><dd>100 / 100 Mbps</dd></div></dl></article>
+        <article class="measurement-card cool reveal"><div><span>PUNTO 26 · DIAGONALE OPPOSTA</span><strong>−65 <small>dBm</small></strong></div><dl><div><dt>TCP ↓</dt><dd>104.4 Mbps</dd></div><div><dt>TCP ↑</dt><dd>59.4 Mbps</dd></div><div><dt>UDP ↓ / ↑</dt><dd>100 / 87.6 Mbps</dd></div></dl></article>
+      </div>
+      <p class="finding reveal"><b>IPOTESI DA VERIFICARE</b> Il segnale cambia molto, il throughput molto meno. Il collo di bottiglia potrebbe essere il backhaul wireless, non il collegamento tra Mac e nodo.</p>
+    </section>
+
+    <section id="metodo" class="section protocol">
+      <div class="section-heading reveal">
+        <div><p class="kicker">03 · PROTOCOLLO</p><h2>Stesso punto.<br><em>Stesse regole.</em></h2></div>
+        <p>Solo una misura ripetibile permette di capire se cablare il backhaul cambia davvero la rete.</p>
+      </div>
+      <ol class="protocol-list">
+        <li><b>01</b><div><strong>Baseline completa</strong><p>20–30 punti per piano come minimo; 40–60 per una mappa più leggibile.</p></div></li>
+        <li><b>02</b><div><strong>Geometria costante</strong><p>Stessa altezza, orientamento del Mac, apertura dello schermo e durata del test.</p></div></li>
+        <li><b>03</b><div><strong>Backhaul Ethernet</strong><p>Collegare i nodi mesh via cavo senza cambiare la posizione dei punti.</p></div></li>
+        <li><b>04</b><div><strong>Secondo passaggio</strong><p>Ripetere la griglia e confrontare segnale, TCP, UDP e stabilità punto per punto.</p></div></li>
+        <li><b>05</b><div><strong>Rendering finale</strong><p>Heatmap 2D per piano, confronto prima/dopo e superficie 3D della copertura.</p></div></li>
+      </ol>
+    </section>
+
+    <section id="hardware" class="section cart-section">
+      <div class="cart-copy reveal">
+        <p class="kicker">04 · HARDWARE NECESSARIO</p>
+        <h2>Il carrello<br><em>di misura.</em></h2>
+        <p>Non è un accessorio: serve a spostare il Mac velocemente e, soprattutto, a mantenerlo sempre nella stessa geometria.</p>
+        <div class="cart-specs">
+          <span><b>70–90 cm</b> altezza costante</span><span><b>4 ruote</b> almeno due bloccabili</span><span><b>NON METALLICO</b> vicino alle antenne</span><span><b>ORIENTAMENTO</b> e apertura fissi</span><span><b>ANTISCIVOLO</b> per il Mac</span><span><b>RIPIANO BASSO</b> per batteria e accessori</span>
+        </div>
+      </div>
+      <div class="cart-blueprint reveal" aria-label="Schema concettuale del carrello di misura">
+        <span class="laptop">MAC<br><small>posizione fissa</small></span><i class="post"></i><span class="shelf">POWER / KIT</span><b class="wheel w1"></b><b class="wheel w2"></b><small>CONCEPT · DA PROGETTARE</small>
+      </div>
+    </section>
+
+    <section class="section deliverables">
+      <p class="kicker">05 · RISULTATO ATTESO</p>
+      <div class="deliver-grid">
+        <article><span>01</span><h3>Heatmap RSSI</h3><p>Dove il segnale degrada sui due piani.</p></article>
+        <article><span>02</span><h3>Heatmap TCP/UDP</h3><p>Dove la rete è realmente veloce e stabile.</p></article>
+        <article><span>03</span><h3>Prima / dopo</h3><p>Effetto misurabile del backhaul cablato.</p></article>
+        <article><span>04</span><h3>Vista 3D</h3><p>Una superficie di copertura leggibile, non soltanto una tabella.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><strong>LEOBARRA</strong><span>Wi‑Fi Heatmap / Project 001</span><small>© <span id="year"></span> Leonardo Barraco</small></footer>
+</body>
+</html>

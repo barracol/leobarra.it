@@ -1,1 +1,74 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090b0e"><meta name="description" content="Il Maker Lab di Leonardo Barraco: Raspberry Pi, Arduino, sensori e prototipi."><title>Maker Lab — LEOBARRA</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><script src="app.js" defer></script></head><body class="lab-page"><div class="noise"></div><header class="topbar"><a class="brand" href="index.html">LEOBARRA <i></i><i></i></a><button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button><nav id="nav"><a href="index.html">Home</a><a href="#banco">Banco</a><a href="#metodo">Metodo</a><a href="index.html#contatti">Contatti</a></nav></header><main><section class="lab-hero"><div class="lab-hero-copy reveal"><a class="back-link" href="index.html">← TORNA ALLA HOME</a><p class="kicker">MAKER LAB · HARDWARE / SOFTWARE</p><h1>Fili, sensori<br>e idee che<br><em>devono accendersi.</em></h1><p>Il quaderno pubblico dei miei prossimi esperimenti con Raspberry Pi, Arduino ed elettronica domestica.</p></div><div class="board-art reveal"><div class="chip"><span>LEO</span><strong>LAB</strong><small>REV.01</small></div></div></section><section id="banco" class="section"><div class="section-heading reveal"><div><p class="kicker">01 · SUL BANCO</p><h2>La dotazione<br><em>è già pronta.</em></h2></div><p>Ogni scheda conterrà obiettivo, componenti, collegamenti, codice e cosa rifarei diversamente.</p></div><div class="bench-grid"><article class="bench-card"><span>COMPUTING</span><h3>Raspberry Pi</h3><p>Servizi locali, gateway, automazioni e piccoli sistemi sempre accesi.</p><small>PROSSIMI PROGETTI IN PREPARAZIONE</small></article><article class="bench-card"><span>MICROCONTROLLERS</span><h3>Arduino</h3><p>Sensori, attuatori e oggetti che fanno una cosa sola ma la fanno davvero.</p><small>INVENTARIO DA COSTRUIRE</small></article><article class="bench-card wide"><span>INTEGRAZIONE</span><h3>Casa + hardware</h3><p>Esperimenti fisici collegati a HomeHub e Home Assistant, mantenendo controllo locale e documentazione riproducibile.</p><small>IDEA / PROTOTIPO / TEST / DOCUMENTAZIONE</small></article></div></section><section id="metodo" class="section method"><p class="kicker">02 · IL METODO</p><div class="method-grid"><article><b>01</b><h3>Problema</h3><p>Qualcosa che mi serve davvero.</p></article><article><b>02</b><h3>Prototipo</h3><p>Collegare, provare, rompere.</p></article><article><b>03</b><h3>Codice</h3><p>Renderlo ripetibile.</p></article><article><b>04</b><h3>Diario</h3><p>Documentare anche gli errori.</p></article></div></section></main><footer><strong>LEOBARRA</strong><span>Maker Lab / Rev.01</span><small>© <span id="year"></span> Leonardo Barraco</small></footer></body></html>
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="Il Maker Lab di Leonardo Barraco: Raspberry Pi, Arduino, reti, sensori e prototipi.">
+  <title>Maker Lab — LEOBARRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="lab-page">
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html">LEOBARRA <i></i><i></i></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav id="nav"><a href="index.html">Home</a><a href="#progetti">Progetti</a><a href="#banco">Banco</a><a href="#metodo">Metodo</a></nav>
+  </header>
+  <main>
+    <section class="lab-hero">
+      <div class="lab-hero-copy reveal">
+        <a class="back-link" href="index.html">← TORNA ALLA HOME</a>
+        <p class="kicker">MAKER LAB · HARDWARE / SOFTWARE</p>
+        <h1>Fili, sensori<br>e idee che<br><em>devono accendersi.</em></h1>
+        <p>Il quaderno pubblico dei miei esperimenti con reti, Raspberry Pi, Arduino ed elettronica domestica.</p>
+      </div>
+      <div class="board-art reveal"><div class="chip"><span>LEO</span><strong>LAB</strong><small>REV.02</small></div></div>
+    </section>
+
+    <section id="progetti" class="section project-index">
+      <div class="section-heading reveal">
+        <div><p class="kicker">01 · PROGETTI ATTIVI</p><h2>Misurare.<br><em>Costruire.</em></h2></div>
+        <p>Progetti reali, documentati dal problema iniziale fino ai dati e all'hardware necessario.</p>
+      </div>
+      <a class="featured-project reveal" href="wifi-heatmap.html">
+        <div>
+          <span class="project-status"><i></i> RILIEVO IN CORSO</span>
+          <p class="kicker">RETI · MISURE · DATA VISUALIZATION</p>
+          <h3>Wi‑Fi<br>Heatmap</h3>
+          <p>Mappare segnale e velocità della rete mesh, confrontare il backhaul wireless con quello cablato e trasformare i dati in una vista 2D/3D della casa.</p>
+          <strong>APRI IL PROGETTO →</strong>
+        </div>
+        <div class="mini-heatmap" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><b>−40</b><b>−65</b></div>
+      </a>
+    </section>
+
+    <section id="banco" class="section">
+      <div class="section-heading reveal">
+        <div><p class="kicker">02 · SUL BANCO</p><h2>La dotazione<br><em>è già pronta.</em></h2></div>
+        <p>Ogni scheda conterrà obiettivo, componenti, collegamenti, codice e cosa rifarei diversamente.</p>
+      </div>
+      <div class="bench-grid">
+        <article class="bench-card"><span>COMPUTING</span><h3>Raspberry Pi</h3><p>Servizi locali, gateway, automazioni e piccoli sistemi sempre accesi.</p><small>PROSSIMI PROGETTI IN PREPARAZIONE</small></article>
+        <article class="bench-card"><span>MICROCONTROLLERS</span><h3>Arduino</h3><p>Sensori, attuatori e oggetti che fanno una cosa sola ma la fanno davvero.</p><small>INVENTARIO DA COSTRUIRE</small></article>
+        <article class="bench-card wide"><span>INTEGRAZIONE</span><h3>Casa + hardware</h3><p>Esperimenti fisici collegati a HomeHub e Home Assistant, mantenendo controllo locale e documentazione riproducibile.</p><small>IDEA / PROTOTIPO / TEST / DOCUMENTAZIONE</small></article>
+      </div>
+    </section>
+
+    <section id="metodo" class="section method">
+      <p class="kicker">03 · IL METODO</p>
+      <div class="method-grid">
+        <article><b>01</b><h3>Problema</h3><p>Qualcosa che mi serve davvero.</p></article>
+        <article><b>02</b><h3>Prototipo</h3><p>Collegare, provare, rompere.</p></article>
+        <article><b>03</b><h3>Dati</h3><p>Misurare e rendere il test ripetibile.</p></article>
+        <article><b>04</b><h3>Diario</h3><p>Documentare anche gli errori.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer><strong>LEOBARRA</strong><span>Maker Lab / Rev.02</span><small>© <span id="year"></span> Leonardo Barraco</small></footer>
+</body>
+</html>
