@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="Running Dashboard: calendario e statistiche multisport per corsa, nuoto e ciclismo. Download gratuito per macOS e Windows.">
+  <title>Running Dashboard — LEOBARRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="running-dashboard.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="running-page">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html">LEOBARRA <i></i><i></i></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav id="nav"><a href="index.html">Home</a><a href="#funzioni">Funzioni</a><a href="#download">Download</a><a href="#screenshots">Screenshot</a></nav>
+  </header>
+  <main>
+    <section class="runapp-hero">
+      <div class="runapp-copy reveal">
+        <a class="back-link" href="index.html#projects">← TORNA AI PROGETTI</a>
+        <p class="kicker">OPEN SOURCE · DESKTOP APP · V0.1.0</p>
+        <h1>Running<br><em>Dashboard.</em></h1>
+        <p>Un posto solo per pianificare e leggere gli allenamenti di corsa, nuoto e ciclismo, senza mischiare le statistiche dei diversi sport.</p>
+        <div class="hero-actions"><a class="button primary" href="#download">Scarica l’app</a><a class="button ghost" href="https://github.com/barracol/running-dashboard">Vedi il sorgente ↗</a></div>
+      </div>
+      <div class="runapp-window reveal" aria-label="Anteprima stilizzata di Running Dashboard">
+        <div class="window-bar"><i></i><i></i><i></i><span>RUNNING DASHBOARD</span></div>
+        <div class="window-body"><aside><b>RD</b><span></span><span></span><span></span><span></span></aside><div class="window-main"><div class="mock-heading"></div><div class="mock-stats"><i></i><i></i><i></i></div><div class="mock-chart"><svg viewBox="0 0 520 150" aria-hidden="true"><path d="M0 118 C58 105 71 44 132 72 S214 130 263 81 338 25 385 57 448 93 520 20" fill="none" stroke="#d7ff3f" stroke-width="5"/></svg></div><div class="mock-days"><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      </div>
+    </section>
+    <section class="runapp-facts" aria-label="Informazioni sul progetto">
+      <article><span>SPORT</span><strong>3</strong><small>Corsa · Nuoto · Ciclismo</small></article><article><span>DATI</span><strong>LOCALI</strong><small>Il profilo resta sul dispositivo</small></article><article><span>COACH AI</span><strong>OPZIONALE</strong><small>Funziona anche senza token</small></article><article><span>LICENZA</span><strong>MIT</strong><small>Sorgente aperto su GitHub</small></article>
+    </section>
+    <section id="funzioni" class="section runapp-features">
+      <div class="section-heading reveal"><div><p class="kicker">01 · COSA FA</p><h2>Tre sport.<br><em>Una settimana.</em></h2></div><p>Un calendario comune mostra tutto il carico di allenamento. Quando analizzi i risultati, invece, distanza, velocità e andamento restano correttamente separati per disciplina.</p></div>
+      <div class="feature-tiles"><article class="reveal"><span>01</span><h3>Calendario unico</h3><p>Corsa, bici e nuoto nella stessa vista settimanale per capire subito cosa ti aspetta.</p></article><article class="reveal"><span>02</span><h3>Statistiche pulite</h3><p>Filtri dedicati a ogni sport, grafici sovrapponibili e serie attivabili dalla legenda.</p></article><article class="reveal"><span>03</span><h3>Profilo Demo</h3><p>Apri l’app e provala con dati dimostrativi, senza toccare il tuo profilo reale.</p></article><article class="reveal"><span>04</span><h3>Coach AI</h3><p>Facoltativo: aggiungi la tua chiave API localmente soltanto se vuoi generare piani con l’AI.</p></article></div>
+    </section>
+    <section id="download" class="section download-section">
+      <div class="section-heading reveal"><div><p class="kicker">02 · DOWNLOAD</p><h2>Scarica.<br><em>Apri. Parti.</em></h2></div><p>Non serve installare un server. Estrai lo ZIP, avvia l’app e scegli Demo oppure il tuo profilo personale. La release attuale non è ancora firmata digitalmente.</p></div>
+      <div class="download-grid">
+        <article class="download-card reveal"><span>WINDOWS · X64</span><h3>RunningDashboard.exe</h3><ol><li>Scarica ed estrai lo ZIP.</li><li>Apri la cartella <code>RunningDashboard</code>.</li><li>Avvia <code>RunningDashboard.exe</code>.</li></ol><a class="button primary" href="https://github.com/barracol/running-dashboard/releases/download/v0.1.0/Running-Dashboard-Windows-x64.zip">Download Windows ↓</a></article>
+        <article class="download-card reveal"><span>macOS</span><h3>Running Dashboard.app</h3><ol><li>Scarica ed estrai lo ZIP.</li><li>Trascina l’app dove preferisci.</li><li>Al primo avvio usa clic destro → Apri.</li></ol><a class="button cyan" href="https://github.com/barracol/running-dashboard/releases/download/v0.1.0/Running-Dashboard-macOS.zip">Download macOS ↓</a></article>
+      </div>
+      <aside class="unsigned-note reveal"><b>PERCHÉ COMPARE UN AVVISO?</b><p>Questa prima release è integra ma non ancora firmata con un certificato commerciale/Apple. SmartScreen e Gatekeeper possono quindi chiedere una conferma aggiuntiva. Codice e checksum sono disponibili nella <a href="https://github.com/barracol/running-dashboard/releases/tag/v0.1.0">pagina ufficiale della release ↗</a>.</p></aside>
+    </section>
+    <section class="section quickstart-section">
+      <div class="section-heading reveal"><div><p class="kicker">03 · PRIMO AVVIO</p><h2>Demo o<br><em>dati reali.</em></h2></div><p>I due ambienti sono separati. Puoi esplorare liberamente la Demo e passare al profilo personale quando vuoi, senza password e senza copiare i dati dimostrativi.</p></div>
+      <div class="quickstart-flow"><article><b>01</b><h3>Apri</h3><p>Avvia l’eseguibile o la app.</p></article><i>→</i><article><b>02</b><h3>Scegli</h3><p>Demo per esplorare, Profilo personale per iniziare.</p></article><i>→</i><article><b>03</b><h3>Registra</h3><p>Inserisci allenamenti, peso, scarpe e gare.</p></article><i>→</i><article><b>04</b><h3>AI, se vuoi</h3><p>Configura il token solo per usare il Coach AI.</p></article></div>
+    </section>
+    <section id="screenshots" class="section screenshots-section">
+      <div class="section-heading reveal"><div><p class="kicker">04 · DENTRO L’APP</p><h2>Lo spazio per<br><em>vederla davvero.</em></h2></div><p>La galleria è pronta. I prossimi screenshot mostreranno panoramica, pianificazione multisport e grafici interattivi direttamente dalla webapp.</p></div>
+      <div class="screenshot-grid"><figure class="shot-placeholder reveal"><div><span>01</span><b>PANORAMICA</b><small>Screenshot in arrivo</small></div><figcaption>Statistiche e andamento dell’attività selezionata.</figcaption></figure><figure class="shot-placeholder reveal"><div><span>02</span><b>PIANIFICAZIONE</b><small>Screenshot in arrivo</small></div><figcaption>Il calendario unico di corsa, ciclismo e nuoto.</figcaption></figure><figure class="shot-placeholder wide reveal"><div><span>03</span><b>GRAFICI INTERATTIVI</b><small>Screenshot in arrivo</small></div><figcaption>Serie sovrapposte che puoi attivare e disattivare.</figcaption></figure></div>
+    </section>
+    <section class="project-cta"><p class="kicker">IL PROGETTO È APERTO</p><h2>Usala.<br><em>Rompila meglio.</em></h2><p>Segnalazioni, idee e contributi sono benvenuti direttamente su GitHub.</p><a class="button pink" href="https://github.com/barracol/running-dashboard">Apri il repository ↗</a></section>
+  </main>
+  <footer><strong>LEOBARRA</strong><span>Running Dashboard / v0.1.0</span><small>© <span id="year"></span> Leonardo Barraco</small></footer>
+</body>
+</html>
