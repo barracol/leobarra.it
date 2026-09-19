@@ -17,7 +17,7 @@
   <header class="topbar">
     <a class="brand" href="index.html">LEOBARRA <i></i><i></i></a>
     <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
-    <nav id="nav"><a href="elettronica.html">Maker Lab</a><a href="#sistema">Sistema</a><a href="#primo-piano">Primo piano</a><a href="#metodo">Metodo</a><a href="#hardware">Hardware</a></nav>
+    <nav id="nav"><a href="elettronica.html">Maker Lab</a><a href="#sistema">Sistema</a><a href="#piano-terra">Piano terra</a><a href="#primo-piano">Primo piano</a><a href="#metodo">Metodo</a><a href="#hardware">Hardware</a></nav>
   </header>
   <main>
     <section class="heat-hero">
@@ -26,7 +26,7 @@
         <p class="kicker">PROGETTO 001 · RETI / MISURE</p>
         <h1>Wi‑Fi<br><em>Heatmap.</em></h1>
         <p>Misurare davvero la rete mesh di casa: non soltanto le tacche del Wi‑Fi, ma segnale, TCP e UDP nello stesso punto.</p>
-        <div class="tag-row"><span>PRIMO PIANO COMPLETATO</span><span>95 PUNTI</span><span>IPERF3</span><span>MESH</span></div>
+        <div class="tag-row"><span>2 PIANI RILEVATI</span><span>156 PUNTI</span><span>IPERF3</span><span>MESH</span></div>
       </div>
       <div class="coverage-preview reveal" aria-label="Anteprima concettuale di una heatmap Wi-Fi, non basata sui dati completi">
         <div class="coverage-grid"></div>
@@ -36,7 +36,7 @@
     </section>
 
     <section class="project-facts">
-      <article><span>SERVER</span><strong>HOMEHUB</strong><small>192.168.68.76 · Ethernet</small></article>
+      <article><span>SERVER</span><strong>HOMEHUB</strong><small>192.168.68.76 · Ethernet al Deco, backhaul wireless</small></article>
       <article><span>STRUMENTO</span><strong>IPERF3</strong><small>TCP + UDP · porta 5201</small></article>
       <article><span>BASELINE</span><strong>WIRELESS</strong><small>Backhaul mesh attuale</small></article>
       <article><span>OUTPUT</span><strong>2D / 3D</strong><small>Copertura e throughput</small></article>
@@ -45,14 +45,14 @@
     <section id="sistema" class="section">
       <div class="section-heading reveal">
         <div><p class="kicker">01 · IL SISTEMA</p><h2>Dal click<br><em>al dato.</em></h2></div>
-        <p>Il Mac misura nel punto esatto della planimetria. HomeHub risponde via iperf3 senza confondere la qualità della LAN con la velocità di Internet.</p>
+        <p>Il Mac misura nel punto esatto della planimetria. HomeHub risponde via iperf3: il test misura la LAN e può includere il backhaul wireless fra i nodi Deco, non la velocità di Internet.</p>
       </div>
       <div class="data-flow reveal" aria-label="Flusso del sistema di misura">
         <article><b>01</b><span>CLIENT</span><strong>Mac + WiFi Heatmapper</strong><small>Posizione, RSSI, canale, TCP e UDP</small></article>
         <i>→</i>
         <article><b>02</b><span>RETE</span><strong>TP‑Link Deco Mesh</strong><small>Baseline con backhaul wireless</small></article>
         <i>→</i>
-        <article><b>03</b><span>SERVER</span><strong>HomeHub + iperf3</strong><small>Endpoint cablato e sempre disponibile</small></article>
+        <article><b>03</b><span>SERVER</span><strong>HomeHub + iperf3</strong><small>Ethernet al nodo Deco con backhaul wireless</small></article>
         <i>→</i>
         <article><b>04</b><span>OUTPUT</span><strong>JSON / CSV</strong><small>Rendering, confronto e archivio</small></article>
       </div>
@@ -61,7 +61,7 @@
     <section class="section field-notes">
       <div class="section-heading reveal">
         <div><p class="kicker">02 · PRIME MISURE</p><h2>Due punti.<br><em>Una domanda.</em></h2></div>
-        <p>Sono osservazioni preliminari, non una conclusione: servono molti più punti e lo stesso protocollo sui due piani.</p>
+        <p>Queste furono le prime osservazioni; ora i due rilievi completi consentono di vedere la distribuzione del segnale e i limiti dei test di velocità.</p>
       </div>
       <div class="measurement-grid">
         <article class="measurement-card reveal"><div><span>PUNTO 27 · VICINO AL NODO</span><strong>−40 <small>dBm</small></strong></div><dl><div><dt>TCP ↓</dt><dd>92.2 Mbps</dd></div><div><dt>TCP ↑</dt><dd>68.4 Mbps</dd></div><div><dt>UDP ↓ / ↑</dt><dd>100 / 100 Mbps</dd></div></dl></article>
@@ -70,10 +70,41 @@
       <p class="finding reveal"><b>IPOTESI DA VERIFICARE</b> Il segnale cambia molto, il throughput molto meno. Il collo di bottiglia potrebbe essere il backhaul wireless, non il collegamento tra Mac e nodo.</p>
     </section>
 
+    <section id="piano-terra" class="section survey-results">
+      <div class="section-heading reveal">
+        <div><p class="kicker">03 · RILIEVO PIANO TERRA</p><h2>Piano terra.<br><em>61 misure.</em></h2></div>
+        <p>Il rilievo comprende cucina, bagno, scala e soggiorno. I marcatori individuano il Deco principale (<b>Point_7</b>) e il Deco della cucina (<b>Point_50</b>), entrambi posizionati secondo le indicazioni del proprietario.</p>
+      </div>
+      <div class="survey-summary reveal">
+        <article><span>SEGNALE MEDIANO</span><strong>75<small>%</small></strong><p>−55 dBm · 61 punti</p></article>
+        <article><span>TCP DOWNLOAD</span><strong>50.9<small>Mbps</small></strong><p>mediana di soli 12 test</p></article>
+        <article><span>TCP UPLOAD</span><strong>51.2<small>Mbps</small></strong><p>mediana di soli 12 test</p></article>
+        <article><span>NODI DECO</span><strong>2</strong><p>principale + cucina</p></article>
+      </div>
+      <figure class="survey-figure survey-figure-main reveal">
+        <a href="assets/wifi-ground-signal-nodes.png"><img src="assets/wifi-ground-signal-nodes.png" alt="Copertura Wi-Fi del piano terra con i nodi Deco principale e cucina" loading="lazy"></a>
+        <figcaption><b>01 · SEGNALE E NODI</b><span>61 punti · scala 30–100%</span></figcaption>
+      </figure>
+      <div class="survey-gallery">
+        <figure class="survey-figure reveal"><a href="assets/wifi-ground-tcp-download-nodes.png"><img src="assets/wifi-ground-tcp-download-nodes.png" alt="Test TCP download limitati alla zona campionata del piano terra" loading="lazy"></a><figcaption><b>02 · TCP DOWNLOAD</b><span>Solo 12 punti; bianco = non misurato</span></figcaption></figure>
+        <figure class="survey-figure reveal"><a href="assets/wifi-ground-tcp-upload-nodes.png"><img src="assets/wifi-ground-tcp-upload-nodes.png" alt="Test TCP upload limitati alla zona campionata del piano terra" loading="lazy"></a><figcaption><b>03 · TCP UPLOAD</b><span>Solo 12 punti; bianco = non misurato</span></figcaption></figure>
+      </div>
+      <figure class="survey-figure survey-figure-3d reveal">
+        <a href="assets/wifi-ground-signal-3d-nodes.png"><img src="assets/wifi-ground-signal-3d-nodes.png" alt="Superficie 3D del segnale Wi-Fi del piano terra" loading="lazy"></a>
+        <figcaption><b>04 · SUPERFICIE 3D</b><span>Il rilievo del segnale visto in prospettiva</span></figcaption>
+      </figure>
+      <div class="survey-insight reveal">
+        <p class="kicker">NODO CUCINA / GIARDINO</p>
+        <h3>Il nodo vicino<br>non è sempre<br>quello usato.</h3>
+        <p>Al <b>Point_50</b>, dove si trova il Deco della cucina, il Mac ha rilevato <b>67% / −60 dBm</b>. Questo è compatibile con una permanenza sul nodo principale, ma il BSSID è oscurato da macOS: <b>non possiamo attribuire con certezza la misura a un nodo</b>. Il Deco cucina resta utile come possibile estensione verso il giardino; i rilievi interni non ne misurano ancora l’effetto esterno.</p>
+        <small>Le mappe sono interpolazioni dei campioni reali, limitate alle aree rilevate e tenute all’interno dei muri. I valori TCP del piano terra non descrivono l’intera superficie.</small>
+      </div>
+    </section>
+
     <section id="primo-piano" class="section survey-results">
       <div class="section-heading reveal">
-        <div><p class="kicker">03 · RILIEVO COMPLETO</p><h2>Primo piano.<br><em>95 misure.</em></h2></div>
-        <p>Segnale e throughput misurati punto per punto con HomeHub come server iperf3 cablato. La colorazione è confinata all’interno dei locali: le pareti restano escluse dall’interpolazione.</p>
+        <div><p class="kicker">04 · RILIEVO COMPLETO</p><h2>Primo piano.<br><em>95 misure.</em></h2></div>
+        <p>Segnale e throughput misurati punto per punto con HomeHub come server iperf3, collegato via Ethernet a un nodo Deco con backhaul wireless. La colorazione è confinata all’interno dei locali: le pareti restano escluse dall’interpolazione.</p>
       </div>
       <div class="survey-summary reveal">
         <article><span>SEGNALE MEDIANO</span><strong>76<small>%</small></strong><p>−54 dBm</p></article>
@@ -82,28 +113,28 @@
         <article><span>CAMPIONI</span><strong>95</strong><p>backhaul wireless</p></article>
       </div>
       <figure class="survey-figure survey-figure-main reveal">
-        <a href="assets/wifi-first-floor-signal.png"><img src="assets/wifi-first-floor-signal.png" alt="Heatmap della potenza del segnale Wi-Fi al primo piano" loading="lazy"></a>
-        <figcaption><b>01 · POTENZA DEL SEGNALE</b><span>Scala 30–100% · da circa −82 a −40 dBm</span></figcaption>
+        <a href="assets/wifi-first-signal-nodes.png"><img src="assets/wifi-first-signal-nodes.png" alt="Heatmap della potenza del segnale Wi-Fi al primo piano" loading="lazy"></a>
+        <figcaption><b>01 · POTENZA DEL SEGNALE</b><span>Scala 30–100% · Deco cameretta al Point_119</span></figcaption>
       </figure>
       <div class="survey-gallery">
-        <figure class="survey-figure reveal"><a href="assets/wifi-first-floor-tcp-download.png"><img src="assets/wifi-first-floor-tcp-download.png" alt="Heatmap TCP download al primo piano" loading="lazy"></a><figcaption><b>02 · TCP DOWNLOAD</b><span>Misura LAN verso HomeHub</span></figcaption></figure>
-        <figure class="survey-figure reveal"><a href="assets/wifi-first-floor-tcp-upload.png"><img src="assets/wifi-first-floor-tcp-upload.png" alt="Heatmap TCP upload al primo piano" loading="lazy"></a><figcaption><b>03 · TCP UPLOAD</b><span>Misura LAN verso HomeHub</span></figcaption></figure>
+        <figure class="survey-figure reveal"><a href="assets/wifi-first-tcp-download-nodes.png"><img src="assets/wifi-first-tcp-download-nodes.png" alt="Heatmap TCP download al primo piano" loading="lazy"></a><figcaption><b>02 · TCP DOWNLOAD</b><span>Misura LAN verso HomeHub</span></figcaption></figure>
+        <figure class="survey-figure reveal"><a href="assets/wifi-first-tcp-upload-nodes.png"><img src="assets/wifi-first-tcp-upload-nodes.png" alt="Heatmap TCP upload al primo piano" loading="lazy"></a><figcaption><b>03 · TCP UPLOAD</b><span>Misura LAN verso HomeHub</span></figcaption></figure>
       </div>
       <figure class="survey-figure survey-figure-3d reveal">
-        <a href="assets/wifi-first-floor-signal-3d.png"><img src="assets/wifi-first-floor-signal-3d.png" alt="Rendering 3D della copertura Wi-Fi al primo piano" loading="lazy"></a>
+        <a href="assets/wifi-first-signal-3d-nodes.png"><img src="assets/wifi-first-signal-3d-nodes.png" alt="Rendering 3D della copertura Wi-Fi al primo piano" loading="lazy"></a>
         <figcaption><b>04 · SUPERFICIE 3D</b><span>Altezza e colore rappresentano la potenza del segnale</span></figcaption>
       </figure>
       <div class="survey-insight reveal">
         <p class="kicker">COSA DICONO I DATI</p>
         <h3>Il segnale cambia.<br>Il download quasi no.</h3>
         <p>Tra le stanze il segnale mediano varia da <b>62%</b> a <b>94,5%</b>, ma il download TCP mediano rimane compreso fra <b>105,6</b> e <b>112,0 Mbps</b>. L’upload è più sensibile: scende a circa <b>59,4 Mbps</b> nella Camera 1L a, la zona più lontana.</p>
-        <small>Le mappe descrivono un rilievo reale ma interpolato: non simulano matematicamente l’attenuazione dei singoli muri. Saranno la baseline per il confronto con il futuro backhaul Ethernet.</small>
+        <small>Le mappe descrivono un rilievo reale ma interpolato: non simulano matematicamente l’attenuazione dei singoli muri. Il Deco della cameretta (Point_119) usa ancora un backhaul wireless: sarà il candidato principale per il confronto prima/dopo il cablaggio.</small>
       </div>
     </section>
 
     <section id="metodo" class="section protocol">
       <div class="section-heading reveal">
-        <div><p class="kicker">04 · PROTOCOLLO</p><h2>Stesso punto.<br><em>Stesse regole.</em></h2></div>
+        <div><p class="kicker">05 · PROTOCOLLO</p><h2>Stesso punto.<br><em>Stesse regole.</em></h2></div>
         <p>Solo una misura ripetibile permette di capire se cablare il backhaul cambia davvero la rete.</p>
       </div>
       <ol class="protocol-list">
@@ -117,7 +148,7 @@
 
     <section id="hardware" class="section cart-section">
       <div class="cart-copy reveal">
-        <p class="kicker">05 · HARDWARE NECESSARIO</p>
+        <p class="kicker">06 · HARDWARE NECESSARIO</p>
         <h2>Il carrello<br><em>di misura.</em></h2>
         <p>Non è un accessorio: serve a spostare il Mac velocemente e, soprattutto, a mantenerlo sempre nella stessa geometria.</p>
         <div class="cart-specs">
@@ -130,7 +161,7 @@
     </section>
 
     <section class="section deliverables">
-      <p class="kicker">06 · PROSSIMI OUTPUT</p>
+      <p class="kicker">07 · PROSSIMI OUTPUT</p>
       <div class="deliver-grid">
         <article><span>01</span><h3>Heatmap RSSI</h3><p>Dove il segnale degrada sui due piani.</p></article>
         <article><span>02</span><h3>Heatmap TCP/UDP</h3><p>Dove la rete è realmente veloce e stabile.</p></article>
