@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="Il PC del garage: dal 2012 a oggi, una nave di Teseo che ora si sveglia e si usa anche da remoto.">
+  <title>Il PC del garage — LEOBARRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pc-garage.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="garage-page">
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="LEOBARRA, torna alla home">LEOBARRA <i></i><i></i></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav id="nav" aria-label="Navigazione principale"><a href="index.html">Home</a><a href="#storia">Storia</a><a href="#schema">Come funziona</a><a href="#foto">Foto</a></nav>
+  </header>
+  <main>
+    <section class="garage-hero">
+      <div class="garage-hero-copy reveal">
+        <a class="back-link" href="index.html">← TORNA AI PROGETTI</a>
+        <p class="kicker">HARDWARE · RETE DOMESTICA · 2026</p>
+        <h1>Il PC<br>del <em>garage.</em></h1>
+        <p class="garage-lead">Ce l'ho dal 2012. Ho continuato ad aggiornarlo per non farlo morire mai: pezzo dopo pezzo, è diventato la mia piccola nave di Teseo.</p>
+        <a class="button primary" href="#storia">Scopri il progetto ↓</a>
+      </div>
+      <div class="garage-hero-art reveal" aria-hidden="true"><div class="garage-orbit one"></div><div class="garage-orbit two"></div><div class="garage-machine"><span>LEO / GARAGE</span><b>2012 <i>→</i> OGGI</b><small>STILL RUNNING_</small></div><span class="art-label">SHIP OF THESEUS // REV. ∞</span></div>
+    </section>
+    <section id="storia" class="section garage-story">
+      <div class="section-heading reveal"><div><p class="kicker">01 · LA STORIA</p><h2>Non è vecchio.<br><em>Ha memoria.</em></h2></div><p>Un computer a cui sono legato, arrivato fino a oggi attraverso tanti upgrade. Le foto e la cronologia dei componenti arriveranno qui, senza inventare dettagli che non ho ancora raccontato.</p></div>
+      <div class="garage-milestones">
+        <article><span>2012</span><h3>Il punto di partenza</h3><p>Il PC entra nella mia vita. È l'inizio di un progetto che non avevo ancora chiamato così.</p></article>
+        <article><span>NEGLI ANNI</span><h3>Pezzo dopo pezzo</h3><p>Continuo ad aggiornarlo e a dargli un motivo per restare acceso. Una nave di Teseo, ma con le ventole.</p></article>
+        <article><span>2026</span><h3>Una nuova vita</h3><p>Dal garage diventa un desktop Windows raggiungibile quando serve, anche mentre sono lontano da casa.</p></article>
+      </div>
+    </section>
+    <section id="schema" class="section garage-network">
+      <div class="section-heading reveal"><div><p class="kicker">02 · IL PROGETTO</p><h2>Si sveglia<br><em>quando serve.</em></h2></div><p>Il PC resta in sospensione. HomeHub, sempre acceso in casa, invia il Wake-on-LAN. Il Mac raggiunge HomeHub tramite Tailscale e apre un tunnel SSH verso Desktop remoto, senza pubblicarlo su Internet.</p></div>
+      <div class="garage-flow reveal" aria-label="Mac fuori casa, HomeHub nella rete domestica, PC del garage"><div><small>01 / DA FUORI CASA</small><strong>MAC</strong><span>Alias locale</span></div><i aria-hidden="true">→</i><div><small>02 / SEMPRE ACCESO</small><strong>HOMEHUB</strong><span>Wake-on-LAN + tunnel SSH</span></div><i aria-hidden="true">→</i><div><small>03 / SI RISVEGLIA</small><strong>PC GARAGE</strong><span>Windows 10 Pro + Desktop remoto</span></div></div>
+      <div class="garage-notes"><article><b>01</b><h3>Sospensione</h3><p>Il PC consuma meno di quando è acceso, ma mantiene attiva la scheda di rete per il risveglio.</p></article><article><b>02</b><h3>Wake-on-LAN</h3><p>Uno script su HomeHub invia il magic packet nella rete di casa. La macchina si accende quando serve.</p></article><article><b>03</b><h3>Accesso protetto</h3><p>Dal Mac, un comando apre il tunnel verso HomeHub. Nessuna porta RDP esposta sul router.</p></article></div>
+      <p class="garage-caveat">Nota: Windows 10 ha terminato il supporto ordinario. Il tunnel evita di esporre RDP a Internet, ma non sostituisce gli aggiornamenti di sicurezza o una futura migrazione.</p>
+    </section>
+    <section id="foto" class="section garage-gallery"><div class="section-heading reveal"><div><p class="kicker">03 · DIARIO VISIVO</p><h2>Il piccolo<br><em>tesoro.</em></h2></div><p>Qui aggiungerò le fotografie del PC, dei componenti e dei dettagli che raccontano gli anni passati insieme.</p></div><div class="garage-photo-slot"><span>FOTO IN ARRIVO</span><strong>IL PC DEL GARAGE_</strong><small>Scocca · componenti · upgrade</small></div></section>
+  </main>
+  <footer><strong>LEOBARRA</strong><span>Il PC del garage / Nave di Teseo</span><small>© <span id="year"></span> Leonardo Barraco</small></footer>
+</body>
+</html>
