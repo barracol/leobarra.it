@@ -44,14 +44,24 @@
 
     <section class="section" aria-labelledby="topologia-title">
       <div class="section-heading reveal">
-        <div><p class="kicker">LA RETE DI CASA</p><h2 id="topologia-title">Cinque nodi.<br><em>Una topologia.</em></h2></div>
-        <p>Una sezione illustrativa della rete: Deco principale in soggiorno, nodi wireless in cucina, cameretta e cantina; il nodo del garage usa invece un backhaul Ethernet.</p>
+        <div><p class="kicker">LA RETE DI CASA</p><h2 id="topologia-title">Le piante vere.<br><em>I nodi noti.</em></h2></div>
+        <p>Queste sono le planimetrie dei due piani rilevati, con i Deco segnati nei punti comunicati dal proprietario. Non sono una sezione architettonica: dalle piante non si può ricostruire fedelmente l'alzato della casa.</p>
       </div>
-      <figure class="survey-figure survey-figure-main reveal">
-        <a href="assets/wifi-home-topology.png"><img src="assets/wifi-home-topology.png" alt="Sezione illustrativa della casa con cinque nodi mesh: soggiorno principale, cucina, cameretta, cantina wireless e garage cablato" loading="lazy"></a>
-        <figcaption><b>TOPOLOGIA DECO</b><span>Ciano = Ethernet · ambra tratteggiato = wireless</span></figcaption>
-      </figure>
-      <p class="finding reveal"><b>SCHEMA, NON RILIEVO</b> La sezione rende leggibili i collegamenti, ma non riproduce in scala l'edificio e non rappresenta la potenza del segnale. Le planimetrie e le mappe misurate sono riportate più sotto; la posizione esatta di garage e cantina resta schematica.</p>
+      <div class="survey-gallery topology-plans">
+        <figure class="survey-figure reveal">
+          <a href="assets/wifi-first-signal-nodes.png"><img src="assets/wifi-first-signal-nodes.png" alt="Planimetria reale del primo piano con Deco della cameretta al Point 119" loading="lazy"></a>
+          <figcaption><b>PRIMO PIANO</b><span>Cameretta · Point_119 · backhaul wireless</span></figcaption>
+        </figure>
+        <figure class="survey-figure reveal">
+          <a href="assets/wifi-ground-signal-nodes.png"><img src="assets/wifi-ground-signal-nodes.png" alt="Planimetria reale del piano terra con Deco principale al Point 7 e Deco cucina al Point 50" loading="lazy"></a>
+          <figcaption><b>PIANO TERRA</b><span>Principale Point_7 · cucina Point_50</span></figcaption>
+        </figure>
+      </div>
+      <div class="topology-lower reveal" aria-label="Garage e cantina si trovano allo stesso livello">
+        <article><span>STESSO LIVELLO</span><strong>Garage</strong><small>Deco con backhaul cablato</small></article>
+        <article><span>STESSO LIVELLO</span><strong>Cantina</strong><small>Deco con backhaul wireless</small></article>
+      </div>
+      <p class="finding reveal"><b>LIMITI DELLA RAPPRESENTAZIONE</b> Le aree colorate sono misure interpolate, non raggi d'azione dei singoli Deco. Non abbiamo ancora una planimetria di garage e cantina: sono affiancati qui solo per indicare che si trovano allo stesso livello, senza inventarne la posizione precisa.</p>
     </section>
 
     <section id="sistema" class="section">
