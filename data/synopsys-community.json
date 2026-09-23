@@ -1,5 +1,60 @@
 {
   "name": "Synopsys Running Community",
-  "updated_at": "2026-09-23T15:45:00+02:00",
-  "events": []
+  "updated_at": "2026-09-23T18:30:00+02:00",
+  "events": [
+    {
+      "id": "gallarun-2026-09-13",
+      "type": "race",
+      "title": "GallaRun",
+      "date": "2026-09-13",
+      "location": "Gallarate",
+      "sport": "running",
+      "distance_km": 10
+    },
+    {
+      "id": "corri-in-aeroporto-2026-09-20",
+      "type": "race",
+      "title": "Corri in Aeroporto",
+      "date": "2026-09-20",
+      "location": "Cameri (NO)",
+      "sport": "running",
+      "distance_km": 10
+    },
+    {
+      "id": "polimirun-2026-09-27",
+      "type": "race",
+      "title": "PolimiRun",
+      "date": "2026-09-27",
+      "location": "Luogo da definire",
+      "sport": "running",
+      "distance_km": 10
+    },
+    {
+      "id": "monza-half-marathon-2026-10-04",
+      "type": "race",
+      "title": "Monza Half Marathon",
+      "date": "2026-10-04",
+      "location": "Monza",
+      "sport": "running",
+      "distance_km": 21
+    },
+    {
+      "id": "corripavia-2026-10-11",
+      "type": "race",
+      "title": "CorriPavia",
+      "date": "2026-10-11",
+      "location": "Pavia",
+      "sport": "running",
+      "distance_km": 21
+    },
+    {
+      "id": "cr10-run-2026-10-18",
+      "type": "race",
+      "title": "CR10 Run",
+      "date": "2026-10-18",
+      "location": "Cremona",
+      "sport": "running",
+      "distance_km": 10
+    }
+  ]
 }
