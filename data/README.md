@@ -1,6 +1,11 @@
-# Synopsys Running Community feed
+# Running community feeds
 
 `events` accepts `race` and `workout` records. Required fields are `id`, `type`, `title` and `date` (ISO `YYYY-MM-DD`). Optional fields: `time`, `meeting_point`, `location`, `sport`, `distance_km`, `pace`, `website`, `registration_url`, `notes`.
+
+Available feeds:
+
+- `synopsys-community.json`
+- `borgolavezzaro-runner.json`
 
 Example:
 
