@@ -1,5 +1,32 @@
 {
   "name": "BorgolavezzaroRunner",
-  "updated_at": "2026-09-24T10:40:00+02:00",
-  "events": []
+  "updated_at": "2026-09-24T20:00:00+02:00",
+  "events": [
+    {
+      "id": "corsa-facile-allunghi-2026-09-24",
+      "type": "workout",
+      "title": "Corsa facile con allunghi",
+      "date": "2026-09-24",
+      "time": "20:00",
+      "meeting_point": "Via Madre Teresa di Calcutta, Borgolavezzaro",
+      "sport": "running",
+      "distance_km": 7,
+      "duration": "0:40:00",
+      "pace": "Facile",
+      "notes": "Ritmo facile e costante. Inserire 4 allunghi da 15–20 secondi con recupero completo camminando o con jogging molto lento, senza sprintare. Allenamento proposto dal Coach AI per mantenere attivo il gesto di corsa con volume contenuto e un piccolo stimolo di qualità neuromuscolare."
+    },
+    {
+      "id": "shakeout-pre-race-2026-09-26",
+      "type": "workout",
+      "title": "Shakeout pre-race",
+      "date": "2026-09-26",
+      "time": "08:00",
+      "meeting_point": "Via Madre Teresa di Calcutta, Borgolavezzaro",
+      "sport": "running",
+      "distance_km": 5,
+      "duration": "0:25:00",
+      "pace": "Recupero",
+      "notes": "Uscita molto sciolta, senza accumulare fatica. Se le sensazioni sono buone, aggiungere 3–4 allunghi brevi e brillanti ma non sprintati, con recupero ampio. Obiettivo: arrivare freschi a domenica. Allenamento proposto dal Coach AI come ultimo richiamo leggero in una settimana di scarico."
+    }
+  ]
 }
