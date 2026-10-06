@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "pacer",
+  "codename": "PACER",
+  "name": "Running Dashboard",
+  "status": "in_progress",
+  "description": "Dashboard personale running.",
+  "objective": "Monitorare allenamenti e progressi e pianificare in funzione delle gare.",
+  "completed": [],
+  "next_actions": [],
+  "backlog": [
+    "Monitoraggio e analisi allenamenti tramite ChatGPT",
+    "Feedback progressi",
+    "Piano settimana successiva",
+    "Calendario gare/eventi e gestione carico pre-evento"
+  ],
+  "dependencies": [
+    {
+      "project": "peloton",
+      "description": "Possibile relazione futura"
+    }
+  ],
+  "updated_at": "2026-10-06",
+  "decisions": [],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "## PACER --- Running Dashboard\n\n**Stato:** 🛠 In corso\n\nDashboard personale running.\n\nFunzioni previste/discusse:\n\n-   monitoraggio allenamenti;\n-   analisi allenamenti tramite ChatGPT;\n-   feedback sui progressi;\n-   generazione piano per la settimana successiva;\n-   calendario gare/eventi;\n-   piano che tenga conto delle gare per evitare sovraccarico\n    pre-evento.\n\nPossibile relazione futura con PELOTON.\n\n------------------------------------------------------------------------",
+  "extensions": {},
+  "ambiguities": [
+    "Next action non specificata nello snapshot; da concordare."
+  ]
+}

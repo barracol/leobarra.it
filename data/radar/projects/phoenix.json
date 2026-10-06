@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "phoenix",
+  "codename": "PHOENIX",
+  "name": "Recupero vecchi smartphone",
+  "status": "in_progress",
+  "description": "Recuperare gli smartphone di Silvia per casa/HomeHub/LabHub.",
+  "objective": "Trasformare dispositivi esistenti in terminali utili.",
+  "completed": [
+    "P40 funzionante e sbloccato",
+    "P9 funzionante e sbloccato",
+    "Ruolo P9 deciso e dashboard luci garage già creata",
+    "P30: uscita video USB-C osservata"
+  ],
+  "next_actions": [
+    "P9: kiosk/appliance setup e frame stampato",
+    "P40: decidere ruolo premium HomeHub/ORACLE",
+    "P10 Plus: determinare se motherboard è viva"
+  ],
+  "backlog": [
+    "Configurare P9 robusto dopo reboot/perdita alimentazione",
+    "Assegnare P40",
+    "Diagnosticare P10 Plus",
+    "Lasciare P30 in stallo finché non emerge bisogno concreto"
+  ],
+  "dependencies": [
+    {
+      "project": "foundry",
+      "description": "Frame P9 stampato"
+    },
+    {
+      "project": "hearth",
+      "description": "Pagina web/Home Assistant per P9"
+    }
+  ],
+  "updated_at": "2026-10-06",
+  "decisions": [
+    "P9 assegnato alle luci garage.",
+    "P40 non assegnato definitivamente.",
+    "Non acquistare ancora display P30 (~39 €).",
+    "Non investire denaro nella riparazione S3 Neo."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "# 7. PHOENIX --- recupero vecchi smartphone\n\n**Stato:** 🛠 In corso\n\nObiettivo generale: recuperare vecchi smartphone di Silvia e\ntrasformarli in dispositivi utili per casa/HomeHub/LabHub.\n\n## Inventario identificato\n\n### Huawei P40 --- ANA-NX9\n\n**Stato:** 🟢 funzionante e sbloccato.\n\nInizialmente era apparso Huawei Activation Lock, associato al numero di\nSilvia; successivamente il dispositivo è stato sbloccato.\n\nÈ il dispositivo più potente/pregiato del lotto e non va sprecato come\nsemplice pulsantiera.\n\nPossibili ruoli:\n\n-   pannello HomeHub premium;\n-   terminale ORACLE;\n-   Echo Show DIY;\n-   videocitofono/monitor telecamere;\n-   dashboard avanzata;\n-   endpoint voice/AI.\n\nPer ora **non assegnato definitivamente**.\n\nHardware noto: famiglia Huawei P40 / Kirin 990 5G, 8 GB RAM (da\nverificare sulla variante se necessario).\n\n### Huawei P9 --- EVA-L09\n\n**Stato:** 🟢 funzionante, sbloccato.\n\nAndroid/EMUI vecchi, ma questo non è un problema per il ruolo assegnato.\n\n**Ruolo deciso: pulsantiera luci del garage/LabHub.**\n\nLeonardo ha **già creato la dashboard** dedicata.\n\nApproccio software:\n\n-   thin client web;\n-   pagina HomeHub/Home Assistant molto semplice;\n-   kiosk/fullscreen;\n-   niente notifiche;\n-   niente UI Android superflua;\n-   idealmente boot → dashboard;\n-   niente blocco schermo;\n-   comportamento robusto dopo perdita alimentazione/reboot.\n\nApproccio hardware:\n\n-   alimentazione permanente;\n-   frame/supporto a parete stampato con P1S;\n-   USB nascosta.\n\n### Huawei P30 --- ELE-L29\n\n**Stato:** ⏸ in stallo.\n\nAspetto: quello iridescente.\n\nProblemi:\n\n-   display interno completamente KO;\n-   touch non risponde.\n\nScoperta importante:\n\n-   collegato accidentalmente a una docking station USB-C collegata a\n    monitor, **produce uscita video**;\n-   mostra schermata Huawei Desktop/Projection grigia con ora e\n    lucchetto;\n-   quindi motherboard/SoC/USB-C video sono vivi.\n\nMouse/tastiera sulla dock non hanno consentito lo sblocco nella prova\neffettuata.\n\nÈ stato individuato su AliExpress un possibile:\n\n-   AMOLED + frame;\n-   circa **39 €**.\n\nDecisione attuale:\n\n> **non comprare ancora il display.** Prima sistemare/assegnare gli\n> altri telefoni, poi decidere se investire 39 €.\n\nPossibile uso se lasciato senza display:\n\n-   Android box per TV garage;\n-   HomeHub su monitor;\n-   media box;\n-   nodo headless;\n-   terminale di laboratorio.\n\nL'idea Android box TV garage è considerata interessante se si riesce a\nconfigurarlo/sbloccarlo.\n\n### Huawei P10 Plus --- VRY-L09\n\n**Stato:** 🔴 da diagnosticare.\n\nAspetto: blu scuro.\n\nSintomi:\n\n-   in carica mostra righe rosse;\n-   non funziona con la stessa dock del P30;\n-   non è ancora chiaro se sia solo display o problema più grave.\n\n### Samsung Galaxy S3 Neo --- GT-I9301I\n\n**Stato:** ☠️ sacrificabile / laboratorio.\n\nNon vale la pena investire denaro per ripararlo.\n\nPossibili usi:\n\n-   teardown;\n-   esperimenti;\n-   donor;\n-   reverse engineering;\n-   test ROM/modding.\n\n------------------------------------------------------------------------",
+  "extensions": {}
+}

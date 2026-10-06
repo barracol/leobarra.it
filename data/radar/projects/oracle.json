@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "oracle",
+  "codename": "ORACLE",
+  "name": "HomeHub AI / MCP / Voice",
+  "status": "exploration",
+  "description": "Layer AI e agent-friendly per HomeHub.",
+  "objective": "Interrogare dati e dispositivi della casa tramite LLM, MCP/API e voce.",
+  "completed": [],
+  "next_actions": [],
+  "backlog": [
+    "Progettare layer AI/MCP/voice",
+    "Interrogare inventario LabHub per quantità e posizione",
+    "Valutare smartphone PHOENIX come endpoint"
+  ],
+  "dependencies": [
+    {
+      "project": "hearth",
+      "description": "HomeHub / MCP / API"
+    },
+    {
+      "project": "labhub",
+      "description": "Inventario da interrogare"
+    },
+    {
+      "project": "phoenix",
+      "description": "Possibili endpoint fisici, non vincolanti"
+    }
+  ],
+  "updated_at": "2026-10-06",
+  "decisions": [],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🔎 Esplorazione\n\nObiettivo: aggiungere un layer AI/agent-friendly a HomeHub.\n\nVisione:\n\n``` text\nspeaker / terminale\n        ↓\n     ORACLE\n        ↓\n ChatGPT / LLM\n        ↓\n HomeHub / MCP / API\n        ↓\n dati e dispositivi della casa\n```\n\nEsempio desiderato per LabHub:\n\n> \"Dove ho messo i convertitori buck?\"\n\nORACLE dovrebbe interrogare l'inventario e rispondere con\nquantità/posizione.\n\nPossibili endpoint fisici: vecchi smartphone PHOENIX con\nmicrofono/speaker/display.\n\n------------------------------------------------------------------------",
+  "extensions": {},
+  "ambiguities": [
+    "Next action non specificata nello snapshot; da concordare."
+  ]
+}

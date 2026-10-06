@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0e">
+  <meta name="description" content="RADAR: progetti, prossime azioni e memoria operativa di Leonardo.">
+  <title>RADAR — LEOBARRA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="radar.css">
+  <script src="../app.js" defer></script>
+  <script src="radar.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="../">LEOBARRA <i></i><i></i></a>
+    <button class="menu" type="button" aria-label="Apri menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav id="nav" aria-label="Navigazione principale"><a href="../">Home</a><a href="../elettronica.html">Elettronica</a><a href="./" aria-current="page">RADAR</a></nav>
+  </header>
+  <main class="radar-shell">
+    <div class="radar-heading"><p class="kicker">MEMORIA OPERATIVA · MYBRAIN</p><h1>RADAR<span>.</span></h1><p>Registra → Articola → Decidi → Avanza → Riesamina</p></div>
+    <div id="summary" class="summary" aria-label="Riepilogo stati"></div>
+    <section aria-label="Progetti">
+      <div class="filters"><label>Cerca progetto<input id="search" type="search" placeholder="Codename, nome o descrizione"></label><label>Stato<select id="status"><option value="all">Tutti i progetti</option><option value="active">Attivi (esplorazione / in corso)</option></select></label><button id="export" class="button ghost" disabled>Esporta JSON</button></div>
+      <p id="feedback" role="status" aria-live="polite">Caricamento RADAR…</p>
+      <div id="projects" class="radar-grid"></div>
+    </section>
+    <section id="detail" class="project-detail" tabindex="-1" hidden aria-label="Dettaglio progetto"></section>
+    <noscript>Abilita JavaScript per la dashboard oppure leggi i <a href="../data/radar/index.json">dati RADAR</a>.</noscript>
+    <p class="source-note">Snapshot iniziale: 6 ottobre 2026. Le azioni non definite sono segnalate nei progetti. <a href="../data/radar/README.md">Source of truth e protocollo di aggiornamento ↗</a></p>
+  </main>
+  <footer><strong>LEOBARRA</strong><span>RADAR / Memoria condivisa</span><small>© <span id="year"></span> Leonardo Barraco</small></footer>
+</body>
+</html>

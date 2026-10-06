@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "peloton",
+  "codename": "PELOTON",
+  "name": "Synopsys Running 2027",
+  "status": "idea",
+  "description": "Idea discussa con il Site Manager Matteo.",
+  "objective": "Allenamenti collettivi e gare come team nel 2027.",
+  "completed": [],
+  "next_actions": [],
+  "backlog": [
+    "Allenamenti collettivi 2027",
+    "Partecipazione gare come team",
+    "Possibile maglia team",
+    "Possibile uso PACER"
+  ],
+  "dependencies": [
+    {
+      "project": "pacer",
+      "description": "Possibile uso futuro della dashboard"
+    }
+  ],
+  "updated_at": "2026-10-06",
+  "decisions": [],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "## PELOTON --- Synopsys Running 2027\n\n**Stato:** 💡 Idea\n\nIdea discussa con il Site Manager Matteo:\n\n-   allenamenti collettivi nel 2027;\n-   partecipazione a gare come team;\n-   possibile maglia team;\n-   possibile uso di PACER/dashboard running.\n\n------------------------------------------------------------------------",
+  "extensions": {},
+  "ambiguities": [
+    "Next action non specificata nello snapshot; da concordare."
+  ]
+}

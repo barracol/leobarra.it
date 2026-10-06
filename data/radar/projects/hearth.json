@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "hearth",
+  "codename": "HEARTH",
+  "name": "HomeHub",
+  "status": "in_progress",
+  "description": "Ecosistema e portale centrale della casa.",
+  "objective": "Collegare webapp indipendenti attraverso HomeHub.",
+  "completed": [],
+  "next_actions": [],
+  "backlog": [
+    "Dashboard Oggi",
+    "Profili e permessi; registro applicazioni",
+    "Health/version check e stato sistema",
+    "Notifiche/inbox, ricerca globale e quick-add",
+    "Backup verificabili e diagnostica",
+    "Media importer con verifica prima della cancellazione",
+    "Manutenzione casa, giardino, inventario selettivo"
+  ],
+  "dependencies": [],
+  "updated_at": "2026-10-06",
+  "decisions": [
+    "Webapp indipendenti collegate a HomeHub; HAOS esterno.",
+    "Verificare import media prima di offrire cancellazione sorgente."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "## HEARTH --- HomeHub\n\n**Stato:** 🛠 In corso\n\nHomeHub è l'ecosistema/portale centrale della casa.\n\n### Concetto architetturale\n\nL'ecosistema LeoBarra/HomeHub è composto da **webapp indipendenti\ncollegate a HomeHub**.\n\nHome Assistant / HAOS resta esterno all'ecosistema applicativo e può\nvisualizzare HomeHub nelle dashboard.\n\nHomeHub è pensato come portale/orchestratore per:\n\n-   profili e permessi;\n-   registro applicazioni;\n-   health/version check;\n-   notifiche/inbox unificate;\n-   ricerca globale;\n-   quick actions;\n-   stato del sistema;\n-   backup e diagnostica coordinati;\n-   deep-link stabili verso le app;\n-   UI responsive/kiosk.\n\nLa logica e i dati delle singole applicazioni possono restare\ndistribuiti.\n\n### Idee già discusse\n\n-   dashboard \"Oggi\";\n-   notifiche unificate;\n-   ricerca globale / quick-add;\n-   entità collegate;\n-   sicurezza/permessi;\n-   backup verificabili;\n-   manutenzione casa;\n-   progetti/giardino;\n-   inventario selettivo;\n-   media importer;\n-   integrazione futura con ORACLE.\n\n### Media importer HomeHub\n\nIdea già definita per importare media da:\n\n-   iPhone;\n-   SD GoPro;\n-   SD DSLR/reflex.\n\nWorkflow desiderato:\n\n``` text\ndetect source\n→ preview quantità/dimensione\n→ import NAS\n→ verifica\n→ solo dopo offrire cancellazione/liberazione sorgente\n```\n\nPreservare correttamente:\n\n-   HEIC/MOV/Live Photos iPhone;\n-   MP4/LRV/THM GoPro;\n-   coppie RAW+JPG DSLR.\n\n------------------------------------------------------------------------\n\n# 10. Hardware / Home Automation rilevante\n\nInformazioni tecniche utili per il contesto HomeHub:\n\n## Home Assistant\n\nEvoluzione:\n\n-   inizialmente Raspberry Pi 3, percepito lento;\n-   poi laptop con SSD.\n\nProblemi affrontati in passato:\n\n-   Solarman timeout;\n-   SQLite;\n-   riavvii;\n-   backup su Drive.\n\n## Zigbee\n\n-   Sonoff SNZB-02P ×2;\n-   segnale debole su due piani.\n\n## Dispositivi citati\n\n-   Shelly 1 Plus;\n-   Shelly 1 Mini Gen3;\n-   Shelly EM Gen3;\n-   Sonoff Mini R4;\n-   Sonoff Basic;\n-   Vimar 03991;\n-   Imou CE1P / CE2P;\n-   Ezviz C6N / C8C / HP4;\n-   condizionatori SmartThings;\n-   Roomba / REST980;\n-   inverter ZCS / Solarman.\n\n## Dashboard\n\nÈ presente anche un iPad 2018 a muro con pagine tipo:\n\n-   Home;\n-   Energia;\n-   Todo;\n-   Planimetrie.\n\n------------------------------------------------------------------------",
+  "extensions": {},
+  "ambiguities": [
+    "Next action non specificata nello snapshot; da concordare."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "projects": [
+    "hearth",
+    "oracle",
+    "pacer",
+    "peloton",
+    "backbone",
+    "labhub",
+    "foundry",
+    "phoenix",
+    "cockpit"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "backbone",
+  "codename": "BACKBONE",
+  "name": "Infrastruttura rete casa",
+  "status": "in_progress",
+  "description": "Rete domestica, cablaggio, mesh e rack.",
+  "objective": "Migliorare rete, topologia, percorsi e punti Ethernet.",
+  "completed": [
+    "Acquistati TL-SG608E, LS1005G, Cat6 50 m e 4 UGREEN HDMI Dummy Plug"
+  ],
+  "next_actions": [
+    "Installazione/cablaggio/topologia"
+  ],
+  "backlog": [
+    "Installare rack e switch",
+    "Definire percorsi e punti rete",
+    "Realizzare diramazione con LS1005G",
+    "Valutare nuovi nodi mesh e shopping list"
+  ],
+  "dependencies": [],
+  "updated_at": "2026-10-06",
+  "decisions": [
+    "Usare Cat6 CCA già acquistato.",
+    "RACK è un deliverable BACKBONE, non progetto separato."
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "## BACKBONE --- Infrastruttura rete casa\n\n**Stato:** 🛠 In corso\n\nObiettivo:\n\n-   migliorare infrastruttura rete;\n-   nuovo/i nodi mesh;\n-   cablaggio Ethernet;\n-   topologia;\n-   percorsi;\n-   punti rete;\n-   shopping list;\n-   rack.\n\n### Rete esistente nota\n\n-   FTTH TIM;\n-   ONT separato;\n-   TIM Hub+ ZXHN H2740;\n-   mesh TP-Link Deco X50, 5 nodi.\n\nÈ esistito anche un progetto `wifi-heatmapper` nel workspace Codex:\n\n``` text\n~/Documents/Codex/homehub-source/home-dashboard-stack/wifi-heatmapper/wifi-heatmapper\n```\n\nMac usato: Intel x86_64.\n\nUna precedente heatmap indicava copertura complessivamente buona, con\nzone più deboli verso camera 1/balcone destro.\n\n### Acquisti recenti BACKBONE\n\n-   **TP-Link TL-SG608E**, Easy Smart, 8 porte Gigabit\\\n    → destinato al **RACK**.\n-   **TP-Link LS1005G**, 5 porte Gigabit unmanaged\\\n    → destinato a una **cassetta di derivazione** per creare una\n    diramazione locale.\n-   **Mr. Tronic Cat6 50 m**, AWG24 UTP CCA\\\n    → già acquistato; Leonardo ha deciso di usarlo.\n-   4 × **UGREEN HDMI Dummy Plug 4K60**\\\n    → per sistemi headless/remote use.\n\nTopologia concettuale di una diramazione:\n\n``` text\nRACK\n  |\n  | Ethernet\n  v\ncassetta di derivazione\n  |\nLS1005G\n  ├── tratta\n  ├── tratta\n  ├── tratta\n  └── ...\n```\n\n### RACK\n\nIl RACK è un deliverable fisico di BACKBONE, non un progetto separato al\nmomento.\n\nLo switch TL-SG608E 8 porte è destinato al rack.\n\n------------------------------------------------------------------------",
+  "extensions": {}
+}

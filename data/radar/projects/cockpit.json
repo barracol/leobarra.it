@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "cockpit",
+  "codename": "COCKPIT",
+  "name": "CarPlay DIY",
+  "status": "in_progress",
+  "description": "Honor 90 + DiPlay + iPhone: CarPlay funzionante.",
+  "objective": "Integrare case e mounting system nella Panda con look OEM.",
+  "completed": [
+    "Honor 90 disponibile",
+    "DiPlay installato e provato",
+    "Proof-of-concept CarPlay riuscito alla perfezione"
+  ],
+  "next_actions": [
+    "Progettare case/supporto auto stampato 3D"
+  ],
+  "backlog": [
+    "Case e supporto auto",
+    "Gestione USB-C e alimentazione",
+    "Telefono removibile",
+    "Inclinazione e attacco specifico Panda"
+  ],
+  "dependencies": [
+    {
+      "project": "foundry",
+      "description": "P1S per case e mounting system"
+    }
+  ],
+  "updated_at": "2026-10-06",
+  "decisions": [],
+  "changelog": [
+    {
+      "date": "2026-10-06",
+      "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    }
+  ],
+  "context_markdown": "# 8. COCKPIT --- CarPlay DIY\n\n**Stato:** 🛠 In corso, funzionalmente riuscito.\n\nHardware:\n\n-   **Honor 90**\n\nSoftware:\n\n-   **DiPlay** per trasformare Android in ricevitore CarPlay.\n\nRisultato:\n\n> Il proof-of-concept ha funzionato \"alla perfezione\".\n\nQuindi il rischio software principale è eliminato.\n\n## Stato corrente\n\n``` text\nHonor 90\n+ DiPlay\n+ iPhone\n= CarPlay funzionante\n```\n\nRimane soprattutto la parte estetico/meccanica:\n\n-   case;\n-   supporto auto;\n-   gestione alimentazione/cavo;\n-   integrazione con plancia;\n-   look OEM.\n\nQuesta parte dipende da **FOUNDRY/P1S**.\n\nNota: inizialmente \"case COCKPIT\" e \"case CarPlay Honor90 con supporto\nauto\" erano stati elencati separatamente; concettualmente possono essere\ngestiti come un unico progetto meccanico composto da case + mounting\nsystem.\n\n------------------------------------------------------------------------",
+  "extensions": {}
+}
