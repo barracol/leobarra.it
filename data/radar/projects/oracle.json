@@ -47,7 +47,8 @@
     "Definito report entity-level con denominatore esplicito: 57 entità censite, 4 escluse, 53 autorizzate, 26 operative, copertura 49,1%.",
     "Integrata ricerca Wiki read-only, planner multi-sorgente bounded, retry provider LLM e TTS browser opzionale; deploy verificati healthy.",
     "Aggiunto registro read-only delle sorgenti separate/escluse con policy e requisiti di autorizzazione; nessuna sorgente sensibile abilitata.",
-    "Completato supporto Wiki full-text, planner multi-sorgente, retry provider, TTS browser e metriche entity-level; servizi aggiornati healthy."
+    "Completato supporto Wiki full-text, planner multi-sorgente, retry provider, TTS browser e metriche entity-level; servizi aggiornati healthy.",
+    "Collaudo finale Fase 2: 59 test calendar-api e 11 MCP superati; monitor /health, /ready e /status verificati sul container, calendar-api/MCP healthy; routing Panda, planner task domestiche e ricerca Wiki verificati live senza traceback."
   ],
   "next_actions": [
     "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
@@ -160,9 +161,13 @@
     {
       "date": "2026-10-08",
       "text": "Registro policy per sorgenti separate/escluse distribuito; Synopsys, Vaultwarden, Salute genitori e ciclo Silvia restano non abilitate. Fase 2/3 avanzata con Wiki, planner bounded, viste storiche, retry LLM, TTS e coverage entity-level."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Collaudo operativo finale: 59 test calendar-api e 11 MCP superati; monitor liveness/readiness/status, catalogo/router, planner domestico e Wiki verificati live. Nessuna modifica di rete o alle app sorgenti."
     }
   ],
-  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
+  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo di contratti API, router deterministico, planner bounded, Wiki read-only e TTS browser opzionale.\n\nCollaudo corrente: 32 viste dichiarate, 30 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 26 operative (49,1%), 5 parziali e 22 ancora da esporre. Servizi calendar-api, MCP e monitor verificati healthy.\n\nRestano da completare le entità residue e le sorgenti con autenticazione separata; i payload Finance/Travel aggiuntivi richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
   "extensions": {},
   "ambiguities": []
 }
