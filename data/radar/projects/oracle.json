@@ -43,14 +43,15 @@
     "Integrata Wiki statica read-only con ricerca full-text bounded, percorso/titolo/snippet e mount /wiki-docs in sola lettura; istruzioni documentali trattate come dati non fidati.",
     "Aggiunto plan_homehub_question per piani multi-sorgente bounded, con passi read-only autorizzati e test task domestiche.",
     "Aggiunto TTS opzionale browser per risposte ORACLE tramite SpeechSynthesis e mantenuto push-to-talk esistente.",
-    "Smoke test storico aggiornato a 32 viste, 30 disponibili e 2 Synopsys escluse; test calendar-api 59 superati."
+    "Smoke test storico aggiornato a 32 viste, 30 disponibili e 2 Synopsys escluse; test calendar-api 59 superati.",
+    "Definito report entity-level con denominatore esplicito: 57 entità censite, 4 escluse, 53 autorizzate, 26 operative, copertura 49,1%.",
+    "Integrata ricerca Wiki read-only, planner multi-sorgente bounded, retry provider LLM e TTS browser opzionale; deploy verificati healthy."
   ],
   "next_actions": [
-    "Esporre storici e aggregazioni Finanza e Travel con API familiari read-only.",
-    "Aggiungere mapping semantici entity→endpoint e verifiche automatiche dei risultati del planner.",
-    "Implementare verifica delle fonti, paginazione, deduplicazione e aggregazioni nel piano multi-step.",
+    "Portare la copertura entity-level dal 49,1% esponendo Finanza e Travel, poi le entità residue di Running, Garage, Daily Flow e altre app.",
+    "Aggiungere verifica deterministica di fonti, paginazione, deduplicazione e aggregazioni al planner.",
     "Preparare autenticazioni separate per Salute genitori e ciclo Silvia senza abilitarle.",
-    "Aggiungere test end-to-end con domande naturali e report percentuale di copertura per entità.",
+    "Aggiungere test end-to-end con domande naturali e misurazione automatica della copertura.",
     "Valutare TTS/interruzioni e wake word opzionale oltre al supporto browser."
   ],
   "backlog": [
@@ -148,6 +149,10 @@
     {
       "date": "2026-10-08",
       "text": "Incremento continuo: provider LLM con retry bounded, ricerca Wiki read-only, planner multi-sorgente bounded e TTS browser opzionale. Viste Garage/Running estese; deploy mirati healthy e 59 test calendar-api superati."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Definita copertura entity-level: 26/53 entità autorizzate operative (49,1%), 5 parziali e 22 non esposte; 4 escluse. Ricerca Wiki, planner bounded, retry LLM e TTS browser distribuiti con servizi healthy."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
