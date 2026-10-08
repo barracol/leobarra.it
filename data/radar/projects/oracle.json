@@ -61,7 +61,8 @@
     "Estesa la sorgente Running con vista scarpe e metriche di utilizzo read-only, senza foto/documenti; deploy calendar-api+MCP con backup 20261008-025201-oracle-running-shoes; smoke live 40 viste, 38 disponibili e 2 Synopsys escluse; copertura 34/53 (64,2%). Test 66 calendar-api e 11 MCP.",
     "Rivalutato il menu settimanale come entità operativa: `nutrition/days` interroga settimane arbitrarie tramite `week_start` ed è coperto da test storico. Deploy coverage calendar-api+MCP con backup 20261008-025335-oracle-coverage-menu; smoke 40 viste, 38 operative, 2 Synopsys escluse; copertura 35/53 (66,0%). Test 66 calendar-api e 11 MCP.",
     "Riallineato docs/ORACLE-9STEP-AUDIT.md ai valori runtime definitivi: 40 viste, 38 operative, 2 escluse; 35/53 entità autorizzate operative (66,0%), 3 parziali e 15 non esposte.",
-    "Aggiunto `calendar_api/audit_readiness.py`: comando ripetibile che verifica smoke test di tutte le viste, coverage entity-level e registro policy senza stampare record né abilitare sorgenti. Deploy con backup 20261008-025513-oracle-readiness-audit; readiness live `ready=true`, 40 viste, 38 disponibili, 2 disabled attesi, failures vuote; health MCP ok. Suite 66 calendar-api e 11 MCP."
+    "Aggiunto `calendar_api/audit_readiness.py`: comando ripetibile che verifica smoke test di tutte le viste, coverage entity-level e registro policy senza stampare record né abilitare sorgenti. Deploy con backup 20261008-025513-oracle-readiness-audit; readiness live `ready=true`, 40 viste, 38 disponibili, 2 disabled attesi, failures vuote; health MCP ok. Suite 66 calendar-api e 11 MCP.",
+    "Esteso il registro policy con `finance-detailed` e `travel-detailed`: stato approval_required, enabled=false, nessun connettore o payload aggiuntivo attivato. Deploy calendar-api+MCP con backup 20261008-025623-oracle-sensitive-policy-registry; readiness live ancora ready=true (40 viste, 38 disponibili, failures vuote), health MCP ok. Test 66 calendar-api e 11 MCP."
   ],
   "next_actions": [
     "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
@@ -233,6 +234,10 @@
     {
       "date": "2026-10-08",
       "text": "Readiness audit pubblicato e verificato in produzione: exit 0 con 40 viste, 38 disponibili, 2 Synopsys disabled attesi, failures vuote e coverage 35/53 (66,0%)."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Policy registry completato per i residui sensibili: Finance/Travel dettagliati sono esplicitamente disabilitati e richiedono approvazione, senza accesso automatico. Readiness invariato e healthy."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo statico più discovery OpenAPI bounded, router deterministico, planner multi-sorgente, Wiki read-only, voce browser e audit entity-level.\n\nCollaudo corrente: 40 viste dichiarate, 38 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 35 operative (66,0%), 3 parziali e 15 ancora da esporre. Calendar-api, MCP e monitor sono verificati healthy.\n\nRestano entità personali protette o non sensibili da valutare, oltre ai payload Finance/Travel dettagliati che richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
