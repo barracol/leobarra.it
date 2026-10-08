@@ -50,7 +50,8 @@
     "Completato supporto Wiki full-text, planner multi-sorgente, retry provider, TTS browser e metriche entity-level; servizi aggiornati healthy.",
     "Collaudo finale Fase 2: 59 test calendar-api e 11 MCP superati; monitor /health, /ready e /status verificati sul container, calendar-api/MCP healthy; routing Panda, planner task domestiche e ricerca Wiki verificati live senza traceback.",
     "Aggiunto audit_homehub_capabilities al registry: drift report live OpenAPI/entity-level metadata-only con stato autorizzazione; deploy calendar-api circoscritto con backup 20261008-024149-oracle-capability-audit, container healthy e audit planner verificato live (4/5 entità operative). Suite calendar-api portata a 60 test.",
-    "Allineato anche il container MCP al nuovo registry: rebuild/restart circoscritto di mcp, health `tools: 15`, con audit_homehub_capabilities disponibile; suite finale 60 test calendar-api e 11 MCP superata."
+    "Allineato anche il container MCP al nuovo registry: rebuild/restart circoscritto di mcp, health `tools: 15`, con audit_homehub_capabilities disponibile; suite finale 60 test calendar-api e 11 MCP superata.",
+    "Corretto il routing naturale delle viste: Home Assistant seleziona temperature/lights/solar e Garage cars/maintenance/deadlines/refuelings in base all’intento; aggiunta matrice di accettazione su 10 domande reali. Deploy calendar-api+MCP con backup 20261008-024339-oracle-routing-acceptance; entrambi healthy. Suite finale 61 test calendar-api e 11 MCP."
   ],
   "next_actions": [
     "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
@@ -175,6 +176,10 @@
     {
       "date": "2026-10-08",
       "text": "Allineamento MCP completato: container ricostruito con il registry aggiornato, health live indica 15 tool; suite finale 60 calendar-api e 11 MCP superata."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Routing naturale rafforzato: 10 domande rappresentative instradate verso la vista corretta (temperatura, luci, solare, auto, manutenzione, scadenze, turni, allenamenti, spesa, monitor). Deploy verificato healthy; 61 test calendar-api e 11 MCP superati."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo di contratti API, router deterministico, planner bounded, Wiki read-only e TTS browser opzionale.\n\nCollaudo corrente: 32 viste dichiarate, 30 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 26 operative (49,1%), 5 parziali e 22 ancora da esporre. Servizi calendar-api, MCP e monitor verificati healthy.\n\nRestano da completare le entità residue e le sorgenti con autenticazione separata; i payload Finance/Travel aggiuntivi richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
