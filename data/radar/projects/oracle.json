@@ -35,12 +35,16 @@
     "Aggiunti test di sicurezza e regressione discovery; 55 test calendar-api e 11 test MCP superati.",
     "Collegata la discovery OpenAPI alla matrice statica: ogni servizio riporta entità dichiarate, autorizzazione e stato di copertura.",
     "Aggiunto audit_capabilities.py per il drift report live tra percorsi GET/schema OpenAPI ed entità ORACLE; report eseguito sui container reali senza valori personali.",
-    "Drift report live conferma gap prioritari in Running, Finanza, Travel, Garage, Daily Flow, Menu, Spesa, Calendario Silvia, Health e Home-care; Nala e Wallet risultano completi sulle entità censite."
+    "Drift report live conferma gap prioritari in Running, Finanza, Travel, Garage, Daily Flow, Menu, Spesa, Calendario Silvia, Health e Home-care; Nala e Wallet risultano completi sulle entità censite.",
+    "Aggiunte viste ORACLE dedicate Garage: cars, deadlines, maintenance e refuelings, con flatten dei dettagli per auto.",
+    "Aggiunte viste Running: workouts, activities, races e stats, con filtri temporali per attività e gare.",
+    "Smoke test live aggiornato a 32 viste: 30 disponibili e 2 Synopsys bloccate; 56 test calendar-api e 11 MCP superati."
   ],
   "next_actions": [
-    "Definire descrittori semantici e mapping entity→endpoint per i gap prioritari, iniziando da Garage/Running/Finanza/Travel.",
-    "Aggiungere connettori read-only per gli storici e le aggregazioni, con filtri temporali e paginazione.",
-    "Implementare planner multi-step con validazione deterministica, recupero da piani falliti e verifica delle fonti.",
+    "Aggiungere descrittori semantici e aggregazioni per le nuove viste Garage/Running.",
+    "Esporre gli storici e le aggregazioni Finanza e Travel con API familiari read-only.",
+    "Completare descrittori entity→endpoint e drift automatico per tutte le app.",
+    "Implementare planner multi-step con validazione deterministica, recupero da piani falliti e verifica fonti.",
     "Migliorare gestione del fallimento del provider LLM: retry/backoff e diagnostica interna senza esporre segreti.",
     "Aggiungere contratto read-only per Wiki/documentazione e valutare autenticazioni separate senza abilitarle.",
     "Completare voce hands-free: speech-to-text, text-to-speech e wake word."
@@ -132,6 +136,10 @@
     {
       "date": "2026-10-08",
       "text": "Fase 2 estesa: discovery collegata alla matrice e aggiunto audit_capabilities.py. Drift report live sui container ha confermato gap entità prioritari; Nala e Wallet completi sulle entità censite. Deploy mirato healthy."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Incremento storico: Garage espone viste dedicate per scadenze, manutenzioni e rifornimenti; Running espone attività, gare e statistiche oltre agli allenamenti. Smoke test 32 viste (30 operative, Synopsys escluso); deploy healthy."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
