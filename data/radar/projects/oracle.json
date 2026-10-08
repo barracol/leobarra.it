@@ -3,15 +3,46 @@
   "id": "oracle",
   "codename": "ORACLE",
   "name": "HomeHub AI / MCP / Voice",
-  "status": "exploration",
+  "status": "in_progress",
   "description": "Layer AI e agent-friendly per HomeHub.",
   "objective": "Interrogare dati e dispositivi della casa tramite LLM, MCP/API e voce.",
-  "completed": [],
-  "next_actions": [],
+  "completed": [
+    "Implementati localmente UI /oracle/ e POST /api/oracle/chat autenticato con sessione HomeHub e CSRF.",
+    "Implementati OracleAgent, provider sul gateway LLM esistente, Tool Registry read-only e conversazioni temporanee isolate per sessione.",
+    "Implementati sei tool su integrazioni HA e API LabHub esistenti; dati non disponibili ed errori espliciti, nessun mock in produzione.",
+    "Superati 27 test Python (14 regressioni e 13 ORACLE); verificata sintassi JavaScript e configurazione Nginx; documentazione in home-dashboard-stack/docs/ORACLE.md.",
+    "Eseguito test live autorizzato in memoria: ciclo LLM/tool funzionante, lettura API LabHub senza corrispondenze buck, rifiuto accensione senza tool; 27 test Python nuovamente superati.",
+    "Deploy ORACLE eseguito su HomeHub con backup verificato e rebuild di hub/calendar-api; servizi healthy, 27 test superati nel container, UI protetta da login e API senza sessione 401.",
+    "Ripristinata integrazione HA con URL/token validi e alias aggiornati: collaudo live temperatura piano terra e luci accese riuscito sul backend distribuito; lettura fotovoltaico ok, 29 test superati.",
+    "Aggiunto get_solar_energy_today sul sensore reale Solarman Daily Production (kWh), distinto dalla potenza istantanea; ultimo aggiornamento sorgente e 31 test superati.",
+    "Distribuite e abilitate 15 sorgenti HomeHub con autorizzazione utente; Synopsys escluso anche dal calendario famiglia, turni TIM Silvia inclusi. 47 test dei connettori e agent superati; sorgenti personali legate alla sessione corrente.",
+    "Riparata causa del guasto monitor: producer backup ORACLE con gruppo monitor e segreti separati, consumer resiliente e readiness. Riparato il solo backup problematico, creato nuovo backup verificato. 10 test aggiuntivi; monitor/hub/calendar-api healthy, proxy stato 200, 18/18 servizi disponibili.",
+    "Collaudo live LLM riuscito su menu e turni TIM Silvia; connettore monitor letto direttamente con successo.",
+    "Ripetizione mirata della chat sul monitor riuscita: catalogo e lettura sorgente con esito ok, risposta presente.",
+    "Introdotto catalogo contratti API in calendar_api/oracle_catalog.py per 23 app/integrazioni: endpoint read-only, viste, intenti, esclusioni e autenticazione separata.",
+    "Aggiunto route_homehub_question: instradamento deterministico domanda → source/view prima della lettura MCP; regole dedicate per Daily Flow, task domestiche, Garage/Panda, Nala e blocco Synopsys.",
+    "Esteso il connettore Garage ai dettagli /api/cars/{slug}, includendo storico manutenzioni; verificata la 500 di Silvia a 46.290 km e ultimo tagliando del 18/09/2026.",
+    "Eseguito smoke test sistematico su 26 viste: 24 disponibili, 2 Synopsys bloccate intenzionalmente; aggiunto calendar_api/audit_sources.py per ripetere il controllo.",
+    "Ricostruiti e riavviati soltanto calendar-api e mcp; entrambi healthy. Backup pre-deploy: 20261008-020714-garage-detail e 20261008-021006-oracle-audit-script.",
+    "Suite calendar-api portata a 53 test superati; suite MCP 11 test superati; nessun traceback nei log dei servizi aggiornati."
+  ],
+  "next_actions": [
+    "Eseguire smoke test ORACLE dopo ogni modifica alle API o al catalogo: docker compose exec calendar-api python /app/audit_sources.py.",
+    "Aggiungere contratti read-only per Wiki/documentazione, se viene definito un indice API ricercabile.",
+    "Valutare connettori dedicati per Salute genitori e ciclo Silvia, rispettando le autenticazioni separate.",
+    "Migliorare gestione del fallimento del provider LLM: retry/backoff e diagnostica interna senza esporre segreti.",
+    "Completare voce hands-free: speech-to-text, text-to-speech e wake word; il microfono browser attuale è text input tramite SpeechRecognition."
+  ],
   "backlog": [
-    "Progettare layer AI/MCP/voice",
-    "Interrogare inventario LabHub per quantità e posizione",
-    "Valutare smartphone PHOENIX come endpoint"
+    "0.3 speech-to-text / text-to-speech sullo stesso agent",
+    "0.4 modalità kiosk P40",
+    "0.5 wake word / hands-free",
+    "0.6 tool con side effects e confirmation policy",
+    "Connettore Wiki/documentazione indicizzabile",
+    "Connettori separati per Salute genitori e ciclo Silvia",
+    "Migliorare retry e osservabilità del provider LLM",
+    "Audit automatico delle API applicative e degli schemi",
+    "Valutare esposizione MCP del registry"
   ],
   "dependencies": [
     {
@@ -27,17 +58,59 @@
       "description": "Possibili endpoint fisici, non vincolanti"
     }
   ],
-  "updated_at": "2026-10-06",
-  "decisions": [],
+  "updated_at": "2026-10-08",
+  "decisions": [
+    "0.1 riutilizza calendar-api Python e gateway OpenAI esistenti; nessun nuovo servizio/framework/database.",
+    "Interfaccia web modulare e responsive; P40 trattato come browser senza GMS.",
+    "Solo tool read-only; sensori della dashboard HomeHub e inventario reale LabHub; nessuna voce implementata.",
+    "Il catalogo API è la fonte dichiarativa degli intenti; il router non legge dati e non concede autorizzazioni.",
+    "Le viste vuote sono risultati validi; solo source_error, source_disabled o errori di autenticazione indicano mancata lettura.",
+    "Synopsys resta escluso anche quando una domanda contiene parole generiche come task o attività.",
+    "Il controllo di copertura corrente considera operative 24 viste; Wiki, Vaultwarden, Salute genitori e ciclo Silvia restano non connessi o esclusi."
+  ],
   "changelog": [
     {
       "date": "2026-10-06",
       "text": "Importazione dello snapshot handoff; nessun avanzamento di progetto implicito."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Primo incremento ORACLE 0.1 implementato e testato localmente. Collaudo LLM con dati reali, deploy e prova P40 pendenti; milestone non dichiarata completata."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Autorizzato ed eseguito collaudo live: gateway LLM e LabHub funzionanti, Home Assistant in timeout. Precisato e verificato rifiuto azioni senza tool. Nessun deploy o comando di scrittura; milestone resta in corso."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Deploy autorizzato eseguito con backup in 20261007-100616-oracle. Servizi hub/calendar-api healthy; test container e controlli HTTP superati. Link LAN aggiornato a 192.168.68.107:8050/oracle/. Timeout HA e prova fisica P40 pendenti."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Diagnosticati errori sorgente: vecchio HA Tailscale offline; URL corretto alla LAN confermata dall’utente con backup protetto e ricreazione calendar-api. Il token esistente è rifiutato (401), necessaria credenziale valida."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Installato token HA valido dalla configurazione privata fornita dall’utente (verifica HTTP 200). Aggiornate associazioni read-only temperature, luci e potenza ai nomi verificati nella HA attuale; 29 test superati, nessuna modifica ai controlli dispositivi."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Incremento copertura fotovoltaico: settimo tool read-only per energia prodotta oggi, selezione esplicita per domande colloquiali sulla potenza di oggi, test zero/unavailable e indipendenza dal dato istantaneo."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Predisposizione locale connettori HomeHub (16 sorgenti), catalogo confini e test. Revisione automatica blocca abilitazione generalizzata dei dati sensibili: nuove sorgenti disabilitate per default, nessun deploy o collaudo live; approvazione categorie pendente."
+    },
+    {
+      "date": "2026-10-07",
+      "text": "Abilitazione connettori autorizzata eccetto Synopsys; fix producer backup e consumer monitor distribuito, collaudo stato HomeHub riuscito."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Resoconto operativo: catalogo contratti API per 23 app, router deterministico source/view, connettore Garage con storico manutenzioni, smoke test su 26 viste (24 operative, 2 Synopsys escluse), 53 test calendar-api e 11 MCP superati; calendar-api e MCP healthy dopo deploy mirato."
     }
   ],
-  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🔎 Esplorazione\n\nObiettivo: aggiungere un layer AI/agent-friendly a HomeHub.\n\nVisione:\n\n``` text\nspeaker / terminale\n        ↓\n     ORACLE\n        ↓\n ChatGPT / LLM\n        ↓\n HomeHub / MCP / API\n        ↓\n dati e dispositivi della casa\n```\n\nEsempio desiderato per LabHub:\n\n> \"Dove ho messo i convertitori buck?\"\n\nORACLE dovrebbe interrogare l'inventario e rispondere con\nquantità/posizione.\n\nPossibili endpoint fisici: vecchi smartphone PHOENIX con\nmicrofono/speaker/display.\n\n------------------------------------------------------------------------",
+  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
   "extensions": {},
-  "ambiguities": [
-    "Next action non specificata nello snapshot; da concordare."
-  ]
+  "ambiguities": []
 }
