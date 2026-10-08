@@ -57,7 +57,8 @@
     "Estese le viste read-only del calendario TIM Silvia a stats (ore) e performance mensile; scritture e performance-coach restano escluse. Deploy calendar-api+MCP con backup 20261008-024734-oracle-silvia-stats; smoke live 37 viste, 35 disponibili e 2 Synopsys escluse; copertura entity-level 31/53 (58,5%). Test 63 calendar-api e 11 MCP.",
     "Completata la vista utenti del Daily Flow e allineata la matrice: i completamenti routine sono restituiti nella vista routine e classificati operativi; deploy calendar-api+MCP con backup 20261008-024847-oracle-planner-users; smoke live 38 viste, 36 disponibili e 2 Synopsys escluse; copertura 32/53 (60,4%). Test 64 calendar-api e 11 MCP.",
     "Aggiunta vista contatti Casa read-only con proiezione limitata a nome e specialità (telefono, email e note esclusi); deploy calendar-api+MCP con backup 20261008-025002-oracle-homecare-contacts; smoke live 39 viste, 37 disponibili e 2 Synopsys escluse; copertura 33/53 (62,3%). Test 65 calendar-api e 11 MCP.",
-    "Creato docs/ORACLE-9STEP-AUDIT.md: audit requisito-per-requisito con evidenze runtime, policy attive e residui; classificati 8 step operativi e 1 parziale (storici/trasversali) con copertura corrente 33/53."
+    "Creato docs/ORACLE-9STEP-AUDIT.md: audit requisito-per-requisito con evidenze runtime, policy attive e residui; classificati 8 step operativi e 1 parziale (storici/trasversali) con copertura corrente 33/53.",
+    "Estesa la sorgente Running con vista scarpe e metriche di utilizzo read-only, senza foto/documenti; deploy calendar-api+MCP con backup 20261008-025201-oracle-running-shoes; smoke live 40 viste, 38 disponibili e 2 Synopsys escluse; copertura 34/53 (64,2%). Test 66 calendar-api e 11 MCP."
   ],
   "next_actions": [
     "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
@@ -210,6 +211,10 @@
     {
       "date": "2026-10-08",
       "text": "Aggiunto audit esplicito dei nove step con evidenze e lacune residue; lo stato distingue gli step verificati da storici Finance/Travel e wake word ancora non completati."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Running esteso con scarpe e metriche uso, senza foto o documenti. Smoke live 40 viste, 38 operative, 2 Synopsys escluse; copertura entity-level 34/53 (64,2%)."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo di contratti API, router deterministico, planner bounded, Wiki read-only e TTS browser opzionale.\n\nCollaudo corrente: 32 viste dichiarate, 30 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 26 operative (49,1%), 5 parziali e 22 ancora da esporre. Servizi calendar-api, MCP e monitor verificati healthy.\n\nRestano da completare le entità residue e le sorgenti con autenticazione separata; i payload Finance/Travel aggiuntivi richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
