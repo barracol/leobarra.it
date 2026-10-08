@@ -24,14 +24,20 @@
     "Esteso il connettore Garage ai dettagli /api/cars/{slug}, includendo storico manutenzioni; verificata la 500 di Silvia a 46.290 km e ultimo tagliando del 18/09/2026.",
     "Eseguito smoke test sistematico su 26 viste: 24 disponibili, 2 Synopsys bloccate intenzionalmente; aggiunto calendar_api/audit_sources.py per ripetere il controllo.",
     "Ricostruiti e riavviati soltanto calendar-api e mcp; entrambi healthy. Backup pre-deploy: 20261008-020714-garage-detail e 20261008-021006-oracle-audit-script.",
-    "Suite calendar-api portata a 53 test superati; suite MCP 11 test superati; nessun traceback nei log dei servizi aggiornati."
+    "Suite calendar-api portata a 53 test superati; suite MCP 11 test superati; nessun traceback nei log dei servizi aggiornati.",
+    "Completato audit Fase 1 a livello di entità: repository, Compose, modelli SQLite, endpoint e OpenAPI confrontati con il catalogo ORACLE.",
+    "Creata docs/ORACLE-COVERAGE.md con matrice applicazione → entità → API → tool → policy → stato e denominatore di copertura esplicito.",
+    "Aggiunto calendar_api/oracle_coverage.py e collegato lo stato delle entità a list_homehub_sources; 26 viste smoke-testate, 24 disponibili e 2 Synopsys bloccate.",
+    "Eseguito deploy circoscritto di calendar-api e MCP con backup 20261008-022007-coverage-audit; entrambi healthy e 53 test calendar-api superati."
   ],
   "next_actions": [
-    "Eseguire smoke test ORACLE dopo ogni modifica alle API o al catalogo: docker compose exec calendar-api python /app/audit_sources.py.",
-    "Aggiungere contratti read-only per Wiki/documentazione, se viene definito un indice API ricercabile.",
-    "Valutare connettori dedicati per Salute genitori e ciclo Silvia, rispettando le autenticazioni separate.",
+    "Completare i descrittori dichiarativi per tutte le entità e validare gli schemi OpenAPI senza leggere valori personali.",
+    "Esporre gli storici e le aggregazioni ad alto valore: Running, Garage, Finanza, Travel e Daily Flow.",
+    "Implementare planner multi-step con verifica fonti, paginazione, aggregazioni e risultati parziali.",
     "Migliorare gestione del fallimento del provider LLM: retry/backoff e diagnostica interna senza esporre segreti.",
-    "Completare voce hands-free: speech-to-text, text-to-speech e wake word; il microfono browser attuale è text input tramite SpeechRecognition."
+    "Aggiungere contratti read-only per Wiki/documentazione, se viene definito un indice API ricercabile.",
+    "Valutare connettori dedicati per Salute genitori e ciclo Silvia, senza abilitarli automaticamente.",
+    "Completare voce hands-free: speech-to-text, text-to-speech e wake word."
   ],
   "backlog": [
     "0.3 speech-to-text / text-to-speech sullo stesso agent",
@@ -108,6 +114,10 @@
     {
       "date": "2026-10-08",
       "text": "Resoconto operativo: catalogo contratti API per 23 app, router deterministico source/view, connettore Garage con storico manutenzioni, smoke test su 26 viste (24 operative, 2 Synopsys escluse), 53 test calendar-api e 11 MCP superati; calendar-api e MCP healthy dopo deploy mirato."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Fase 1 audit completata: inventariati repository, Compose, persistenza, endpoint e OpenAPI. Matrice docs/ORACLE-COVERAGE.md e oracle_coverage.py collegati al catalogo; identificata copertura parziale delle entità in Running, Finanza, Travel, Garage, Daily Flow e altre app. Deploy mirato e smoke test 26 viste (24 operative, Synopsys escluso)."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
