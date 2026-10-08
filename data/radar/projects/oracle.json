@@ -62,11 +62,10 @@
     "Rivalutato il menu settimanale come entità operativa: `nutrition/days` interroga settimane arbitrarie tramite `week_start` ed è coperto da test storico. Deploy coverage calendar-api+MCP con backup 20261008-025335-oracle-coverage-menu; smoke 40 viste, 38 operative, 2 Synopsys escluse; copertura 35/53 (66,0%). Test 66 calendar-api e 11 MCP.",
     "Riallineato docs/ORACLE-9STEP-AUDIT.md ai valori runtime definitivi: 40 viste, 38 operative, 2 escluse; 35/53 entità autorizzate operative (66,0%), 3 parziali e 15 non esposte.",
     "Aggiunto `calendar_api/audit_readiness.py`: comando ripetibile che verifica smoke test di tutte le viste, coverage entity-level e registro policy senza stampare record né abilitare sorgenti. Deploy con backup 20261008-025513-oracle-readiness-audit; readiness live `ready=true`, 40 viste, 38 disponibili, 2 disabled attesi, failures vuote; health MCP ok. Suite 66 calendar-api e 11 MCP.",
-    "Esteso il registro policy con `finance-detailed` e `travel-detailed`: stato approval_required, enabled=false, nessun connettore o payload aggiuntivo attivato. Deploy calendar-api+MCP con backup 20261008-025623-oracle-sensitive-policy-registry; readiness live ancora ready=true (40 viste, 38 disponibili, failures vuote), health MCP ok. Test 66 calendar-api e 11 MCP."
+    "Esteso il registro policy con `finance-detailed` e `travel-detailed`: stato approval_required, enabled=false, nessun connettore o payload aggiuntivo attivato. Deploy calendar-api+MCP con backup 20261008-025623-oracle-sensitive-policy-registry; readiness live ancora ready=true (40 viste, 38 disponibili, failures vuote), health MCP ok. Test 66 calendar-api e 11 MCP.",
+    "Autorizzate esplicitamente le viste dettagliate Finance e Travel in sola lettura: ricorrenze, risparmi, utenze, spese extra, statistiche, checklist, itinerari e trasferimenti con proiezione di campi limitata. Deploy mirato con backup 20261008-080801-oracle-finance-travel; readiness live pronta: 48 viste, 46 disponibili, 2 Synopsys bloccate, 43/53 entità operative (81,1%). Suite 66 test calendar-api e 11 MCP superata."
   ],
   "next_actions": [
-    "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
-    "Definire il perimetro autorizzato per dettagli Travel (checklist, itinerari e trasferimenti) prima dell’invio al provider.",
     "Valutare esposizione controllata delle entità residue non sensibili: bilancia Running, import Biblioteca e storico Menu/Spesa.",
     "Aggiungere aggregazioni deterministiche più ricche al planner e verifica automatica delle fonti parziali.",
     "Valutare wake word/hands-free oltre alla dettatura browser già operativa."
