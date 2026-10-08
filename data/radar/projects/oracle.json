@@ -28,15 +28,19 @@
     "Completato audit Fase 1 a livello di entità: repository, Compose, modelli SQLite, endpoint e OpenAPI confrontati con il catalogo ORACLE.",
     "Creata docs/ORACLE-COVERAGE.md con matrice applicazione → entità → API → tool → policy → stato e denominatore di copertura esplicito.",
     "Aggiunto calendar_api/oracle_coverage.py e collegato lo stato delle entità a list_homehub_sources; 26 viste smoke-testate, 24 disponibili e 2 Synopsys bloccate.",
-    "Eseguito deploy circoscritto di calendar-api e MCP con backup 20261008-022007-coverage-audit; entrambi healthy e 53 test calendar-api superati."
+    "Eseguito deploy circoscritto di calendar-api e MCP con backup 20261008-022007-coverage-audit; entrambi healthy e 53 test calendar-api superati.",
+    "Avviata Fase 2: aggiunta discovery OpenAPI controllata su servizi Docker allowlistati, con soli metadati GET, schemi e campi bounded.",
+    "Aggiunto tool MCP discover_homehub_capabilities per una source o all; URL arbitrari, redirect e operazioni di scrittura sono rifiutati.",
+    "Collegata la discovery al catalogo senza concedere automaticamente accesso a entità sensibili; planner verificato live con 6 GET path e 6 schema.",
+    "Aggiunti test di sicurezza e regressione discovery; 55 test calendar-api e 11 test MCP superati."
   ],
   "next_actions": [
-    "Completare i descrittori dichiarativi per tutte le entità e validare gli schemi OpenAPI senza leggere valori personali.",
+    "Completare descrittori semantici dichiarativi per entità, relazioni, campi sensibili e policy.",
+    "Confrontare automaticamente discovery OpenAPI con oracle_coverage.py e segnalare drift API.",
     "Esporre gli storici e le aggregazioni ad alto valore: Running, Garage, Finanza, Travel e Daily Flow.",
-    "Implementare planner multi-step con verifica fonti, paginazione, aggregazioni e risultati parziali.",
+    "Implementare planner multi-step con validazione deterministica, paginazione e risultati parziali.",
     "Migliorare gestione del fallimento del provider LLM: retry/backoff e diagnostica interna senza esporre segreti.",
-    "Aggiungere contratti read-only per Wiki/documentazione, se viene definito un indice API ricercabile.",
-    "Valutare connettori dedicati per Salute genitori e ciclo Silvia, senza abilitarli automaticamente.",
+    "Aggiungere contratto read-only per Wiki/documentazione e valutare autenticazioni separate senza abilitarle.",
     "Completare voce hands-free: speech-to-text, text-to-speech e wake word."
   ],
   "backlog": [
@@ -118,6 +122,10 @@
     {
       "date": "2026-10-08",
       "text": "Fase 1 audit completata: inventariati repository, Compose, persistenza, endpoint e OpenAPI. Matrice docs/ORACLE-COVERAGE.md e oracle_coverage.py collegati al catalogo; identificata copertura parziale delle entità in Running, Finanza, Travel, Garage, Daily Flow e altre app. Deploy mirato e smoke test 26 viste (24 operative, Synopsys escluso)."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Fase 2 avviata e distribuita: discovery OpenAPI controllata tramite discover_homehub_capabilities, allowlist di servizi Docker, soli metadati GET/schema/campi, nessun accesso ai record o alle scritture. Planner verificato live; 55 test calendar-api e 11 MCP superati."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
