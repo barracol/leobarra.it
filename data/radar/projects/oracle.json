@@ -45,10 +45,13 @@
     "Aggiunto TTS opzionale browser per risposte ORACLE tramite SpeechSynthesis e mantenuto push-to-talk esistente.",
     "Smoke test storico aggiornato a 32 viste, 30 disponibili e 2 Synopsys escluse; test calendar-api 59 superati.",
     "Definito report entity-level con denominatore esplicito: 57 entità censite, 4 escluse, 53 autorizzate, 26 operative, copertura 49,1%.",
-    "Integrata ricerca Wiki read-only, planner multi-sorgente bounded, retry provider LLM e TTS browser opzionale; deploy verificati healthy."
+    "Integrata ricerca Wiki read-only, planner multi-sorgente bounded, retry provider LLM e TTS browser opzionale; deploy verificati healthy.",
+    "Aggiunto registro read-only delle sorgenti separate/escluse con policy e requisiti di autorizzazione; nessuna sorgente sensibile abilitata.",
+    "Completato supporto Wiki full-text, planner multi-sorgente, retry provider, TTS browser e metriche entity-level; servizi aggiornati healthy."
   ],
   "next_actions": [
-    "Portare la copertura entity-level dal 49,1% esponendo Finanza e Travel, poi le entità residue di Running, Garage, Daily Flow e altre app.",
+    "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
+    "Esporre storici e aggregazioni Travel e le entità residue non sensibili.",
     "Aggiungere verifica deterministica di fonti, paginazione, deduplicazione e aggregazioni al planner.",
     "Preparare autenticazioni separate per Salute genitori e ciclo Silvia senza abilitarle.",
     "Aggiungere test end-to-end con domande naturali e misurazione automatica della copertura.",
@@ -153,6 +156,10 @@
     {
       "date": "2026-10-08",
       "text": "Definita copertura entity-level: 26/53 entità autorizzate operative (49,1%), 5 parziali e 22 non esposte; 4 escluse. Ricerca Wiki, planner bounded, retry LLM e TTS browser distribuiti con servizi healthy."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Registro policy per sorgenti separate/escluse distribuito; Synopsys, Vaultwarden, Salute genitori e ciclo Silvia restano non abilitate. Fase 2/3 avanzata con Wiki, planner bounded, viste storiche, retry LLM, TTS e coverage entity-level."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
