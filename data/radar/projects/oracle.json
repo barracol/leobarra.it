@@ -52,7 +52,8 @@
     "Aggiunto audit_homehub_capabilities al registry: drift report live OpenAPI/entity-level metadata-only con stato autorizzazione; deploy calendar-api circoscritto con backup 20261008-024149-oracle-capability-audit, container healthy e audit planner verificato live (4/5 entità operative). Suite calendar-api portata a 60 test.",
     "Allineato anche il container MCP al nuovo registry: rebuild/restart circoscritto di mcp, health `tools: 15`, con audit_homehub_capabilities disponibile; suite finale 60 test calendar-api e 11 MCP superata.",
     "Corretto il routing naturale delle viste: Home Assistant seleziona temperature/lights/solar e Garage cars/maintenance/deadlines/refuelings in base all’intento; aggiunta matrice di accettazione su 10 domande reali. Deploy calendar-api+MCP con backup 20261008-024339-oracle-routing-acceptance; entrambi healthy. Suite finale 61 test calendar-api e 11 MCP.",
-    "Audit live conclusivo: 32 viste ORACLE, 30 disponibili e 2 Synopsys source_disabled per policy; drift report metadata-only eseguito sui 13 servizi OpenAPI con gap entity-level espliciti. Microfono browser SpeechRecognition it-IT e TTS SpeechSynthesis verificati nel frontend; nessuna modifica a rete o HA."
+    "Audit live conclusivo: 32 viste ORACLE, 30 disponibili e 2 Synopsys source_disabled per policy; drift report metadata-only eseguito sui 13 servizi OpenAPI con gap entity-level espliciti. Microfono browser SpeechRecognition it-IT e TTS SpeechSynthesis verificati nel frontend; nessuna modifica a rete o HA.",
+    "Estesa copertura con tre viste non sensibili: nutrition/status, shopping/standard_items e library/summary. Deploy coordinato calendar-api+MCP con backup 20261008-024601-oracle-secondary-views; smoke live 35 viste, 33 disponibili e 2 Synopsys escluse; entity-level 29/53 operative (54,7%). Suite finale 62 calendar-api e 11 MCP."
   ],
   "next_actions": [
     "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
@@ -185,6 +186,10 @@
     {
       "date": "2026-10-08",
       "text": "Verifica live completa: smoke test 32 viste (30 operative, 2 Synopsys escluse) e drift report entity-level sui container; input microfono SpeechRecognition it-IT e lettura TTS browser presenti, con fallback esplicito."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Copertura incrementata: Menu status, Spesa standard e Biblioteca summary verificati live. 35 viste totali, 33 operative, 2 Synopsys escluse; 29/53 entità autorizzate operative (54,7%). Test 62 calendar-api e 11 MCP superati."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo di contratti API, router deterministico, planner bounded, Wiki read-only e TTS browser opzionale.\n\nCollaudo corrente: 32 viste dichiarate, 30 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 26 operative (49,1%), 5 parziali e 22 ancora da esporre. Servizi calendar-api, MCP e monitor verificati healthy.\n\nRestano da completare le entità residue e le sorgenti con autenticazione separata; i payload Finance/Travel aggiuntivi richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
