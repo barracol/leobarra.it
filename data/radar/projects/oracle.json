@@ -62,11 +62,10 @@
   ],
   "next_actions": [
     "Ottenere autorizzazione esplicita per eventuali payload finanziari aggiuntivi prima di esporre ricorrenze, risparmi, utenze e statistiche al provider.",
-    "Esporre storici e aggregazioni Travel e le entità residue non sensibili.",
-    "Aggiungere verifica deterministica di fonti, paginazione, deduplicazione e aggregazioni al planner.",
-    "Preparare autenticazioni separate per Salute genitori e ciclo Silvia senza abilitarle.",
-    "Aggiungere test end-to-end con domande naturali e misurazione automatica della copertura.",
-    "Valutare TTS/interruzioni e wake word opzionale oltre al supporto browser."
+    "Definire il perimetro autorizzato per dettagli Travel (checklist, itinerari e trasferimenti) prima dell’invio al provider.",
+    "Valutare esposizione controllata delle entità residue non sensibili: bilancia Running, import Biblioteca e storico Menu/Spesa.",
+    "Aggiungere aggregazioni deterministiche più ricche al planner e verifica automatica delle fonti parziali.",
+    "Valutare wake word/hands-free oltre alla dettatura browser già operativa."
   ],
   "backlog": [
     "0.3 speech-to-text / text-to-speech sullo stesso agent",
@@ -215,9 +214,13 @@
     {
       "date": "2026-10-08",
       "text": "Running esteso con scarpe e metriche uso, senza foto o documenti. Smoke live 40 viste, 38 operative, 2 Synopsys escluse; copertura entity-level 34/53 (64,2%)."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "RADAR riallineato allo stato effettivo: 40 viste, 38 operative, 2 Synopsys escluse; 34/53 entità autorizzate operative. Rimossi dai prossimi incrementi Wiki/retry/TTS già completati; residui separati per policy e gap non sensibili."
     }
   ],
-  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo di contratti API, router deterministico, planner bounded, Wiki read-only e TTS browser opzionale.\n\nCollaudo corrente: 32 viste dichiarate, 30 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 26 operative (49,1%), 5 parziali e 22 ancora da esporre. Servizi calendar-api, MCP e monitor verificati healthy.\n\nRestano da completare le entità residue e le sorgenti con autenticazione separata; i payload Finance/Travel aggiuntivi richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
+  "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP, catalogo statico più discovery OpenAPI bounded, router deterministico, planner multi-sorgente, Wiki read-only, voce browser e audit entity-level.\n\nCollaudo corrente: 40 viste dichiarate, 38 operative e 2 Synopsys escluse per policy; 57 entità censite, 53 autorizzate, 34 operative (64,2%), 4 parziali e 15 ancora da esporre. Calendar-api, MCP e monitor sono verificati healthy.\n\nRestano entità personali protette o non sensibili da valutare, oltre ai payload Finance/Travel dettagliati che richiedono autorizzazione esplicita prima dell’invio al provider LLM.\n",
   "extensions": {},
   "ambiguities": []
 }
