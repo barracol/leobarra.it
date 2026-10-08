@@ -32,13 +32,15 @@
     "Avviata Fase 2: aggiunta discovery OpenAPI controllata su servizi Docker allowlistati, con soli metadati GET, schemi e campi bounded.",
     "Aggiunto tool MCP discover_homehub_capabilities per una source o all; URL arbitrari, redirect e operazioni di scrittura sono rifiutati.",
     "Collegata la discovery al catalogo senza concedere automaticamente accesso a entità sensibili; planner verificato live con 6 GET path e 6 schema.",
-    "Aggiunti test di sicurezza e regressione discovery; 55 test calendar-api e 11 test MCP superati."
+    "Aggiunti test di sicurezza e regressione discovery; 55 test calendar-api e 11 test MCP superati.",
+    "Collegata la discovery OpenAPI alla matrice statica: ogni servizio riporta entità dichiarate, autorizzazione e stato di copertura.",
+    "Aggiunto audit_capabilities.py per il drift report live tra percorsi GET/schema OpenAPI ed entità ORACLE; report eseguito sui container reali senza valori personali.",
+    "Drift report live conferma gap prioritari in Running, Finanza, Travel, Garage, Daily Flow, Menu, Spesa, Calendario Silvia, Health e Home-care; Nala e Wallet risultano completi sulle entità censite."
   ],
   "next_actions": [
-    "Completare descrittori semantici dichiarativi per entità, relazioni, campi sensibili e policy.",
-    "Confrontare automaticamente discovery OpenAPI con oracle_coverage.py e segnalare drift API.",
-    "Esporre gli storici e le aggregazioni ad alto valore: Running, Garage, Finanza, Travel e Daily Flow.",
-    "Implementare planner multi-step con validazione deterministica, paginazione e risultati parziali.",
+    "Definire descrittori semantici e mapping entity→endpoint per i gap prioritari, iniziando da Garage/Running/Finanza/Travel.",
+    "Aggiungere connettori read-only per gli storici e le aggregazioni, con filtri temporali e paginazione.",
+    "Implementare planner multi-step con validazione deterministica, recupero da piani falliti e verifica delle fonti.",
     "Migliorare gestione del fallimento del provider LLM: retry/backoff e diagnostica interna senza esporre segreti.",
     "Aggiungere contratto read-only per Wiki/documentazione e valutare autenticazioni separate senza abilitarle.",
     "Completare voce hands-free: speech-to-text, text-to-speech e wake word."
@@ -126,6 +128,10 @@
     {
       "date": "2026-10-08",
       "text": "Fase 2 avviata e distribuita: discovery OpenAPI controllata tramite discover_homehub_capabilities, allowlist di servizi Docker, soli metadati GET/schema/campi, nessun accesso ai record o alle scritture. Planner verificato live; 55 test calendar-api e 11 MCP superati."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Fase 2 estesa: discovery collegata alla matrice e aggiunto audit_capabilities.py. Drift report live sui container ha confermato gap entità prioritari; Nala e Wallet completi sulle entità censite. Deploy mirato healthy."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
