@@ -38,16 +38,20 @@
     "Drift report live conferma gap prioritari in Running, Finanza, Travel, Garage, Daily Flow, Menu, Spesa, Calendario Silvia, Health e Home-care; Nala e Wallet risultano completi sulle entità censite.",
     "Aggiunte viste ORACLE dedicate Garage: cars, deadlines, maintenance e refuelings, con flatten dei dettagli per auto.",
     "Aggiunte viste Running: workouts, activities, races e stats, con filtri temporali per attività e gare.",
-    "Smoke test live aggiornato a 32 viste: 30 disponibili e 2 Synopsys bloccate; 56 test calendar-api e 11 MCP superati."
+    "Smoke test live aggiornato a 32 viste: 30 disponibili e 2 Synopsys bloccate; 56 test calendar-api e 11 MCP superati.",
+    "Aggiunto retry controllato del provider LLM per output strutturato malformato; fallimento persistente resta esplicito e non produce risposte inventate.",
+    "Integrata Wiki statica read-only con ricerca full-text bounded, percorso/titolo/snippet e mount /wiki-docs in sola lettura; istruzioni documentali trattate come dati non fidati.",
+    "Aggiunto plan_homehub_question per piani multi-sorgente bounded, con passi read-only autorizzati e test task domestiche.",
+    "Aggiunto TTS opzionale browser per risposte ORACLE tramite SpeechSynthesis e mantenuto push-to-talk esistente.",
+    "Smoke test storico aggiornato a 32 viste, 30 disponibili e 2 Synopsys escluse; test calendar-api 59 superati."
   ],
   "next_actions": [
-    "Aggiungere descrittori semantici e aggregazioni per le nuove viste Garage/Running.",
-    "Esporre gli storici e le aggregazioni Finanza e Travel con API familiari read-only.",
-    "Completare descrittori entity→endpoint e drift automatico per tutte le app.",
-    "Implementare planner multi-step con validazione deterministica, recupero da piani falliti e verifica fonti.",
-    "Migliorare gestione del fallimento del provider LLM: retry/backoff e diagnostica interna senza esporre segreti.",
-    "Aggiungere contratto read-only per Wiki/documentazione e valutare autenticazioni separate senza abilitarle.",
-    "Completare voce hands-free: speech-to-text, text-to-speech e wake word."
+    "Esporre storici e aggregazioni Finanza e Travel con API familiari read-only.",
+    "Aggiungere mapping semantici entity→endpoint e verifiche automatiche dei risultati del planner.",
+    "Implementare verifica delle fonti, paginazione, deduplicazione e aggregazioni nel piano multi-step.",
+    "Preparare autenticazioni separate per Salute genitori e ciclo Silvia senza abilitarle.",
+    "Aggiungere test end-to-end con domande naturali e report percentuale di copertura per entità.",
+    "Valutare TTS/interruzioni e wake word opzionale oltre al supporto browser."
   ],
   "backlog": [
     "0.3 speech-to-text / text-to-speech sullo stesso agent",
@@ -140,6 +144,10 @@
     {
       "date": "2026-10-08",
       "text": "Incremento storico: Garage espone viste dedicate per scadenze, manutenzioni e rifornimenti; Running espone attività, gare e statistiche oltre agli allenamenti. Smoke test 32 viste (30 operative, Synopsys escluso); deploy healthy."
+    },
+    {
+      "date": "2026-10-08",
+      "text": "Incremento continuo: provider LLM con retry bounded, ricerca Wiki read-only, planner multi-sorgente bounded e TTS browser opzionale. Viste Garage/Running estese; deploy mirati healthy e 59 test calendar-api superati."
     }
   ],
   "context_markdown": "## ORACLE --- HomeHub AI / MCP / Voice\n\n**Stato:** 🛠 In corso\n\nORACLE è distribuito su HomeHub come agent read-only con UI web, client/server MCP e catalogo di contratti API. Il router seleziona la sorgente e la vista in base alla domanda prima di leggere i dati.\n\nCopertura verificata: 24 viste operative su 26 dichiarate. Synopsys è escluso per policy; Wiki, Vaultwarden e i connettori con autenticazione separata non sono sorgenti operative.\n\nProssimi incrementi: robustezza provider LLM, indicizzazione Wiki e voce hands-free.\n",
