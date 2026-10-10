@@ -50,3 +50,7 @@ Le sezioni condivise e l'archivio conservano anche le indicazioni di processo e 
 Oggi Codex o un altro agente con accesso al repository può leggere e modificare direttamente questi JSON. ChatGPT potrà usare lo stesso repository tramite un'integrazione Git autenticata, con lettura dei file e scrittura tramite commit/PR. Contratto consigliato: leggere progetto + revisione Git, proporre aggiornamento del solo file, validare e applicare solo se la revisione non è cambiata. Per sola lettura sono disponibili i JSON statici e gli export.
 
 Questa milestone **non collega automaticamente ChatGPT e non espone API di scrittura**. La dashboard è di lettura; nessun dato canonico vive in localStorage. La pubblicazione avviene con il normale deploy statico del sito. Tutti i file distribuiti insieme al sito saranno pubblicamente leggibili, incluso l'archivio: per dati privati servirà un repository/storage privato con accesso autenticato e una proiezione pubblica separata; non basta nascondere una card. Nessuna credenziale deve essere inserita nel frontend.
+
+## Gallerie fotografiche
+
+`extensions.gallery` è una lista di oggetti con `src` (percorso dalla root del sito, sotto `assets/`), `alt`, `caption` e `source` (nome originale per tracciabilità). La dashboard mostra le foto nel dettaglio e un richiamo sulla card. Usare JPEG ottimizzati senza metadati EXIF/GPS; conservare gli originali fuori dal repository. Ogni foto si apre a dimensione completa.

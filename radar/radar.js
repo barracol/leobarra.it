@@ -24,6 +24,7 @@ function renderCards() {
     const card=el('a',undefined,'radar-card'); card.href=`#${p.id}`;
     card.append(el('span',states[p.status],'badge'),el('h2',p.codename),el('p',p.name,'name'),el('p',p.description,'description'));
     const next=el('div',undefined,'next'); next.append(el('b','PROSSIMA AZIONE'),el('p',p.next_actions[0] || 'Da concordare'));
+    if (p.extensions.gallery?.length) card.append(el('p', `📷 ${p.extensions.gallery.length} foto del laboratorio`, 'gallery-hint'));
     card.append(next,el('small',`Aggiornato ${p.updated_at} · Apri progetto →`)); $('#projects').append(card);
   }
   $('#feedback').textContent=visible.length ? `${visible.length} ${visible.length === 1 ? 'progetto visibile' : 'progetti visibili'} · ${projects.filter(p=>p.status==='in_progress').length} in corso` : 'Nessun progetto corrisponde ai filtri.';
@@ -37,6 +38,20 @@ function renderDetail() {
   const p=projects.find(p=>p.id===id);
   if (!p) {detail.append(el('h2','Progetto non trovato'));detail.focus();return;}
   detail.append(el('h2',`${p.codename} / ${p.name}`),el('p',`${states[p.status]} · Aggiornato ${p.updated_at}`),el('p',p.description),el('h3','Obiettivo'),el('p',p.objective));
+  if (p.extensions.gallery?.length) {
+    const gallery=el('section',undefined,'project-gallery');
+    gallery.append(el('h3','Il laboratorio, in foto'));
+    const grid=el('div',undefined,'gallery-grid');
+    for (const photo of p.extensions.gallery) {
+      // Only repository-owned assets; no arbitrary external or script URLs.
+      if (!/^assets\/[a-zA-Z0-9_./-]+$/.test(photo.src) || photo.src.includes('..')) continue;
+      const figure=el('figure');const link=el('a');link.href=`../${photo.src}`;
+      link.target='_blank';link.rel='noopener';link.setAttribute('aria-label',`${photo.alt} — Apri foto completa`);
+      const img=el('img');img.src=link.href;img.alt=photo.alt;img.loading='lazy';img.decoding='async';
+      link.append(img);figure.append(link,el('figcaption',photo.caption));grid.append(figure);
+    }
+    gallery.append(grid);detail.append(gallery);
+  }
   const columns=el('div',undefined,'detail-columns');
   for (const [key,label] of [['next_actions','Prossime azioni'],['completed','Attività completate'],['backlog','Backlog'],['decisions','Decisioni']]) columns.append(listSection(label,p[key]));
   const deps=el('section'); deps.append(el('h3','Dipendenze e relazioni'));
@@ -45,6 +60,7 @@ function renderDetail() {
   columns.append(deps,listSection('Cronologia',p.changelog.map(c=>`${c.date} — ${c.text}`))); detail.append(columns);
   if(p.ambiguities?.length) detail.append(listSection('Da chiarire',p.ambiguities));
   for(const [key,value] of Object.entries(p.extensions)) {
+    if(key==='gallery') continue;
     if(key==='print_queue') {detail.append(el('h3','FOUNDRY / Print queue')); const list=el('ol',undefined,'queue');value.forEach((q,i)=>{const item=el('li');item.append(el('strong',`${i+1}. ${q.name}`),el('span',queueStates[q.status] || q.status),el('pre',q.details));list.append(item);});detail.append(list);}
     else {const extra=el('details');extra.append(el('summary',key),el('pre',JSON.stringify(value,null,2)));detail.append(extra);}
   }
