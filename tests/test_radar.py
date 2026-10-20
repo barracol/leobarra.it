@@ -1,4 +1,5 @@
 import copy
+import datetime
 import importlib.util
 import json
 import pathlib
@@ -53,8 +54,8 @@ class RadarTests(unittest.TestCase):
             project['extensions']['print_queue'][1]['status'] = 'done'
             project['extensions']['custom'] = {'example': [1, 2]}
             project['completed'].append('Case ESP8266 stampato')
-            project['updated_at'] = '2026-10-07'
-            project['changelog'].append({'date':'2026-10-07','text':'Case ESP8266 stampato'})
+            project['updated_at'] = (datetime.date.fromisoformat(project['updated_at']) + datetime.timedelta(days=1)).isoformat()
+            project['changelog'].append({'date':project['updated_at'],'text':'Case ESP8266 stampato'})
             file.write_text(json.dumps(project))
             data = radar.load(root)
             updated = next(p for p in data['projects'] if p['id'] == 'foundry')
