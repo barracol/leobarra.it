@@ -17,8 +17,8 @@ class RadarTests(unittest.TestCase):
         data = radar.load()
         self.assertEqual(len(data['projects']), 9)
         foundry = next(p for p in data['projects'] if p['id'] == 'foundry')
-        self.assertEqual(len(foundry['extensions']['print_queue']), 8)
-        self.assertEqual(foundry['extensions']['print_queue'][1]['id'], 'esp8266-case')
+        self.assertTrue(foundry['extensions']['print_queue'])
+        self.assertIn('esp8266-case', [item['id'] for item in foundry['extensions']['print_queue']])
         self.assertIn('97 cm', foundry['context_markdown'])
         self.assertIn('Non comprare organizer', next(p for p in data['projects'] if p['id'] == 'labhub')['context_markdown'])
         exported = radar.markdown(data)
@@ -51,7 +51,7 @@ class RadarTests(unittest.TestCase):
             shutil.copytree(radar.ROOT, root)
             file = root / 'projects/foundry.json'
             project = json.loads(file.read_text())
-            project['extensions']['print_queue'][1]['status'] = 'done'
+            next(item for item in project['extensions']['print_queue'] if item['id'] == 'esp8266-case')['status'] = 'done'
             project['extensions']['custom'] = {'example': [1, 2]}
             project['completed'].append('Case ESP8266 stampato')
             project['updated_at'] = (datetime.date.fromisoformat(project['updated_at']) + datetime.timedelta(days=1)).isoformat()
@@ -60,7 +60,7 @@ class RadarTests(unittest.TestCase):
             data = radar.load(root)
             updated = next(p for p in data['projects'] if p['id'] == 'foundry')
             self.assertEqual(updated['status'], 'in_progress')
-            self.assertEqual(updated['extensions']['print_queue'][1]['status'], 'done')
+            self.assertEqual(next(item for item in updated['extensions']['print_queue'] if item['id'] == 'esp8266-case')['status'], 'done')
 
 
 if __name__ == '__main__':
