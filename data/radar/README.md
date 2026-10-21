@@ -1,6 +1,6 @@
 # RADAR — source of truth v1
 
-La fonte canonica è `data/radar/projects/<id>.json`: un file per progetto, indipendente dalla UI. `index.json` contiene solo gli identificatori, non copie degli stati. `project.schema.json` documenta il formato JSON Schema 2020-12; `context.json` conserva protocollo, relazioni e backlog storico condiviso. Tutto è versionabile con Git e trasferibile in un repository separato senza modificare il modello dati.
+La fonte canonica dei progetti è `data/radar/projects/<id>.json`: un file per progetto, indipendente dalla UI. `supplies.json` conserva ordini e inventario condivisi. `index.json` contiene solo gli identificatori, non copie degli stati. `project.schema.json` documenta il formato JSON Schema 2020-12; `context.json` conserva protocollo, relazioni e backlog storico condiviso. Tutto è versionabile con Git e trasferibile in un repository separato senza modificare il modello dati.
 
 `archive/MyBrain_RADAR_Codex_Handoff_2026-10-06.md` è il bootstrap integrale, immutabile, non il database corrente. `context_markdown` conserva gli estratti storici senza perdita di dettaglio: i campi operativi e il changelog hanno precedenza sugli estratti quando un progetto evolve. Non aggiornare lo snapshot per simulare avanzamenti.
 
@@ -64,3 +64,17 @@ Questa milestone **non collega automaticamente ChatGPT e non espone API di scrit
 - `identifier_conventions`: proposte, non etichette già assegnate.
 
 La vista distingue tipi e stati tramite etichette; le card dei nodi usano anche colori e bordi. La lista collegamenti è inizialmente vuota: nessun grafo fisico inventato. Topologia interattiva nel backlog. Validare con `python3 scripts/radar.py validate`.
+
+## BOM, ordini e inventario condiviso
+
+`supplies.json` è la fonte canonica trasversale per acquisti e disponibilità: non copiare gli stessi articoli nei JSON dei progetti. Dashboard e export JSON/Markdown includono questo registro. Le milestone restano nei progetti; una consegna non completa automaticamente un’installazione.
+
+- `orders`: `id` interno (non il numero commerciale), `store`, `ordered_at`, `status` (`ordered|partially_received|received`), `total_eur`, `notes`. Il totale compare solo qui e nel riepilogo ordini, mai ripartito o sommato per progetto.
+- `items`: `id` stabile, `name`, `quantity` (null se ignota), `unit`, `category` (`consumable|equipment`), `projects` (uno o più ID progetto), `status`, `order_id` (null per disponibilità preesistenti o esclusioni), `product_url`, `expected_delivery`, `actual_delivery`, `cost_eur` (costo totale della riga, null se ignoto), `notes`. Negozio e data ordine si leggono tramite `order_id`.
+- Stati articoli: `to_evaluate`, `to_buy`, `ordered`, `received`, `in_use`, `excluded`. La BOM attiva mostra i primi tre; l’inventario i successivi due; gli esclusi restano separati per evitare di riproporli. `received` indica anche disponibilità preesistente confermata, senza inventare la data di consegna.
+- Gli articoli condivisi, ad esempio P1S e calibro, hanno un solo record con più progetti; nessuna quantità viene duplicata. Le quantità ordinate sono quantità della riga, non giacenze residue misurate.
+- I nodi di rete possono referenziare l’articolo con `supply_item_id`. `status: planned` descrive l’installazione non eseguita; `purchase_status: ordered` descrive l’acquisto, senza includere il nodo nella copertura operativa.
+
+Per confermare una consegna: rileggere il registro corrente, aggiornare solo l’articolo ricevuto a `received` con `actual_delivery`, ricalcolare lo stato dell’ordine (parziale finché manca almeno una consegna), aggiornare `updated_at` e `changelog`. Non trasformare automaticamente date previste in consegne. Aggiornare esplicitamente anche azioni, cronologia e riferimenti operativi del progetto coinvolto; installazione e collaudo richiedono conferme distinte. Validare e salvare insieme in un commit atomico. Prima di creare una nuova riga, cercare nome/ID e disponibilità esistente: prima inventariare, poi acquistare.
+
+Il registro iniziale copre l’ordine del 21 ottobre 2026 e le disponibilità confermate nello stesso aggiornamento: non è un censimento completo di tutti gli acquisti storici. L’ordine da 171,72 € non ha prezzi individuali noti; non sommare costi articolo al totale ordine. Nessun numero ordine personale è pubblicato.

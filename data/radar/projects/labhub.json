@@ -17,7 +17,7 @@
   ],
   "next_actions": [
     "Etichettare i contenitori TROFAST, attualmente privi di etichette: definire codici posizione e descrizioni, quindi stampare e applicare le etichette con la CLABEL 221B già disponibile.",
-    "Avviare inventario",
+    "Avviare il censimento delle attrezzature già disponibili e dei materiali, consultando il registro condiviso prima di nuovi acquisti.",
     "Progettare e stampare con FOUNDRY supporti custom per i nuovi pannelli SKÅDIS, inclusi portacacciaviti e altri supporti per utensili",
     "Dopo l'acquisto/montaggio del TROFAST 596.125.74, usare una guida IKEA TROFAST originale come riferimento geometrico e progettare un adattatore/guida stampabile per montare vasche TROFAST ruotate nei vani KALLAX",
     "Prototipare il sistema TROFAST→KALLAX su un solo vano problematico (preferibilmente B5 o D3) prima di pianificare e forare gli altri vani",
@@ -36,7 +36,7 @@
       "description": "Stampa ganci/supporti e scelta stazione P1S"
     }
   ],
-  "updated_at": "2026-10-20",
+  "updated_at": "2026-10-21",
   "decisions": [
     "Previsti 2 pannelli IKEA SKÅDIS 36 × 56 cm in orizzontale: uno per la zona FOUNDRY/stampante 3D e uno dietro il banco da lavoro, destinato principalmente ai cacciaviti.",
     "FOUNDRY non occuperà spazio nel KALLAX: stampante, filamenti, ricambi e materiale FOUNDRY saranno organizzati nel TROFAST dedicato.",
@@ -45,7 +45,8 @@
     "La combinazione TROFAST 596.125.74 fornirà direttamente le vasche 30 × 42 cm necessarie al prototipo TROFAST→KALLAX; non acquistare contenitori KALLAX dedicati prima del test.",
     "10/10/2026: i due SKÅDIS sono stati collocati entrambi nella zona FOUNDRY, anziché uno dietro il banco, per compatibilità pratica di orientamento e aggancio degli accessori.",
     "10/10/2026: mantenere una multipresa accessibile sul banco per collegamenti rapidi e spostare i carichi permanenti in una multipresa nel passacavi sotto la scrivania.",
-    "20/10/2026: LabHub è il prossimo ambito di miglioramento prioritario; iniziare dall’etichettatura dei TROFAST, non ancora effettuata."
+    "20/10/2026: LabHub è il prossimo ambito di miglioramento prioritario; iniziare dall’etichettatura dei TROFAST, non ancora effettuata.",
+    "Prima inventariare, poi acquistare: verificare la disponibilità nel laboratorio prima di aggiungere materiali o attrezzature alla BOM; evitare acquisti duplicati."
   ],
   "changelog": [
     {
@@ -91,6 +92,10 @@
     {
       "date": "2026-10-20",
       "text": "Leonardo indica LabHub come prossimo focus di miglioramento dopo la chiusura di HEARTH. Conferma che i TROFAST non sono etichettati: etichettatura promossa a prima azione, accorpando la definizione di standard/codici posizione senza duplicare task. Nessuna etichetta segnata completata."
+    },
+    {
+      "date": "2026-10-21",
+      "text": "Inventario condiviso: YIHUA 853D, punte, CLABEL e P1S già disponibili; calibro e kit viti ordinati, non ricevuti. Strategia: prima inventariare, poi acquistare. Priorità etichette TROFAST invariata."
     }
   ],
   "context_markdown": "# 4. LabHub --- Garage / laboratorio maker\n\n**Stato:** 🛠 In corso\n\nLabHub è la trasformazione del garage in laboratorio efficiente per:\n\n-   elettronica;\n-   maker;\n-   Home Automation;\n-   networking;\n-   stampa 3D;\n-   inventario componenti;\n-   progetti hardware.\n\n## Stato fisico\n\nIl garage possiede già:\n\n-   banco lungo;\n-   strumentazione elettronica;\n-   saldatore;\n-   alimentazione/strumenti;\n-   PC/monitor;\n-   pegboard;\n-   cassettiere;\n-   cassettini piccoli;\n-   contenitori TROFAST/scatole;\n-   molti componenti, moduli, cavi e utensili.\n\nNon è un garage \"da creare da zero\": è già un laboratorio cresciuto per\nstratificazione.\n\n## Zonizzazione desiderata del banco\n\n``` text\nELECTRONICS | BUILD | COMPUTING | FOUNDRY\n```\n\nPrincipi:\n\n-   zona centrale BUILD da mantenere libera quando non c'è un progetto\n    attivo;\n-   strumenti frequenti sui pegboard;\n-   materiale raro non deve occupare spazio premium;\n-   separare componentistica piccola, moduli medi e materiale\n    voluminoso.\n\n## Pegboard\n\nIdea:\n\n-   pegboard elettronica: sonde, puntali, Dupont, USB, pinze, strumenti\n    frequenti;\n-   altra pegboard: IT/general tools;\n-   evitare di comprare ganci IKEA costosi: **stampare ganci/supporti\n    con P1S**.\n\n## Inventario LabHub\n\nLeonardo vuole inventariare componenti, utensili, materiali e ricambi.\n\nSchema minimo:\n\n``` text\ncategoria\ndescrizione\nquantità\nposizione\nnote\n```\n\n### Codifica posizioni\n\nPossibile schema:\n\n-   `E01...` elettronica/cassettini;\n-   `M01...` moduli medi;\n-   `T01...` TROFAST;\n-   `P01...` pegboard;\n-   `F01...` FOUNDRY.\n\nOppure schema gerarchico tipo:\n\n``` text\nA-03-07\n```\n\n= scaffale A → cassettiera 3 → cassetto 7.\n\nObiettivo finale:\n\n``` text\nESP32 DevKit | 4 | E17\n```\n\ne ORACLE/HomeHub deve poter rispondere:\n\n> \"Sì, hai 4 ESP32, sono in LabHub E17.\"\n\n## Etichettatrice\n\nAcquistata:\n\n**CLABEL 221B**, termica Bluetooth, bundle con 3 rotoli.\n\nUso previsto:\n\n-   etichette cassetti;\n-   codici posizione;\n-   testo componente;\n-   eventuale QR code verso scheda inventario.\n\n------------------------------------------------------------------------\n\n# 12. Garage: filosofia organizzativa\n\nPrincipi concordati:\n\n1.  **Non comprare organizer prima dell'inventario**, salvo esigenze\n    chiare.\n2.  Evitare cassetti \"elettronica varia\".\n3.  Ogni oggetto deve avere una famiglia e, idealmente, un indirizzo.\n4.  Microcomponenti → cassetti piccoli/densi.\n5.  Moduli medi → cassetti/scatole medie.\n6.  Materiale voluminoso/progetti → contenitori grandi.\n7.  Pegboard → solo strumenti ad alta frequenza.\n8.  Banco centrale → torna libero a fine progetto.\n9.  Stampare organizer solo quando la geometria custom porta valore.\n10. Etichette e inventario devono essere pensati insieme.\n\n------------------------------------------------------------------------\n## Aggiornamento 10 ottobre 2026 — allestimento fisico\n\n- Montati con Silvia due mobili IKEA TROFAST: uno sotto la finestra dedicato a FOUNDRY/P1S, uno accanto alla scrivania.\n- Montati entrambi i pannelli SKÅDIS nella zona stampa 3D: la collocazione originale è stata rivista per la compatibilità di orientamento con i supporti.\n- Nuova multipresa di servizio accessibile sul banco, normalmente libera per collegamenti al volo; carichi permanenti da trasferire nella multipresa nascosta nel passacavi sotto la scrivania (configurazione pianificata, non ancora dichiarata installata).\n- Foto del risultato condivise nella conversazione ChatGPT il 10/10/2026; immagini non ancora archiviate in GitHub.\n- Fase di allestimento fisico sostanzialmente conclusa; rimangono inventario, etichette/indirizzi, supporti SKÅDIS personalizzati, e valutazione prototipo guide TROFAST→KALLAX.\n\n- Aggiornamento confermato: illuminazione del banco da lavoro già realizzata (10/10/2026); non è più un'attività da svolgere.\n",

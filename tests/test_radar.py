@@ -65,6 +65,50 @@ class RadarTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     radar.load(root)
 
+    def test_shared_supplies_and_exports(self):
+        data = radar.load()
+        supplies = data['supplies']
+        self.assertEqual(len(supplies['orders']), 1)
+        self.assertEqual(supplies['orders'][0]['total_eur'], 171.72)
+        ordered = [i for i in supplies['items'] if i['order_id']]
+        self.assertEqual(len(ordered), 6)
+        self.assertTrue(all(i['status'] == 'ordered' and i['actual_delivery'] is None and i['cost_eur'] is None for i in ordered))
+        calipers = [i for i in supplies['items'] if i['id'] == 'caliper']
+        self.assertEqual(len(calipers), 1)
+        self.assertEqual(set(calipers[0]['projects']), {'foundry', 'labhub'})
+        self.assertIn('supplies', json.loads(json.dumps(data)))
+        self.assertIn('amazon-2026-10-21', radar.markdown(data))
+
+    def test_supply_integrity_and_partial_delivery(self):
+        original = radar.load()['supplies']
+        ids = [p['id'] for p in radar.load()['projects']]
+        mutations = [
+            lambda d: d['orders'].append(copy.deepcopy(d['orders'][0])),
+            lambda d: d['items'].append(copy.deepcopy(d['items'][0])),
+            lambda d: d['items'][0].update(order_id='missing'),
+            lambda d: d['items'][0].update(projects=['missing']),
+            lambda d: d['items'][0].update(status='received'),
+            lambda d: d['items'][0].update(actual_delivery='2026-10-23'),
+            lambda d: d['items'][0].update(expected_delivery='2026-02-30'),
+            lambda d: d['items'][0].update(quantity=-1),
+            lambda d: d['items'][0].update(cost_eur=-1),
+            lambda d: d['orders'][0].update(status='received'),
+        ]
+        for mutation in mutations:
+            data = copy.deepcopy(original)
+            mutation(data)
+            with self.assertRaises(ValueError):
+                radar.validate_supplies(data, ids)
+        data = copy.deepcopy(original)
+        data['items'][0].update(status='received', actual_delivery='2026-10-23')
+        data['orders'][0]['status'] = 'partially_received'
+        radar.validate_supplies(data, ids)
+        for item in data['items']:
+            if item['order_id']:
+                item.update(status='received', actual_delivery='2026-10-23')
+        data['orders'][0]['status'] = 'received'
+        radar.validate_supplies(data, ids)
+
     def test_project_update_and_extension(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp) / 'radar'

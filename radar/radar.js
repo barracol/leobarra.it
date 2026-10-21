@@ -8,7 +8,7 @@ function el(tag, text, className) {
   if (className) node.className = className;
   return node;
 }
-let projects = [], context;
+let projects = [], context, supplies;
 function listSection(title, values) {
   const section = el('section'); section.append(el('h3',title));
   if (!values.length) section.append(el('p','Non specificato nello snapshot.'));
@@ -36,6 +36,38 @@ function networkTable(headers, rows) {
   const body=el('tbody');rows.forEach(row=>{const tr=el('tr');row.forEach(value=>tr.append(el('td',value ?? 'Da censire')));body.append(tr);});
   table.append(body);wrap.append(table);return wrap;
 }
+const supplyStates={to_evaluate:'Da valutare',to_buy:'Da acquistare',ordered:'Ordinato · in attesa di consegna',received:'Disponibile / ricevuto',in_use:'Installato / in uso',excluded:'Escluso'};
+const money=value=>value==null?'Non disponibile':new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(value);
+function renderSupplies(projectId) {
+  const section=el('section',undefined,'network-section');
+  section.append(el('h3','BOM e inventario condiviso'));
+  const items=supplies.items.filter(i=>i.projects.includes(projectId));
+  for(const [title,filter] of [
+    ['BOM · acquisti in corso',i=>['to_evaluate','to_buy','ordered'].includes(i.status)],
+    ['Inventario · già disponibili',i=>['received','in_use'].includes(i.status)],
+    ['Esclusi dagli acquisti',i=>i.status==='excluded']]) {
+    const selected=items.filter(filter);if(!selected.length)continue;
+    section.append(el('h4',title));
+    const rows=selected.map(i=>{
+      const order=supplies.orders.find(o=>o.id===i.order_id);
+      return [i.name,i.category==='equipment'?'Attrezzatura riutilizzabile':'Materiale di consumo',i.quantity==null?'Da censire':`${i.quantity} ${i.unit}`,supplyStates[i.status],i.projects.map(id=>projects.find(p=>p.id===id)?.codename||id).join(', '),order?.store||'Non registrato',order?.ordered_at||'Non registrata',i.expected_delivery||'Non indicata',i.actual_delivery||'Non registrata',money(i.cost_eur),i.notes];
+    });
+    section.append(networkTable(['Articolo','Categoria','Quantità','Stato','Progetti','Negozio','Ordine','Consegna prevista','Consegna effettiva','Costo articolo','Note'],rows));
+    const links=el('ul');for(const i of selected) {
+      if(!i.product_url?.startsWith('https://'))continue;
+      const li=el('li'),a=el('a',i.name+' ↗');a.href=i.product_url;a.target='_blank';a.rel='noopener noreferrer';li.append(a);links.append(li);
+    }if(links.children.length)section.append(links);
+  }
+  section.append(el('p','Gli articoli condivisi sono registrati una sola volta. Date previste non equivalgono a consegne confermate.'));
+  const ordersLink=el('a','Vedi registro ordini e totale condiviso');ordersLink.href='#orders';section.append(ordersLink);
+  return section;
+}
+function renderOrders() {
+  const section=$('#orders');section.append(el('h2','Ordini condivisi'));
+  section.append(el('p','Totali degli ordini, conteggiati una sola volta. Non sono costi per progetto; i prezzi dei singoli articoli non sono disponibili.'));
+  section.append(networkTable(['Negozio','Data ordine','Stato','Totale ordine','Articoli'],supplies.orders.map(o=>[o.store,o.ordered_at,{ordered:'Ordinato · in attesa di consegna',partially_received:'Ricevuto parzialmente',received:'Ricevuto'}[o.status],money(o.total_eur),supplies.items.filter(i=>i.order_id===o.id).map(i=>i.name).join('; ')])));
+}
+
 function renderNetwork(network, inventory) {
   const section=el('section',undefined,'network-section');section.append(el('h3','Rete domestica'));
   const types={wired_main:'Ethernet · principale',ethernet:'Ethernet',wifi:'Wi-Fi'};
@@ -43,7 +75,7 @@ function renderNetwork(network, inventory) {
   for(const node of [...network.nodes,...network.planned_nodes]) {
     const planned=node.status==='planned';
     const card=el('article',undefined,`network-node ${node.connection==='wifi'?'wireless':'wired'}${planned?' planned':''}`);
-    card.append(el('strong',node.name),el('p',types[node.connection]||'Da valutare'),el('small',planned?'Pianificato · non acquistato/installato':node.id==='cantina'?'Ethernet confermato dall’app Deco':'Operativo · confermato dall’utente'));
+    card.append(el('strong',node.name),el('p',types[node.connection]||'Da valutare'),el('small',planned?(node.purchase_status==='ordered'?'Ordinato · in attesa di consegna · non installato':'Pianificato · non acquistato/installato'):node.id==='cantina'?'Ethernet confermato dall’app Deco':'Operativo · confermato dall’utente'));
     grid.append(card);
   }
   const count=network.nodes.filter(n=>['wired_main','ethernet'].includes(n.connection)).length;
@@ -64,7 +96,7 @@ function renderNetwork(network, inventory) {
 function renderDetail() {
   const detail=$('#detail'); detail.replaceChildren();
   const id=location.hash.slice(1);
-  if (!id) {detail.hidden=true;return;}
+  if (!id || id==='orders') {detail.hidden=true;return;}
   detail.hidden=false;
   const close=el('a','← Torna ai progetti'); close.href='#'; detail.append(close);
   const p=projects.find(p=>p.id===id);
@@ -85,6 +117,7 @@ function renderDetail() {
     gallery.append(grid);detail.append(gallery);
   }
   if (p.extensions.network) detail.append(renderNetwork(p.extensions.network,p.extensions.network_inventory));
+  if(supplies.items.some(i=>i.projects.includes(p.id))) detail.append(renderSupplies(p.id));
   const columns=el('div',undefined,'detail-columns');
   for (const [key,label] of [['next_actions','Prossime azioni'],['completed','Attività completate'],['backlog','Backlog'],['decisions','Decisioni']]) columns.append(listSection(label,p[key]));
   const deps=el('section'); deps.append(el('h3','Dipendenze e relazioni'));
@@ -110,7 +143,7 @@ async function init() {
   try {
     const index=await getJSON('../data/radar/index.json');
     if(index.schema_version!==1 || !Array.isArray(index.projects) || index.projects.some(id=>!(/^[a-z][a-z0-9-]*$/).test(id))) throw new Error('Indice non valido');
-    [projects,context]=await Promise.all([Promise.all(index.projects.map(id=>getJSON(`../data/radar/projects/${id}.json`))),getJSON('../data/radar/context.json')]);
+    [projects,context,supplies]=await Promise.all([Promise.all(index.projects.map(id=>getJSON(`../data/radar/projects/${id}.json`))),getJSON('../data/radar/context.json'),getJSON('../data/radar/supplies.json')]);
     projects.sort((a,b)=>Object.keys(states).indexOf(a.status)-Object.keys(states).indexOf(b.status) || a.codename.localeCompare(b.codename));
     for(const [key,label] of Object.entries(states)) {
       const stat=el('div');stat.append(el('strong',String(projects.filter(p=>p.status===key).length)),el('span',label));$('#summary').append(stat);
@@ -119,10 +152,10 @@ async function init() {
     $('#search').addEventListener('input',renderCards);$('#status').addEventListener('change',renderCards);
     window.addEventListener('hashchange',renderDetail);
     $('#export').disabled=false;$('#export').addEventListener('click',()=>{
-      const blob=new Blob([JSON.stringify({schema_version:1,projects,context},null,2)+'\n'],{type:'application/json'});
+      const blob=new Blob([JSON.stringify({schema_version:1,projects,context,supplies},null,2)+'\n'],{type:'application/json'});
       const url=URL.createObjectURL(blob),link=el('a');link.href=url;link.download='radar-export.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     });
-    renderCards();renderDetail();
+    renderOrders();renderCards();renderDetail();
   } catch(error) {
     $('#feedback').textContent='Impossibile caricare RADAR. Ricarica la pagina o verifica i file dati e la connessione.';
     console.error('RADAR load failed',error);

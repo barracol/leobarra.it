@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-21",
+  "orders": [
+    {
+      "id": "amazon-2026-10-21",
+      "store": "Amazon Italia",
+      "ordered_at": "2026-10-21",
+      "status": "ordered",
+      "total_eur": 171.72,
+      "notes": "Totale unico dell’ordine condiviso. Prezzi individuali non disponibili; numero ordine privato non registrato."
+    }
+  ],
+  "items": [
+    {
+      "id": "deco-studio",
+      "name": "TP-Link Deco X50 AX3000",
+      "quantity": 1,
+      "unit": "pezzo",
+      "category": "equipment",
+      "projects": [
+        "backbone"
+      ],
+      "status": "ordered",
+      "order_id": "amazon-2026-10-21",
+      "product_url": "https://www.amazon.it/dp/B09LVFVRYB",
+      "expected_delivery": "2026-10-23",
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Consegna non ancora confermata."
+    },
+    {
+      "id": "fasteners-m2-m5",
+      "name": "Kit 1710 viti, dadi e rondelle M2–M5",
+      "quantity": 1,
+      "unit": "kit",
+      "category": "consumable",
+      "projects": [
+        "foundry",
+        "labhub"
+      ],
+      "status": "ordered",
+      "order_id": "amazon-2026-10-21",
+      "product_url": "https://www.amazon.it/dp/B0F94G8MNL",
+      "expected_delivery": "2026-10-23",
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Consegna non ancora confermata."
+    },
+    {
+      "id": "pla-white",
+      "name": "ELEGOO PLA bianco 1,75 mm",
+      "quantity": 4,
+      "unit": "kg",
+      "category": "consumable",
+      "projects": [
+        "foundry"
+      ],
+      "status": "ordered",
+      "order_id": "amazon-2026-10-21",
+      "product_url": "https://www.amazon.it/dp/B0CD7BHP7L",
+      "expected_delivery": "2026-10-23",
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Consegna non ancora confermata."
+    },
+    {
+      "id": "caliper",
+      "name": "Calibro analogico Retoo 150 mm",
+      "quantity": 1,
+      "unit": "pezzo",
+      "category": "equipment",
+      "projects": [
+        "labhub",
+        "foundry"
+      ],
+      "status": "ordered",
+      "order_id": "amazon-2026-10-21",
+      "product_url": "https://www.amazon.it/dp/B09GFQPDY8",
+      "expected_delivery": "2026-10-22",
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Consegna non ancora confermata."
+    },
+    {
+      "id": "magnets",
+      "name": "Magneti neodimio 5×2 mm",
+      "quantity": 100,
+      "unit": "pezzi",
+      "category": "consumable",
+      "projects": [
+        "foundry"
+      ],
+      "status": "ordered",
+      "order_id": "amazon-2026-10-21",
+      "product_url": "https://www.amazon.it/dp/B0DMNR5D6C",
+      "expected_delivery": "2026-10-22",
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Consegna non ancora confermata."
+    },
+    {
+      "id": "heat-inserts",
+      "name": "Inserti filettati termici Bolatus M2–M6",
+      "quantity": 360,
+      "unit": "pezzi",
+      "category": "consumable",
+      "projects": [
+        "foundry"
+      ],
+      "status": "ordered",
+      "order_id": "amazon-2026-10-21",
+      "product_url": "https://www.amazon.it/dp/B0F2TGGBMC",
+      "expected_delivery": "2026-10-22",
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Consegna non ancora confermata."
+    },
+    {
+      "id": "p1s",
+      "name": "Bambu Lab P1S",
+      "quantity": 1,
+      "unit": "pezzo",
+      "category": "equipment",
+      "projects": [
+        "foundry",
+        "labhub"
+      ],
+      "status": "in_use",
+      "order_id": null,
+      "product_url": null,
+      "expected_delivery": null,
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Stampante già operativa, condivisa tra i progetti."
+    },
+    {
+      "id": "pla-orange",
+      "name": "PLA Basic arancione",
+      "quantity": null,
+      "unit": "kg",
+      "category": "consumable",
+      "projects": [
+        "foundry"
+      ],
+      "status": "received",
+      "order_id": null,
+      "product_url": null,
+      "expected_delivery": null,
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Già disponibile; quantità residua non censita."
+    },
+    {
+      "id": "yihua-853d",
+      "name": "Stazione saldante YIHUA 853D",
+      "quantity": 1,
+      "unit": "pezzo",
+      "category": "equipment",
+      "projects": [
+        "foundry",
+        "labhub"
+      ],
+      "status": "received",
+      "order_id": null,
+      "product_url": null,
+      "expected_delivery": null,
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Già disponibile; non acquistare una nuova stazione."
+    },
+    {
+      "id": "soldering-tips",
+      "name": "Assortimento di punte per saldatore",
+      "quantity": null,
+      "unit": "pezzi",
+      "category": "equipment",
+      "projects": [
+        "foundry",
+        "labhub"
+      ],
+      "status": "received",
+      "order_id": null,
+      "product_url": null,
+      "expected_delivery": null,
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Già disponibile; verificare le punte prima del test inserti. Nessun nuovo acquisto previsto."
+    },
+    {
+      "id": "clabel",
+      "name": "Etichettatrice CLABEL 221B",
+      "quantity": 1,
+      "unit": "pezzo",
+      "category": "equipment",
+      "projects": [
+        "labhub",
+        "backbone"
+      ],
+      "status": "received",
+      "order_id": null,
+      "product_url": null,
+      "expected_delivery": null,
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Già disponibile per TROFAST e cablaggi Ethernet."
+    },
+    {
+      "id": "rj45-tester",
+      "name": "Tester RJ45",
+      "quantity": null,
+      "unit": "pezzi",
+      "category": "equipment",
+      "projects": [
+        "backbone"
+      ],
+      "status": "excluded",
+      "order_id": null,
+      "product_url": null,
+      "expected_delivery": null,
+      "actual_delivery": null,
+      "cost_eur": null,
+      "notes": "Esplicitamente escluso dagli acquisti; non necessario né suggerito nella BOM attiva."
+    }
+  ],
+  "changelog": [
+    {
+      "date": "2026-10-21",
+      "text": "Registrati ordine Amazon, disponibilità confermate ed esclusione tester RJ45. Nessuna consegna dedotta dalle date previste."
+    }
+  ]
+}

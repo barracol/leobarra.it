@@ -41,6 +41,68 @@ def check(value, schema, path='$'):
             datetime.date.fromisoformat(value)
 
 
+def validate_supplies(data, project_ids):
+    if data['schema_version'] != 1:
+        raise ValueError('Invalid supplies version')
+    def date(value):
+        if value is not None:
+            check(value, {'type': 'string', 'format': 'date'})
+    date(data['updated_at'])
+    orders = {o['id']: o for o in data['orders']}
+    if len(orders) != len(data['orders']):
+        raise ValueError('Duplicate order ids')
+    items = {i['id']: i for i in data['items']}
+    if len(items) != len(data['items']):
+        raise ValueError('Duplicate item ids')
+    def amount(value):
+        if value is not None and (type(value) not in (int, float) or not 0 <= value < float('inf')):
+            raise ValueError('Invalid amount')
+    for o in orders.values():
+        if o['status'] not in ('ordered', 'partially_received', 'received'):
+            raise ValueError('Invalid order status')
+        date(o['ordered_at'])
+        amount(o['total_eur'])
+        if not o['store']:
+            raise ValueError('Missing store')
+    for i in items.values():
+        required = {'id', 'name', 'quantity', 'unit', 'category', 'projects', 'status', 'order_id', 'product_url', 'expected_delivery', 'actual_delivery', 'cost_eur', 'notes'}
+        if not required <= i.keys() or not i['id'] or not i['name'] or not i['unit']:
+            raise ValueError('Missing supply fields')
+        if i['status'] not in ('to_evaluate', 'to_buy', 'ordered', 'received', 'in_use', 'excluded'):
+            raise ValueError('Invalid supply status')
+        if i['category'] not in ('equipment', 'consumable'):
+            raise ValueError('Invalid category')
+        if not i['projects'] or len(set(i['projects'])) != len(i['projects']) or set(i['projects']) - set(project_ids):
+            raise ValueError('Invalid supply project references')
+        if i['order_id'] is not None and i['order_id'] not in orders:
+            raise ValueError('Unknown order')
+        if i['status'] == 'ordered' and (i['order_id'] is None or i['actual_delivery'] is not None):
+            raise ValueError('Ordered item must reference order and cannot be delivered')
+        if i['order_id'] and i['status'] in ('received', 'in_use') and not i['actual_delivery']:
+            raise ValueError('Delivery confirmation required for ordered goods')
+        for field in ('expected_delivery', 'actual_delivery'):
+            date(i[field])
+            if i[field] and i['order_id'] and i[field] < orders[i['order_id']]['ordered_at']:
+                raise ValueError('Delivery precedes order')
+        amount(i['cost_eur'])
+        if i['quantity'] is not None and (type(i['quantity']) not in (int, float) or not 0 < i['quantity'] < float('inf')):
+            raise ValueError('Invalid quantity')
+        if i['product_url'] is not None and not i['product_url'].startswith('https://'):
+            raise ValueError('Product link must use HTTPS')
+    for o in orders.values():
+        lines = [i for i in items.values() if i['order_id'] == o['id']]
+        received = [i for i in lines if i['actual_delivery']]
+        expected = 'received' if lines and len(received) == len(lines) else 'partially_received' if received else 'ordered'
+        if not lines or o['status'] != expected:
+            raise ValueError('Order status inconsistent with deliveries')
+    dates = [c['date'] for c in data['changelog']]
+    for value in dates:
+        date(value)
+    if not dates or dates != sorted(dates) or dates[-1] != data['updated_at']:
+        raise ValueError('Invalid supplies changelog')
+    return data
+
+
 def load(root=ROOT):
     read = lambda path: json.loads(path.read_text(encoding='utf-8'))
     index = read(root / 'index.json')
@@ -80,7 +142,15 @@ def load(root=ROOT):
                 if c['type'] not in ('ethernet', 'wifi') or c['verification_status'] not in ('verified', 'hypothesized', 'planned'):
                     raise ValueError(f'{id}: invalid connection type/status')
         projects.append(p)
-    return dict(schema_version=1, projects=projects, context=read(root / 'context.json'))
+    supplies = validate_supplies(read(root / 'supplies.json'), ids)
+    item_ids = {i['id'] for i in supplies['items']}
+    for p in projects:
+        network = p['extensions'].get('network', {})
+        inventory = p['extensions'].get('network_inventory', {})
+        for node in network.get('planned_nodes', []) + inventory.get('devices', []):
+            if 'supply_item_id' in node and node['supply_item_id'] not in item_ids:
+                raise ValueError('Unknown network supply item')
+    return dict(schema_version=1, projects=projects, context=read(root / 'context.json'), supplies=supplies)
 
 
 def markdown(data):
@@ -93,6 +163,7 @@ def markdown(data):
             else:
                 lines += [f'### {key}', '```json', json.dumps(value, ensure_ascii=False, indent=2), '```', '']
     lines += ['## Contesto condiviso', '```json', json.dumps(data['context'], ensure_ascii=False, indent=2), '```']
+    lines += ['## Acquisti e inventario condivisi', '```json', json.dumps(data['supplies'], ensure_ascii=False, indent=2), '```']
     return '\n'.join(lines) + '\n'
 
 
