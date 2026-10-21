@@ -45,6 +45,26 @@ class RadarTests(unittest.TestCase):
                     with self.assertRaises(ValueError):
                         radar.load(root)
 
+    def test_network_connections(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp) / 'radar'
+            shutil.copytree(radar.ROOT, root)
+            file = root / 'projects/backbone.json'
+            project = json.loads(file.read_text())
+            link = dict(cable_id=None, source_device='soggiorno', source_port=None,
+                        destination_device='cantina', destination_port=None,
+                        type='ethernet', verification_status='hypothesized')
+            project['extensions']['network_inventory']['connections'] = [link]
+            file.write_text(json.dumps(project))
+            radar.load(root)
+            for field, invalid in [('source_device', 'unknown'), ('type', 'other'),
+                                   ('verification_status', 'assumed_verified')]:
+                bad = copy.deepcopy(project)
+                bad['extensions']['network_inventory']['connections'][0][field] = invalid
+                file.write_text(json.dumps(bad))
+                with self.assertRaises(ValueError):
+                    radar.load(root)
+
     def test_project_update_and_extension(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp) / 'radar'

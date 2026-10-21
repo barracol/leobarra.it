@@ -29,6 +29,38 @@ function renderCards() {
   }
   $('#feedback').textContent=visible.length ? `${visible.length} ${visible.length === 1 ? 'progetto visibile' : 'progetti visibili'} · ${projects.filter(p=>p.status==='in_progress').length} in corso` : 'Nessun progetto corrisponde ai filtri.';
 }
+function networkTable(headers, rows) {
+  const wrap=el('div',undefined,'network-table-wrap'), table=el('table');
+  const head=el('thead'), tr=el('tr');
+  headers.forEach(label=>{const th=el('th',label);th.scope='col';tr.append(th);});head.append(tr);table.append(head);
+  const body=el('tbody');rows.forEach(row=>{const tr=el('tr');row.forEach(value=>tr.append(el('td',value ?? 'Da censire')));body.append(tr);});
+  table.append(body);wrap.append(table);return wrap;
+}
+function renderNetwork(network, inventory) {
+  const section=el('section',undefined,'network-section');section.append(el('h3','Rete domestica'));
+  const types={wired_main:'Ethernet · principale',ethernet:'Ethernet',wifi:'Wi-Fi'};
+  const grid=el('div',undefined,'network-nodes');
+  for(const node of [...network.nodes,...network.planned_nodes]) {
+    const planned=node.status==='planned';
+    const card=el('article',undefined,`network-node ${node.connection==='wifi'?'wireless':'wired'}${planned?' planned':''}`);
+    card.append(el('strong',node.name),el('p',types[node.connection]||'Da valutare'),el('small',planned?'Pianificato · non acquistato/installato':node.id==='cantina'?'Ethernet confermato dall’app Deco':'Operativo · confermato dall’utente'));
+    grid.append(card);
+  }
+  const count=network.nodes.filter(n=>['wired_main','ethernet'].includes(n.connection)).length;
+  section.append(el('p',`${count}/${network.nodes.length} nodi attuali cablati, incluso il principale. Studio pianificato escluso; questo conteggio non indica il completamento del progetto.`),grid);
+  section.append(el('p','Ethernet: bordo ciano · Wi-Fi: bordo rosa · pianificato: bordo tratteggiato. Sono stati dei nodi, non collegamenti fisici tra dispositivi.'));
+  if(!inventory)return section;
+  section.append(el('h3','Network Inventory'),el('p',`Censimento da completare. ${inventory.phase}.`));
+  section.append(networkTable(['ID fisico','Nome','Tipo','Modello','Posizione','Stato','Porte','Note'],inventory.devices.map(d=>[d.identifier,d.name,d.type==='mesh_node'?'Nodo mesh':d.type,d.model,d.location,d.status==='planned'?'Pianificato':'Operativo',d.port_count,d.notes])));
+  section.append(el('h4','Collegamenti e topologia fisica'));
+  if(inventory.connections.length) {
+    const names=Object.fromEntries(inventory.devices.map(d=>[d.ref,d.name]));
+    const status={verified:'Verificato',hypothesized:'Ipotizzato',planned:'Pianificato'};
+    section.append(networkTable(['Cavo','Sorgente','Porta','Destinazione','Porta','Tipo','Verifica'],inventory.connections.map(c=>[c.cable_id,names[c.source_device]||c.source_device,c.source_port,names[c.destination_device]||c.destination_device,c.destination_port,c.type==='ethernet'?'Ethernet':'Wi-Fi',status[c.verification_status]])));
+  } else section.append(el('p','Nessun collegamento fisico ancora censito: sorgenti, destinazioni e porte da rilevare. La topologia interattiva è prevista come evoluzione futura.'));
+  section.append(listSection('Convenzioni proposte',Object.values(inventory.identifier_conventions)),listSection('Note inventario',inventory.notes));return section;
+}
+
 function renderDetail() {
   const detail=$('#detail'); detail.replaceChildren();
   const id=location.hash.slice(1);
@@ -52,6 +84,7 @@ function renderDetail() {
     }
     gallery.append(grid);detail.append(gallery);
   }
+  if (p.extensions.network) detail.append(renderNetwork(p.extensions.network,p.extensions.network_inventory));
   const columns=el('div',undefined,'detail-columns');
   for (const [key,label] of [['next_actions','Prossime azioni'],['completed','Attività completate'],['backlog','Backlog'],['decisions','Decisioni']]) columns.append(listSection(label,p[key]));
   const deps=el('section'); deps.append(el('h3','Dipendenze e relazioni'));
@@ -60,7 +93,7 @@ function renderDetail() {
   columns.append(deps,listSection('Cronologia',p.changelog.map(c=>`${c.date} — ${c.text}`))); detail.append(columns);
   if(p.ambiguities?.length) detail.append(listSection('Da chiarire',p.ambiguities));
   for(const [key,value] of Object.entries(p.extensions)) {
-    if(key==='gallery') continue;
+    if(['gallery','network','network_inventory'].includes(key)) continue;
     if(key==='print_queue') {detail.append(el('h3','FOUNDRY / Print queue')); const list=el('ol',undefined,'queue');value.forEach((q,i)=>{const item=el('li');item.append(el('strong',`${i+1}. ${q.name}`),el('span',queueStates[q.status] || q.status),el('pre',q.details));list.append(item);});detail.append(list);}
     else {const extra=el('details');extra.append(el('summary',key),el('pre',JSON.stringify(value,null,2)));detail.append(extra);}
   }

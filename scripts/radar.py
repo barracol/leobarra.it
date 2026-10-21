@@ -64,6 +64,21 @@ def load(root=ROOT):
         queue = p['extensions'].get('print_queue', [])
         if len({item['id'] for item in queue}) != len(queue):
             raise ValueError(f'{id}: duplicate queue ids')
+        inventory = p['extensions'].get('network_inventory')
+        if inventory is not None:
+            refs = [d['ref'] for d in inventory['devices']]
+            if len(refs) != len(set(refs)):
+                raise ValueError(f'{id}: duplicate network device refs')
+            for c in inventory['connections']:
+                required = {'cable_id', 'source_device', 'source_port', 'destination_device', 'destination_port', 'type', 'verification_status'}
+                if not required <= c.keys():
+                    raise ValueError(f'{id}: missing connection fields')
+                if c['source_device'] not in refs or c['destination_device'] not in refs:
+                    raise ValueError(f'{id}: unknown network endpoint')
+                if c['source_device'] == c['destination_device']:
+                    raise ValueError(f'{id}: network self-link')
+                if c['type'] not in ('ethernet', 'wifi') or c['verification_status'] not in ('verified', 'hypothesized', 'planned'):
+                    raise ValueError(f'{id}: invalid connection type/status')
         projects.append(p)
     return dict(schema_version=1, projects=projects, context=read(root / 'context.json'))
 

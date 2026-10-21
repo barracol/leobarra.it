@@ -4,29 +4,37 @@
   "codename": "BACKBONE",
   "name": "Infrastruttura rete casa",
   "status": "in_progress",
-  "description": "Mesh TP-Link Deco X50: 5 nodi operativi, 3 collegati alla rete cablata incluso il principale. Garage e Camera da letto cablati; priorità alta alla stabilità dello Studio con un sesto nodo pianificato, non ancora acquistato.",
-  "objective": "Migliorare affidabilità e continuità della connessione nello Studio, dove i drop compromettono sessioni remote e lavoro. Portare a 4 su 5 i nodi attuali collegati alla rete cablata, includendo il principale e cablando la Cantina; Cucina definitivamente wireless. Valutare il collegamento del futuro sesto nodo Studio prima dell’installazione.",
+  "description": "Mesh TP-Link Deco X50: 4 dei 5 nodi attuali collegati alla rete cablata, incluso il principale. Cantina completata il 21 ottobre. Priorità alta: sesto Deco nello Studio, già raggiunto da Ethernet; poi censimento ed etichettatura della rete.",
+  "objective": "Rendere la rete domestica cablata, documentata e manutenibile. Migliorare stabilità e continuità del lavoro nello Studio usando Ethernet già disponibile; documentare dispositivi, porte, cavi e topologia fisica effettiva.",
   "completed": [
     "Acquistati TL-SG608E, LS1005G, Cat6 50 m e 4 UGREEN HDMI Dummy Plug",
     "Cablaggio Ethernet del nodo Garage completato (confermato il 20/10/2026; data di esecuzione non specificata).",
     "20/10/2026: completato il cablaggio Ethernet del nodo Camera da letto.",
-    "20/10/2026: verifica tramite MacBook in Wi-Fi al nodo Camera da letto: 737,38 Mbps download e 185,56 Mbps upload. Risultato compatibile con backhaul Gigabit funzionante, non misura diretta della velocità negoziata."
+    "20/10/2026: verifica tramite MacBook in Wi-Fi al nodo Camera da letto: 737,38 Mbps download e 185,56 Mbps upload. Risultato compatibile con backhaul Gigabit funzionante, non misura diretta della velocità negoziata.",
+    "21/10/2026: dorsale Ethernet Cantina completata riutilizzando le canalizzazioni dell’antenna TV non utilizzata. App TP-Link Deco conferma il collegamento Ethernet; velocità Cantina non misurata. Traguardo raggiunto: 4/5 nodi attuali cablati, incluso il principale."
   ],
   "next_actions": [
-    "PRIORITÀ ALTA — Studio: valutare qualità del segnale, roaming e disponibilità Ethernet, quindi procedere con acquisto e installazione del sesto Deco X50. Acquisto non ancora effettuato; verificare dopo l’intervento la continuità delle sessioni remote, senza presumere che il solo nodo risolva i drop."
+    "PRIORITÀ ALTA — acquistare il sesto TP-Link Deco X50 per lo Studio (non ancora acquistato/installato).",
+    "Installare il Deco Studio con backhaul Ethernet già disponibile: non serve una nuova dorsale.",
+    "Verificare stabilità, roaming, riduzione dei drop e continuità delle sessioni di lavoro nello Studio."
   ],
   "backlog": [
-    "Da pianificare — cablaggio Ethernet Cantina: tecnicamente fattibile, in attesa di tempo disponibile; nessuna scadenza fissata.",
-    "Futuro — completare organizzazione fisica dell’infrastruttura: rack, switch, percorsi, punti rete e cablaggi; verificare la diramazione prevista con LS1005G senza considerarla già realizzata."
+    "Dopo le principali installazioni — Network Inventory & Labeling: censire switch e dispositivi, registrando modello, posizione, numero di porte e uplink.",
+    "Identificare tutti i cavi Ethernet ed etichettarne entrambe le estremità; identificare e documentare le porte degli switch.",
+    "Ricostruire la topologia fisica effettiva e documentare collegamenti e dorsali tra ambienti; popolare Network Inventory in RADAR.",
+    "Completare l’organizzazione fisica di rack, switch e cablaggi, verificando le associazioni reali durante il censimento.",
+    "Futuro — valutare una topologia interattiva dopo il censimento di dispositivi, porte e collegamenti."
   ],
   "dependencies": [],
-  "updated_at": "2026-10-20",
+  "updated_at": "2026-10-21",
   "decisions": [
     "Usare Cat6 CCA già acquistato.",
     "RACK è un deliverable BACKBONE, non progetto separato.",
     "Cucina: mantenere definitivamente il backhaul Wi-Fi, perché il nodo non è cablabile.",
-    "Studio: priorità alta per affidabilità e continuità del lavoro; sesto Deco X50 pianificato, non acquistato. Valutare segnale, roaming ed Ethernet prima dell’installazione: il nuovo nodo non è una soluzione garantita.",
-    "Il traguardo di 4 nodi cablati su 5 riguarda i cinque nodi attuali e include il principale Soggiorno. Il futuro Studio resta fuori dal conteggio finché non installato; il suo backhaul è da valutare. Il rapporto non rappresenta l’avanzamento complessivo di BACKBONE."
+    "Studio: Ethernet è già disponibile; sesto nodo pianificato, non acquistato/installato. Usare backhaul Ethernet e verificare sul campo stabilità e roaming.",
+    "Traguardo cablaggio attuale raggiunto: 4/5 nodi, incluso Soggiorno principale. Studio pianificato escluso dal conteggio; non è l’avanzamento complessivo di BACKBONE.",
+    "Riutilizzare le canalizzazioni TV non utilizzate per il cablaggio dove praticabile, come effettuato in Cantina.",
+    "Censimento ed etichettatura dopo le principali attività di cablaggio/installazione. Convenzioni SW-01, ETH-001, P01, DEC-01 proposte: identificativi definitivi da assegnare durante il censimento."
   ],
   "changelog": [
     {
@@ -48,12 +56,16 @@
     {
       "date": "2026-10-20",
       "text": "Nuova conferma utente che supera il precedente aggiornamento di nessun avanzamento: Garage e Camera da letto hanno backhaul Ethernet completato (Camera da letto completata oggi). Registrato test MacBook via Wi-Fi 737,38/185,56 Mbps senza dedurne la velocità negoziata. Rete attuale: Soggiorno principale, Camera da letto e Garage cablati, Cucina e Cantina wireless; obiettivo 4/5 sui nodi esistenti. Nuova priorità alta: valutazione segnale/roaming/Ethernet e acquisto/installazione sesto Deco X50 Studio, non ancora acquistato. Cantina da pianificare, Cucina wireless definitiva; organizzazione rack/switch/cablaggi futura. Sostituite le vecchie azioni cameretta/cantina con la roadmap corrente, senza duplicare task."
+    },
+    {
+      "date": "2026-10-21",
+      "text": "Completata dorsale Ethernet Cantina nelle canalizzazioni TV inutilizzate, confermata dall’app Deco: 4/5 nodi attuali cablati. Nessuna velocità attribuita alla Cantina. Studio già raggiunto da Ethernet: priorità acquisto/installazione sesto nodo e verifica stabilità/roaming. Aggiunta fase Network Inventory & Labeling con dati noti, identificativi da assegnare e collegamenti da censire; topologia interattiva rinviata."
     }
   ],
   "context_markdown": "## BACKBONE --- Infrastruttura rete casa\n\n**Stato:** 🛠 In corso\n\nObiettivo:\n\n-   migliorare infrastruttura rete;\n-   nuovo/i nodi mesh;\n-   cablaggio Ethernet;\n-   topologia;\n-   percorsi;\n-   punti rete;\n-   shopping list;\n-   rack.\n\n### Rete esistente nota\n\n-   FTTH TIM;\n-   ONT separato;\n-   TIM Hub+ ZXHN H2740;\n-   mesh TP-Link Deco X50, 5 nodi.\n\nÈ esistito anche un progetto `wifi-heatmapper` nel workspace Codex:\n\n``` text\n~/Documents/Codex/homehub-source/home-dashboard-stack/wifi-heatmapper/wifi-heatmapper\n```\n\nMac usato: Intel x86_64.\n\nUna precedente heatmap indicava copertura complessivamente buona, con\nzone più deboli verso camera 1/balcone destro.\n\n### Acquisti recenti BACKBONE\n\n-   **TP-Link TL-SG608E**, Easy Smart, 8 porte Gigabit\\\n    → destinato al **RACK**.\n-   **TP-Link LS1005G**, 5 porte Gigabit unmanaged\\\n    → destinato a una **cassetta di derivazione** per creare una\n    diramazione locale.\n-   **Mr. Tronic Cat6 50 m**, AWG24 UTP CCA\\\n    → già acquistato; Leonardo ha deciso di usarlo.\n-   4 × **UGREEN HDMI Dummy Plug 4K60**\\\n    → per sistemi headless/remote use.\n\nTopologia concettuale di una diramazione:\n\n``` text\nRACK\n  |\n  | Ethernet\n  v\ncassetta di derivazione\n  |\nLS1005G\n  ├── tratta\n  ├── tratta\n  ├── tratta\n  └── ...\n```\n\n### RACK\n\nIl RACK è un deliverable fisico di BACKBONE, non un progetto separato al\nmomento.\n\nLo switch TL-SG608E 8 porte è destinato al rack.\n\n------------------------------------------------------------------------\n## Piano 11 ottobre 2026\n\nDopo la Corripavia, collegare via cavo Ethernet il nodo Deco X50 attualmente su backhaul wireless. Verificare topologia LAN e modalità Deco, stato Ethernet nell'app, connettività e prestazioni. Attività ancora da eseguire.\n\nDettaglio piano 11/10: nodo Deco X50 cameretta primo piano; cavo già vicino, da portare da cassetta derivazione a presa RJ45; installare uno degli switch acquistati (LS1005G previsto per cassetta). Facoltativo: sondare possibile percorso Ethernet verso cantina.\n",
   "extensions": {
     "network": {
-      "as_of": "2026-10-20",
+      "as_of": "2026-10-21",
       "model": "TP-Link Deco X50",
       "nodes": [
         {
@@ -93,10 +105,11 @@
           "id": "cantina",
           "name": "Cantina",
           "role": "satellite",
-          "connection": "wifi",
+          "connection": "ethernet",
           "status": "operational",
-          "cabling_status": "to_schedule",
-          "note": "Ethernet tecnicamente fattibile; in attesa di tempo disponibile."
+          "cabling_status": "completed",
+          "note": "Dorsale nelle canalizzazioni TV non utilizzate; collegamento Ethernet confermato dall’app Deco. Velocità non misurata.",
+          "completed_at": "2026-10-21"
         }
       ],
       "planned_nodes": [
@@ -107,18 +120,19 @@
           "status": "planned",
           "purchase_status": "not_purchased",
           "priority": "high",
-          "connection": "to_assess",
+          "connection": "ethernet",
           "problem": "Drop di connessione durante il lavoro e le sessioni remote.",
           "pre_installation_checks": [
             "Qualità segnale",
             "Roaming",
-            "Disponibilità Ethernet"
+            "Identificare il punto Ethernet già disponibile; nessuna nuova dorsale necessaria."
           ],
-          "acceptance_check": "Verificare affidabilità e continuità delle sessioni remote dopo l’intervento."
+          "acceptance_check": "Verificare affidabilità e continuità delle sessioni remote dopo l’intervento.",
+          "ethernet_available": true
         }
       ],
       "wired_coverage": {
-        "current": 3,
+        "current": 4,
         "target": 4,
         "existing_nodes": 5,
         "includes_main": true,
@@ -135,10 +149,93 @@
           "interpretation": "Compatibile con backhaul Gigabit funzionante; non misura diretta della velocità negoziata."
         }
       ]
+    },
+    "network_inventory": {
+      "status": "to_populate",
+      "phase": "Dopo le principali attività di cablaggio e installazione",
+      "identifier_conventions": {
+        "switch": "SW-01, SW-02, …",
+        "cable": "ETH-001, ETH-002, …",
+        "port": "P01, P02, … (nel dispositivo)",
+        "deco": "DEC-01, DEC-02, …"
+      },
+      "devices": [
+        {
+          "ref": "soggiorno",
+          "identifier": null,
+          "name": "Soggiorno",
+          "type": "mesh_node",
+          "model": "TP-Link Deco X50",
+          "location": "Soggiorno",
+          "status": "operational",
+          "port_count": null,
+          "notes": "Nodo principale."
+        },
+        {
+          "ref": "camera-da-letto",
+          "identifier": null,
+          "name": "Camera da letto",
+          "type": "mesh_node",
+          "model": "TP-Link Deco X50",
+          "location": "Camera da letto",
+          "status": "operational",
+          "port_count": null,
+          "notes": "Identificativo fisico e porte da censire."
+        },
+        {
+          "ref": "garage",
+          "identifier": null,
+          "name": "Garage",
+          "type": "mesh_node",
+          "model": "TP-Link Deco X50",
+          "location": "Garage",
+          "status": "operational",
+          "port_count": null,
+          "notes": "Identificativo fisico e porte da censire."
+        },
+        {
+          "ref": "cucina",
+          "identifier": null,
+          "name": "Cucina",
+          "type": "mesh_node",
+          "model": "TP-Link Deco X50",
+          "location": "Cucina",
+          "status": "operational",
+          "port_count": null,
+          "notes": "Identificativo fisico e porte da censire."
+        },
+        {
+          "ref": "cantina",
+          "identifier": null,
+          "name": "Cantina",
+          "type": "mesh_node",
+          "model": "TP-Link Deco X50",
+          "location": "Cantina",
+          "status": "operational",
+          "port_count": null,
+          "notes": "Identificativo fisico e porte da censire."
+        },
+        {
+          "ref": "studio",
+          "identifier": null,
+          "name": "Studio",
+          "type": "mesh_node",
+          "model": "TP-Link Deco X50",
+          "location": "Studio",
+          "status": "planned",
+          "port_count": null,
+          "notes": "Non acquistato/installato; Ethernet già disponibile."
+        }
+      ],
+      "connections": [],
+      "notes": [
+        "ref è un riferimento logico stabile, non un’etichetta fisica assegnata.",
+        "Switch e collegamenti non ancora censiti: nessuna associazione o porta inventata. I modelli acquistati restano documentati nelle attività completate.",
+        "La vista dei nodi mostra il tipo di collegamento dichiarato; non rappresenta un grafo delle connessioni fisiche."
+      ]
     }
   },
   "ambiguities": [
-    "Lo storico nomina “cameretta primo piano”; l’aggiornamento corrente indica “Camera da letto”. Usata la nomenclatura attuale senza dedurre che le due denominazioni identifichino lo stesso locale.",
-    "Backhaul del futuro nodo Studio ancora da valutare: non incluso nel traguardo 4/5 riferito ai nodi attuali."
+    "Lo storico nomina “cameretta primo piano”; l’aggiornamento corrente indica “Camera da letto”. Usata la nomenclatura attuale senza dedurre che le due denominazioni identifichino lo stesso locale."
   ]
 }

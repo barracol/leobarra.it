@@ -54,3 +54,13 @@ Questa milestone **non collega automaticamente ChatGPT e non espone API di scrit
 ## Gallerie fotografiche
 
 `extensions.gallery` è una lista di oggetti con `src` (percorso dalla root del sito, sotto `assets/`), `alt`, `caption` e `source` (nome originale per tracciabilità). La dashboard mostra le foto nel dettaglio e un richiamo sulla card. Usare JPEG ottimizzati senza metadati EXIF/GPS; conservare gli originali fuori dal repository. Ogni foto si apre a dimensione completa.
+
+## Network Inventory (BACKBONE)
+
+`extensions.network` conserva nodi e misure dichiarati. `extensions.network_inventory` prepara il censimento fisico, senza dedurre collegamenti dal backhaul.
+
+- `devices`: `ref` (riferimento logico stabile), `identifier` (etichetta fisica, null prima dell’assegnazione), `name`, `type`, `model`, `location`, `status`, `port_count` (null se sconosciuto), `notes`.
+- `connections`: `cable_id`, `source_device`, `source_port`, `destination_device`, `destination_port`, `type` (`ethernet|wifi`), `verification_status` (`verified|hypothesized|planned`). Gli estremi referenziano `devices[].ref`; cavo e porte sconosciuti possono essere null.
+- `identifier_conventions`: proposte, non etichette già assegnate.
+
+La vista distingue tipi e stati tramite etichette; le card dei nodi usano anche colori e bordi. La lista collegamenti è inizialmente vuota: nessun grafo fisico inventato. Topologia interattiva nel backlog. Validare con `python3 scripts/radar.py validate`.
