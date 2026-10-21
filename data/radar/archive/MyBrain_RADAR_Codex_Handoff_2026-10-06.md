@@ -209,11 +209,11 @@ Possibile relazione futura con PELOTON.
 
 ------------------------------------------------------------------------
 
-## PELOTON --- Synopsys Running 2027
+## PELOTON --- Running Team 2027
 
 **Stato:** 💡 Idea
 
-Idea discussa con il Site Manager Matteo:
+Idea per un gruppo running:
 
 -   allenamenti collettivi nel 2027;
 -   partecipazione a gare come team;
@@ -1075,7 +1075,7 @@ Running dashboard personale.
 
 **💡 Idea**
 
-Running/team Synopsys 2027.
+Running/team 2027.
 
 ------------------------------------------------------------------------
 
