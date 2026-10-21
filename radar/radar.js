@@ -36,36 +36,35 @@ function networkTable(headers, rows) {
   const body=el('tbody');rows.forEach(row=>{const tr=el('tr');row.forEach(value=>tr.append(el('td',value ?? 'Da censire')));body.append(tr);});
   table.append(body);wrap.append(table);return wrap;
 }
-const supplyStates={to_evaluate:'Da valutare',to_buy:'Da acquistare',ordered:'Ordinato · in attesa di consegna',received:'Disponibile / ricevuto',in_use:'Installato / in uso',excluded:'Escluso'};
-const money=value=>value==null?'Non disponibile':new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(value);
+const supplyStates={to_buy:'Da acquistare',ordered:'Ordinato · in attesa di consegna',received:'Ricevuto',available:'Disponibile',installed:'Installato / in uso',excluded:'Escluso'};
 function renderSupplies(projectId) {
   const section=el('section',undefined,'network-section');
   section.append(el('h3','BOM e inventario condiviso'));
   const items=supplies.items.filter(i=>i.projects.includes(projectId));
   for(const [title,filter] of [
-    ['BOM · acquisti in corso',i=>['to_evaluate','to_buy','ordered'].includes(i.status)],
-    ['Inventario · già disponibili',i=>['received','in_use'].includes(i.status)],
+    ['BOM · acquisti in corso',i=>['to_buy','ordered'].includes(i.status)],
+    ['Inventario · già disponibili',i=>['received','available','installed'].includes(i.status)],
     ['Esclusi dagli acquisti',i=>i.status==='excluded']]) {
     const selected=items.filter(filter);if(!selected.length)continue;
     section.append(el('h4',title));
     const rows=selected.map(i=>{
       const order=supplies.orders.find(o=>o.id===i.order_id);
-      return [i.name,i.category==='equipment'?'Attrezzatura riutilizzabile':'Materiale di consumo',i.quantity==null?'Da censire':`${i.quantity} ${i.unit}`,supplyStates[i.status],i.projects.map(id=>projects.find(p=>p.id===id)?.codename||id).join(', '),order?.store||'Non registrato',order?.ordered_at||'Non registrata',i.expected_delivery||'Non indicata',i.actual_delivery||'Non registrata',money(i.cost_eur),i.notes];
+      return [i.name,i.category==='equipment'?'Attrezzatura riutilizzabile':'Materiale di consumo',i.quantity==null?'Da censire':`${i.quantity} ${i.unit}`,supplyStates[i.status],i.projects.map(id=>projects.find(p=>p.id===id)?.codename||id).join(', '),order?.store||i.supplier||'Non registrato',order?.ordered_at||'Non registrata',i.expected_delivery||'Non indicata',i.actual_delivery||'Non registrata',i.location||'Da censire',i.notes];
     });
-    section.append(networkTable(['Articolo','Categoria','Quantità','Stato','Progetti','Negozio','Ordine','Consegna prevista','Consegna effettiva','Costo articolo','Note'],rows));
+    section.append(networkTable(['Articolo','Categoria','Quantità','Stato','Progetti','Negozio','Ordine','Consegna prevista','Consegna effettiva','Posizione fisica','Note'],rows));
     const links=el('ul');for(const i of selected) {
       if(!i.product_url?.startsWith('https://'))continue;
       const li=el('li'),a=el('a',i.name+' ↗');a.href=i.product_url;a.target='_blank';a.rel='noopener noreferrer';li.append(a);links.append(li);
     }if(links.children.length)section.append(links);
   }
   section.append(el('p','Gli articoli condivisi sono registrati una sola volta. Date previste non equivalgono a consegne confermate.'));
-  const ordersLink=el('a','Vedi registro ordini e totale condiviso');ordersLink.href='#orders';section.append(ordersLink);
+  const ordersLink=el('a','Vedi registro ordini condivisi');ordersLink.href='#orders';section.append(ordersLink);
   return section;
 }
 function renderOrders() {
   const section=$('#orders');section.append(el('h2','Ordini condivisi'));
-  section.append(el('p','Totali degli ordini, conteggiati una sola volta. Non sono costi per progetto; i prezzi dei singoli articoli non sono disponibili.'));
-  section.append(networkTable(['Negozio','Data ordine','Stato','Totale ordine','Articoli'],supplies.orders.map(o=>[o.store,o.ordered_at,{ordered:'Ordinato · in attesa di consegna',partially_received:'Ricevuto parzialmente',received:'Ricevuto'}[o.status],money(o.total_eur),supplies.items.filter(i=>i.order_id===o.id).map(i=>i.name).join('; ')])));
+  section.append(el('p','Articoli ordinati, fornitore e stato delle consegne.'));
+  section.append(networkTable(['Negozio','Data ordine','Stato','Articoli'],supplies.orders.map(o=>[o.store,o.ordered_at,{ordered:'Ordinato · in attesa di consegna',partially_received:'Ricevuto parzialmente',received:'Ricevuto'}[o.status],supplies.items.filter(i=>i.order_id===o.id).map(i=>i.name).join('; ')])));
 }
 
 function renderNetwork(network, inventory) {

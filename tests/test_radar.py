@@ -69,14 +69,16 @@ class RadarTests(unittest.TestCase):
         data = radar.load()
         supplies = data['supplies']
         self.assertEqual(len(supplies['orders']), 1)
-        self.assertEqual(supplies['orders'][0]['total_eur'], 171.72)
         ordered = [i for i in supplies['items'] if i['order_id']]
         self.assertEqual(len(ordered), 6)
-        self.assertTrue(all(i['status'] == 'ordered' and i['actual_delivery'] is None and i['cost_eur'] is None for i in ordered))
+        self.assertTrue(all(i['status'] == 'ordered' and i['actual_delivery'] is None for i in ordered))
         calipers = [i for i in supplies['items'] if i['id'] == 'caliper']
         self.assertEqual(len(calipers), 1)
         self.assertEqual(set(calipers[0]['projects']), {'foundry', 'labhub'})
         self.assertIn('supplies', json.loads(json.dumps(data)))
+        for exported in (json.dumps(supplies), radar.markdown(data).split('## Acquisti e inventario condivisi')[1]):
+            for field in ('cost_eur', 'total_eur', 'budget'):
+                self.assertNotIn(field, exported)
         self.assertIn('amazon-2026-10-21', radar.markdown(data))
 
     def test_supply_integrity_and_partial_delivery(self):
@@ -91,7 +93,9 @@ class RadarTests(unittest.TestCase):
             lambda d: d['items'][0].update(actual_delivery='2026-10-23'),
             lambda d: d['items'][0].update(expected_delivery='2026-02-30'),
             lambda d: d['items'][0].update(quantity=-1),
-            lambda d: d['items'][0].update(cost_eur=-1),
+            lambda d: d['items'][0].update(cost_eur=1),
+            lambda d: d['orders'][0].update(total_eur=1),
+            lambda d: d['items'][0].update(budget=1),
             lambda d: d['orders'][0].update(status='received'),
         ]
         for mutation in mutations:

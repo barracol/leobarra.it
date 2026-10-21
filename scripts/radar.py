@@ -54,22 +54,23 @@ def validate_supplies(data, project_ids):
     items = {i['id']: i for i in data['items']}
     if len(items) != len(data['items']):
         raise ValueError('Duplicate item ids')
-    def amount(value):
-        if value is not None and (type(value) not in (int, float) or not 0 <= value < float('inf')):
-            raise ValueError('Invalid amount')
     for o in orders.values():
+        if set(o) != {'id', 'store', 'ordered_at', 'status', 'notes'}:
+            raise ValueError('Unexpected order fields')
         if o['status'] not in ('ordered', 'partially_received', 'received'):
             raise ValueError('Invalid order status')
         date(o['ordered_at'])
-        amount(o['total_eur'])
         if not o['store']:
             raise ValueError('Missing store')
     for i in items.values():
-        required = {'id', 'name', 'quantity', 'unit', 'category', 'projects', 'status', 'order_id', 'product_url', 'expected_delivery', 'actual_delivery', 'cost_eur', 'notes'}
-        if not required <= i.keys() or not i['id'] or not i['name'] or not i['unit']:
+        required = {'id', 'name', 'quantity', 'unit', 'category', 'projects', 'status', 'order_id', 'product_url', 'expected_delivery', 'actual_delivery', 'location', 'supplier', 'notes'}
+        if set(i) != required or not i['id'] or not i['name'] or not i['unit']:
             raise ValueError('Missing supply fields')
-        if i['status'] not in ('to_evaluate', 'to_buy', 'ordered', 'received', 'in_use', 'excluded'):
+        if i['status'] not in ('to_buy', 'ordered', 'received', 'available', 'installed', 'excluded'):
             raise ValueError('Invalid supply status')
+        for field in ('location', 'supplier'):
+            if i[field] is not None and not isinstance(i[field], str):
+                raise ValueError('Invalid technical inventory field')
         if i['category'] not in ('equipment', 'consumable'):
             raise ValueError('Invalid category')
         if not i['projects'] or len(set(i['projects'])) != len(i['projects']) or set(i['projects']) - set(project_ids):
@@ -78,13 +79,12 @@ def validate_supplies(data, project_ids):
             raise ValueError('Unknown order')
         if i['status'] == 'ordered' and (i['order_id'] is None or i['actual_delivery'] is not None):
             raise ValueError('Ordered item must reference order and cannot be delivered')
-        if i['order_id'] and i['status'] in ('received', 'in_use') and not i['actual_delivery']:
+        if i['order_id'] and i['status'] in ('received', 'available', 'installed') and not i['actual_delivery']:
             raise ValueError('Delivery confirmation required for ordered goods')
         for field in ('expected_delivery', 'actual_delivery'):
             date(i[field])
             if i[field] and i['order_id'] and i[field] < orders[i['order_id']]['ordered_at']:
                 raise ValueError('Delivery precedes order')
-        amount(i['cost_eur'])
         if i['quantity'] is not None and (type(i['quantity']) not in (int, float) or not 0 < i['quantity'] < float('inf')):
             raise ValueError('Invalid quantity')
         if i['product_url'] is not None and not i['product_url'].startswith('https://'):
